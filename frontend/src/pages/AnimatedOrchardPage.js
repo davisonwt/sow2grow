@@ -439,17 +439,17 @@ export default function AnimatedOrchardPage() {
                 <Button
                   onClick={handleBestow}
                   disabled={processingPayment}
-                  className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white py-3 shadow-lg"
+                  className="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white py-3 shadow-lg"
                 >
                   {processingPayment ? (
                     <div className="flex items-center">
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Processing...
+                      Making it rain...
                     </div>
                   ) : (
                     <>
-                      <ShoppingCart className="h-4 w-4 mr-2" />
-                      Confirm Bestowal
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      Make It Rain
                     </>
                   )}
                 </Button>
