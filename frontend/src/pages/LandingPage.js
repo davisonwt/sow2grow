@@ -109,20 +109,20 @@ export default function LandingPage() {
               <p className="text-gray-600">Tithing and free-will gifting based on biblical principles</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-amber-600" />
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <Users className="h-10 w-10 text-amber-600" />
               </div>
-              <h3 className="text-lg font-semibold text-amber-800 mb-2">Community Support</h3>
-              <p className="text-sm text-gray-600">Growers and bestowers helping each other grow</p>
+              <h3 className="text-xl font-semibold text-amber-800 mb-3">Community Support</h3>
+              <p className="text-gray-600">Growers and bestowers helping each other grow</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Gift className="h-8 w-8 text-rose-600" />
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <Gift className="h-10 w-10 text-rose-600" />
               </div>
-              <h3 className="text-lg font-semibold text-rose-800 mb-2">Farm Mall</h3>
-              <p className="text-sm text-gray-600">Each grower has their own farm stall with orchards</p>
+              <h3 className="text-xl font-semibold text-rose-800 mb-3">Farm Mall</h3>
+              <p className="text-gray-600">Each grower has their own farm stall with orchards</p>
             </div>
           </div>
         </div>
