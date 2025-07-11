@@ -253,26 +253,11 @@ export default function LandingPage() {
               </div>
             </div>
             
-            {/* Big placeholder */}
-            <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
-              <video 
-                autoPlay 
-                muted 
-                loop 
-                className="w-full h-full object-cover"
-              >
-                <source src="/seeds 1 mp4.mp4" type="video/mp4" />
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 5v10l8-5-8-5z"/>
-                      </svg>
-                    </div>
-                    <p className="text-gray-500 text-lg">Seeds Video Content</p>
-                  </div>
-                </div>
-              </video>
+            {/* Seeds 2 paragraph */}
+            <div className="max-w-4xl mx-auto px-6 py-6">
+              <p className="text-lg text-gray-700 text-center leading-relaxed italic">
+                ...into a home for anyone of our harvesters. it is born from purpose, ready to be sown.
+              </p>
             </div>
             
             {/* Big placeholder */}
