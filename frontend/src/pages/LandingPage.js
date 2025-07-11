@@ -258,6 +258,44 @@ export default function LandingPage() {
           </div>
           
           {/* Bestowers Section */}
+          <div className="max-w-4xl mx-auto px-6 py-8">
+            <Card className="border-rose-200 hover:shadow-lg transition-shadow">
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="h-8 w-8 text-rose-600" />
+                </div>
+                <CardTitle className="text-rose-800">bestowers (cultivators and harvesters)</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <Star className="h-4 w-4 text-rose-600" />
+                    <span className="text-sm text-gray-700">Browse the farm mall</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Star className="h-4 w-4 text-rose-600" />
+                    <span className="text-sm text-gray-700">Visit different farm stalls</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Star className="h-4 w-4 text-rose-600" />
+                    <span className="text-sm text-gray-700">Bestow into orchards</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Star className="h-4 w-4 text-rose-600" />
+                    <span className="text-sm text-gray-700">Help others grow</span>
+                  </div>
+                </div>
+                <Link to="/browse-orchards">
+                  <Button className="w-full bg-rose-600 hover:bg-rose-700">
+                    Start Bestowing
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+          
+          {/* Bestowers Section */}
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-green-800 text-center mb-8" style={{ fontFamily: "Playfair Display, serif" }}>
               Bestowers
