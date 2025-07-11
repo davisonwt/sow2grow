@@ -595,6 +595,7 @@ export default function LandingPage() {
                 variant="outline" 
                 size="lg" 
                 className="border-white text-white hover:bg-white hover:text-green-600 px-8 py-6 text-lg"
+                style={{ borderRadius: '21px' }}
               >
                 <Zap className="h-5 w-5 mr-2" />
                 View App Flow
