@@ -231,44 +231,6 @@ export default function LandingPage() {
             </div>
           </div>
           
-          {/* Growers Section */}
-          <div className="max-w-4xl mx-auto px-6 py-8">
-            <Card className="border-green-200 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Sprout className="h-8 w-8 text-green-600" />
-                </div>
-                <CardTitle className="text-green-800">Growers (Farm Stall Owners)</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <Star className="h-4 w-4 text-green-600" />
-                    <span className="text-sm text-gray-700">Get your own farm stall</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Star className="h-4 w-4 text-green-600" />
-                    <span className="text-sm text-gray-700">Create multiple orchards</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Star className="h-4 w-4 text-green-600" />
-                    <span className="text-sm text-gray-700">Sow into your own orchards</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Star className="h-4 w-4 text-green-600" />
-                    <span className="text-sm text-gray-700">Receive community support</span>
-                  </div>
-                </div>
-                <Link to="/register">
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
-                    Become a Grower
-                    <ArrowRight className="h-4 w-4 ml-2" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-          
           {/* Orchards Section */}
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-green-800 text-center mb-8" style={{ fontFamily: "Playfair Display, serif" }}>
