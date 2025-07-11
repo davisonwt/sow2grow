@@ -12,7 +12,8 @@ import {
   ArrowRight,
   Star,
   Shield,
-  Zap
+  Zap,
+  HandHeart
 } from "lucide-react"
 
 export default function LandingPage() {
