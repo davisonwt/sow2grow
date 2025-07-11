@@ -334,13 +334,6 @@ export default function LandingPage() {
               </video>
             </div>
             
-            {/* Orchards strip2 paragraph */}
-            <div className="max-w-4xl mx-auto px-6 py-6">
-              <p className="text-lg text-gray-700 text-center leading-relaxed italic">
-                our community members act as your online outlets; making tiktok, placing orders, and cultivating your gift into global fruit.
-              </p>
-            </div>
-            
             {/* Strip placeholder */}
             <div className="w-full h-40 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
               <video 
@@ -351,6 +344,11 @@ export default function LandingPage() {
               >
                 <source src="/orchards strip2 mp4.mp4" type="video/mp4" />
               </video>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-white text-lg font-semibold text-center px-6 py-2 bg-black bg-opacity-60 rounded">
+                  our community members act as your online outlets; making tiktok, placing orders, and cultivating your gift into global fruit.
+                </p>
+              </div>
             </div>
           </div>
           
