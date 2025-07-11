@@ -531,6 +531,13 @@ export default function LandingPage() {
               </div>
             </div>
             
+            {/* Harvesters main paragraph */}
+            <div className="max-w-4xl mx-auto px-6 py-6">
+              <p className="text-lg text-gray-700 text-center leading-relaxed italic">
+                the return; where bestowers receive, and the cycle becomes whole.
+              </p>
+            </div>
+            
             {/* Big placeholder */}
             <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
               <video 
