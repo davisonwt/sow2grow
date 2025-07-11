@@ -326,6 +326,131 @@ export default function CreateOrchardPage() {
           </CardContent>
         </Card>
         
+        {/* Media Upload */}
+        <Card className="bg-white/90 backdrop-blur-sm border-green-200 shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-green-800 flex items-center gap-2">
+              <Camera className="h-5 w-5" />
+              Step 4: Media Upload
+            </CardTitle>
+            <p className="text-sm text-gray-600 mt-2">
+              Help the community see your need! Upload 1-3 photos and optionally a video to showcase your orchard.
+            </p>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {/* Image Upload */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                <Image className="inline h-4 w-4 mr-1" />
+                Images (1-3 photos)
+              </label>
+              <div className="space-y-4">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-400 transition-colors">
+                  <input
+                    type="file"
+                    id="image-upload"
+                    multiple
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="hidden"
+                    max="3"
+                  />
+                  <label htmlFor="image-upload" className="cursor-pointer">
+                    <Upload className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                    <p className="text-sm text-gray-600">Click to upload images or drag and drop</p>
+                    <p className="text-xs text-gray-500">PNG, JPG, JPEG up to 5MB each (max 3 images)</p>
+                  </label>
+                </div>
+                
+                {/* Image Previews */}
+                {selectedImages.length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {selectedImages.map((image, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={image.preview}
+                          alt={`Preview ${index + 1}`}
+                          className="w-full h-32 object-cover rounded-lg border border-gray-200"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                        <div className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded">
+                          {image.file.name}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            {/* Video Upload */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                <Video className="inline h-4 w-4 mr-1" />
+                Video (Optional)
+              </label>
+              <div className="space-y-4">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-400 transition-colors">
+                  <input
+                    type="file"
+                    id="video-upload"
+                    accept="video/*"
+                    onChange={handleVideoUpload}
+                    className="hidden"
+                  />
+                  <label htmlFor="video-upload" className="cursor-pointer">
+                    <Video className="h-8 w-8 text-gray-400 mx-auto mb-2" />
+                    <p className="text-sm text-gray-600">Click to upload a video or drag and drop</p>
+                    <p className="text-xs text-gray-500">MP4, MOV, AVI up to 50MB</p>
+                  </label>
+                </div>
+                
+                {/* Video Preview */}
+                {selectedVideo && (
+                  <div className="relative group">
+                    <video
+                      src={selectedVideo.preview}
+                      controls
+                      className="w-full h-48 rounded-lg border border-gray-200"
+                    />
+                    <button
+                      type="button"
+                      onClick={removeVideo}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                    <div className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded">
+                      {selectedVideo.file.name}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            {/* Media Guidelines */}
+            <div className="bg-green-50 p-4 rounded-lg">
+              <h4 className="font-semibold text-green-800 mb-2">
+                <Sparkles className="inline h-4 w-4 mr-1" />
+                Media Guidelines
+              </h4>
+              <ul className="text-sm text-green-700 space-y-1">
+                <li>• Upload clear, high-quality images that show your need</li>
+                <li>• Include photos of the current situation and what you're working toward</li>
+                <li>• Videos can help tell your story more personally (optional but recommended)</li>
+                <li>• Keep content appropriate and family-friendly</li>
+                <li>• Authentic, genuine content builds more community trust</li>
+              </ul>
+            </div>
+          </CardContent>
+        </Card>
+        
         {/* Error Display */}
         {error && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
