@@ -738,7 +738,7 @@ async def create_orchard(
 
 @api_router.get("/orchards/{orchard_id}", response_model=APIResponse)
 async def get_orchard(
-    orchard_id: str = Path(...),
+    orchard_id: str = PathParam(...),
     current_user: Optional[User] = Depends(get_current_user_optional)
 ):
     """Get orchard by ID"""
@@ -787,7 +787,7 @@ async def get_orchard(
 @api_router.patch("/orchards/{orchard_id}", response_model=APIResponse)
 async def update_orchard(
     request: OrchardUpdateRequest,
-    orchard_id: str = Path(...),
+    orchard_id: str = PathParam(...),
     current_user: User = Depends(get_current_user)
 ):
     """Update orchard"""
@@ -846,7 +846,7 @@ async def update_orchard(
 
 @api_router.delete("/orchards/{orchard_id}", response_model=APIResponse)
 async def delete_orchard(
-    orchard_id: str = Path(...),
+    orchard_id: str = PathParam(...),
     current_user: User = Depends(get_current_user)
 ):
     """Delete orchard"""
@@ -878,7 +878,7 @@ async def delete_orchard(
 @api_router.post("/orchards/{orchard_id}/bestow", response_model=APIResponse)
 async def bestow_into_orchard(
     request: PocketSelectionRequest,
-    orchard_id: str = Path(...),
+    orchard_id: str = PathParam(...),
     current_user: User = Depends(get_current_user)
 ):
     """Bestow into orchard by selecting pockets"""
@@ -955,7 +955,7 @@ async def bestow_into_orchard(
 
 @api_router.post("/orchards/{orchard_id}/complete", response_model=APIResponse)
 async def complete_orchard(
-    orchard_id: str = Path(...),
+    orchard_id: str = PathParam(...),
     current_user: User = Depends(get_current_user)
 ):
     """Complete orchard and trigger payout"""
