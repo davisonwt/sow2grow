@@ -578,7 +578,13 @@ export default function LandingPage() {
             <Link to="/register">
               <Button 
                 size="lg" 
-                className="bg-white text-green-600 hover:bg-gray-100 px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                className="px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-2"
+                style={{ 
+                  borderRadius: '21px',
+                  backgroundColor: '#0c71c3',
+                  color: 'white',
+                  boxShadow: '0 20px 40px rgba(12, 113, 195, 0.3)'
+                }}
               >
                 <Heart className="h-5 w-5 mr-2" />
                 Start Your Journey
