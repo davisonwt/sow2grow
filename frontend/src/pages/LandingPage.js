@@ -119,7 +119,8 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-          
+        
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="text-center group">
               <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
@@ -147,6 +148,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      
       {/* How s2g farm mall works Section */}
       <section className="py-20 bg-white/80 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6">
