@@ -396,9 +396,9 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <Link to="/tithing">
-                    <Button className="w-full bg-amber-600 hover:bg-amber-700">
-                      let it rain over the 'gosat' (gosat - guardians of the set-apart tabernacle)
-                      <ArrowRight className="h-4 w-4 ml-2" />
+                    <Button className="w-full bg-amber-600 hover:bg-amber-700 h-16 flex flex-col items-center justify-center">
+                      <span className="text-sm leading-tight">let it rain over the 'gosat'</span>
+                      <span className="text-xs text-amber-100">(gosat - guardians of the set-apart tabernacle)</span>
                     </Button>
                   </Link>
                 </CardContent>
