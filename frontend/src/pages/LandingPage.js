@@ -134,7 +134,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-green-800 mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
-              How the Farm Mall Works
+              How s2g farm mall works
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               The 364yhvh Community Farm is a complete ecosystem where everyone can both give and receive
