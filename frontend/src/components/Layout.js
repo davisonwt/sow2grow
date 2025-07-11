@@ -31,7 +31,7 @@ export default function Layout({ children }) {
   
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: Home },
-    { name: "Browse Orchards", href: "/browse-orchards", icon: Search },
+    { name: "Cultivate Community Orchards", href: "/browse-orchards", icon: Search },
     { name: "Create Orchard", href: "/create-orchard", icon: Plus },
     { name: "My Orchards", href: "/my-orchards", icon: BarChart3 },
     { name: "Tithing", href: "/tithing", icon: Church },
