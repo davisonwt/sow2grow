@@ -226,7 +226,7 @@ export default function LandingPage() {
       
       {/* Video Placeholders Section */}
       <section className="py-12 bg-gradient-to-br from-green-50 to-amber-50">
-        <div className="max-w-7xl mx-auto px-6 space-y-12">
+        <div className="max-w-8xl mx-auto px-6 space-y-12">
           
           {/* Seeds Section */}
           <div className="space-y-6">
