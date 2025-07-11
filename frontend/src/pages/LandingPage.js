@@ -144,27 +144,27 @@ export default function LandingPage() {
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                <HandHeart className="h-10 w-10 text-green-600" />
+              <div className="w-20 h-20 bg-gradient-to-br from-pink-300 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <HandHeart className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-green-800 mb-3">scriptural giving</h3>
-              <p className="text-gray-600">Tithing and free-will gifting based on biblical principles</p>
+              <p className="text-gray-600">give with joy, not just duty,<br />first fruits and love, your tithe of beauty.</p>
             </div>
             
             <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                <Users className="h-10 w-10 text-amber-600" />
+              <div className="w-20 h-20 bg-gradient-to-br from-green-300 to-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <Users className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-amber-800 mb-3">Community Support</h3>
-              <p className="text-gray-600">Growers and bestowers helping each other grow</p>
+              <p className="text-gray-600">growers sow, bestowers flow;<br />shared harvest makes the body grow.</p>
             </div>
             
             <div className="text-center group">
-              <div className="w-20 h-20 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                <Gift className="h-10 w-10 text-rose-600" />
+              <div className="w-20 h-20 bg-gradient-to-br from-purple-300 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <Gift className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-rose-800 mb-3">s2g farm mall</h3>
-              <p className="text-gray-600">Each grower has their own farm stall with orchards</p>
+              <p className="text-gray-600">each stall blooms, each hand gives;<br />fruit shared fresh, the body lives.</p>
             </div>
           </div>
         </div>
