@@ -131,138 +131,156 @@ export default function LandingPage() {
       
       {/* Video Placeholders Section */}
       <section className="py-12 bg-gradient-to-br from-green-50 to-amber-50">
-        <div className="max-w-7xl mx-auto px-6 space-y-8">
-          {/* Big placeholder */}
-          <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
+        <div className="max-w-7xl mx-auto px-6 space-y-12">
+          
+          {/* Seeds Section */}
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-green-800 text-center mb-8" style={{ fontFamily: "Playfair Display, serif" }}>
+              Seeds
+            </h2>
+            
+            {/* Strip placeholder */}
+            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="flex items-center space-x-4">
+                <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500">Seeds Video Strip</p>
               </div>
-              <p className="text-gray-500 text-lg">Video Content</p>
+            </div>
+            
+            {/* Big placeholder */}
+            <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500 text-lg">Seeds Video Content</p>
+              </div>
+            </div>
+            
+            {/* Big placeholder */}
+            <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500 text-lg">Seeds Video Content</p>
+              </div>
             </div>
           </div>
           
-          {/* Strip placeholder */}
-          <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
+          {/* Orchards Section */}
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-green-800 text-center mb-8" style={{ fontFamily: "Playfair Display, serif" }}>
+              Orchards
+            </h2>
+            
+            {/* Strip placeholder */}
+            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="flex items-center space-x-4">
+                <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500">Orchards Video Strip</p>
               </div>
-              <p className="text-gray-500">Video Strip</p>
+            </div>
+            
+            {/* Big placeholder */}
+            <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500 text-lg">Orchards Video Content</p>
+              </div>
+            </div>
+            
+            {/* Strip placeholder */}
+            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="flex items-center space-x-4">
+                <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500">Orchards Video Strip</p>
+              </div>
             </div>
           </div>
           
-          {/* Big placeholder */}
-          <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
+          {/* Bestowers Section */}
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-green-800 text-center mb-8" style={{ fontFamily: "Playfair Display, serif" }}>
+              Bestowers
+            </h2>
+            
+            {/* Strip placeholder */}
+            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="flex items-center space-x-4">
+                <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500">Bestowers Video Strip</p>
               </div>
-              <p className="text-gray-500 text-lg">Video Content</p>
+            </div>
+            
+            {/* Big placeholder */}
+            <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500 text-lg">Bestowers Video Content</p>
+              </div>
             </div>
           </div>
           
-          {/* Big placeholder */}
-          <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
+          {/* Harvesters Section */}
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-green-800 text-center mb-8" style={{ fontFamily: "Playfair Display, serif" }}>
+              Harvesters
+            </h2>
+            
+            {/* Strip placeholder */}
+            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="flex items-center space-x-4">
+                <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500">Harvesters Video Strip</p>
               </div>
-              <p className="text-gray-500 text-lg">Video Content</p>
+            </div>
+            
+            {/* Big placeholder */}
+            <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500 text-lg">Harvesters Video Content</p>
+              </div>
             </div>
           </div>
           
-          {/* Strip placeholder */}
-          <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
-              </div>
-              <p className="text-gray-500">Video Strip</p>
-            </div>
-          </div>
-          
-          {/* Big placeholder */}
-          <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
-              </div>
-              <p className="text-gray-500 text-lg">Video Content</p>
-            </div>
-          </div>
-          
-          {/* Strip placeholder */}
-          <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
-              </div>
-              <p className="text-gray-500">Video Strip</p>
-            </div>
-          </div>
-          
-          {/* Strip placeholder */}
-          <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
-              </div>
-              <p className="text-gray-500">Video Strip</p>
-            </div>
-          </div>
-          
-          {/* Big placeholder */}
-          <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
-              </div>
-              <p className="text-gray-500 text-lg">Video Content</p>
-            </div>
-          </div>
-          
-          {/* Strip placeholder */}
-          <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
-              </div>
-              <p className="text-gray-500">Video Strip</p>
-            </div>
-          </div>
-          
-          {/* Big placeholder */}
-          <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8 5v10l8-5-8-5z"/>
-                </svg>
-              </div>
-              <p className="text-gray-500 text-lg">Video Content</p>
-            </div>
-          </div>
         </div>
       </section>
       
