@@ -63,9 +63,9 @@ export default function LandingPage() {
         
         {/* Hero Content */}
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 text-center">
-          <Badge className="mb-8 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 hover:from-green-200 hover:to-emerald-200 px-6 py-2 text-sm font-medium shadow-lg">
-            <Sprout className="h-4 w-4 mr-2" />
-            364yhvh Community Farm Mall
+          <Badge className="mb-8 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 hover:from-green-200 hover:to-emerald-200 px-8 py-3 text-lg font-bold shadow-xl border-2 border-green-300">
+            <Sprout className="h-5 w-5 mr-2" />
+            364yhvh Community Farm Stall
           </Badge>
           
           <h1 className="text-6xl md:text-8xl font-bold text-green-800 mb-8 leading-tight" style={{ fontFamily: "Playfair Display, serif" }}>
