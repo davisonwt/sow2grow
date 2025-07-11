@@ -181,19 +181,19 @@ export function AnimatedOrchardGrid({
       <div className="text-center mb-6">
         <div className="flex justify-center items-center gap-6 text-sm text-gray-600">
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-white border-2 border-gray-300 rounded"></div>
+            <div className="w-4 h-4 bg-gradient-to-br from-amber-300 to-amber-600 border-2 border-amber-800 rounded-full"></div>
             <span>Available</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-rose-100 border-2 border-rose-400 rounded"></div>
+            <div className="w-4 h-4 bg-gradient-to-br from-blue-300 to-blue-500 border-2 border-blue-700 rounded-full"></div>
             <span>Selected</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-green-200 border-2 border-green-400 rounded"></div>
+            <div className="w-4 h-4 bg-gradient-to-br from-green-300 to-green-500 border-2 border-green-700 rounded-full"></div>
             <span>Growing</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-green-600 border-2 border-green-400 rounded"></div>
+            <div className="w-4 h-4 bg-green-600 border-2 border-green-400 rounded-full"></div>
             <span>Mature</span>
           </div>
         </div>
