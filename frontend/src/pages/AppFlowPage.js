@@ -130,7 +130,7 @@ export default function AppFlowPage() {
   const bestowerJourney = [
     {
       id: "browse-orchards",
-      title: "Browse Orchards",
+      title: "Cultivate Community Orchards",
       path: "/browse-orchards",
       status: "Browsing",
       statusColor: "bg-rose-500",
