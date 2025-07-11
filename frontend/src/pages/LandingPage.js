@@ -112,7 +112,12 @@ export default function LandingPage() {
               <Link to="/register">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 text-white px-10 py-8 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0"
+                  className="px-10 py-8 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0 hover:-translate-y-2"
+                  style={{ 
+                    borderRadius: '21px',
+                    backgroundColor: '#0c71c3',
+                    boxShadow: '0 20px 40px rgba(12, 113, 195, 0.3)'
+                  }}
                 >
                   <Heart className="h-6 w-6 mr-3" />
                   Start Your Journey
@@ -122,7 +127,11 @@ export default function LandingPage() {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="border-2 border-white text-white hover:bg-white hover:text-green-700 px-10 py-8 text-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                  className="border-2 border-white text-white hover:bg-white hover:text-green-700 px-10 py-8 text-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 backdrop-blur-sm hover:-translate-y-2"
+                  style={{ 
+                    borderRadius: '21px',
+                    boxShadow: '0 20px 40px rgba(255, 255, 255, 0.2)'
+                  }}
                 >
                   <Sprout className="h-6 w-6 mr-3" />
                   Cultivate Community Orchards
