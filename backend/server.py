@@ -443,7 +443,437 @@ async def login_user(request: UserLoginRequest):
         logging.error(f"Login error: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
-# Continue with more endpoints...
+# User profile endpoints
+@api_router.get("/users/me", response_model=APIResponse)
+async def get_current_user_profile(current_user: User = Depends(get_current_user)):
+    """Get current user profile"""
+    try:
+        user_data = current_user.dict()
+        user_data.pop("password_hash")  # Remove password hash from response
+        
+        return APIResponse(
+            success=True,
+            data=user_data,
+            message="User profile retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Get user profile error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.patch("/users/me", response_model=APIResponse)
+async def update_current_user_profile(
+    request: UserUpdateRequest,
+    current_user: User = Depends(get_current_user)
+):
+    """Update current user profile"""
+    try:
+        # Update user data
+        update_data = {}
+        if request.first_name is not None:
+            update_data["first_name"] = request.first_name
+        if request.last_name is not None:
+            update_data["last_name"] = request.last_name
+        if request.location is not None:
+            update_data["location"] = request.location
+        if request.phone is not None:
+            update_data["phone"] = request.phone
+        
+        update_data["updated_at"] = datetime.utcnow()
+        
+        # Update in database
+        await db.users.update_one(
+            {"id": current_user.id},
+            {"$set": update_data}
+        )
+        
+        # Get updated user
+        updated_user_doc = await db.users.find_one({"id": current_user.id})
+        updated_user = User(**updated_user_doc)
+        
+        user_data = updated_user.dict()
+        user_data.pop("password_hash")  # Remove password hash from response
+        
+        return APIResponse(
+            success=True,
+            data=user_data,
+            message="User profile updated successfully"
+        )
+    except Exception as e:
+        logging.error(f"Update user profile error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+# PayPal account endpoints
+@api_router.get("/users/paypal-account", response_model=APIResponse)
+async def get_paypal_account(current_user: User = Depends(get_current_user)):
+    """Get user's PayPal account details"""
+    try:
+        paypal_account_doc = await db.paypal_accounts.find_one({"user_id": current_user.id})
+        
+        if not paypal_account_doc:
+            return APIResponse(
+                success=True,
+                data=None,
+                message="No PayPal account found"
+            )
+        
+        paypal_account = PayPalAccount(**paypal_account_doc)
+        
+        return APIResponse(
+            success=True,
+            data=paypal_account.dict(),
+            message="PayPal account retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Get PayPal account error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.post("/users/paypal-account", response_model=APIResponse)
+async def create_paypal_account(
+    request: PayPalAccountCreateRequest,
+    current_user: User = Depends(get_current_user)
+):
+    """Create user's PayPal account"""
+    try:
+        # Check if user already has a PayPal account
+        existing_account = await db.paypal_accounts.find_one({"user_id": current_user.id})
+        if existing_account:
+            raise HTTPException(status_code=400, detail="PayPal account already exists")
+        
+        # Create new PayPal account
+        paypal_account = PayPalAccount(
+            user_id=current_user.id,
+            email=request.email,
+            account_type=request.account_type,
+            first_name=request.first_name,
+            last_name=request.last_name,
+            business_name=request.business_name,
+            country=request.country,
+            currency=request.currency,
+            auto_payouts=request.auto_payouts,
+            minimum_payout=request.minimum_payout
+        )
+        
+        # Insert into database
+        await db.paypal_accounts.insert_one(paypal_account.dict())
+        
+        return APIResponse(
+            success=True,
+            data=paypal_account.dict(),
+            message="PayPal account created successfully"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Create PayPal account error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.put("/users/paypal-account", response_model=APIResponse)
+async def update_paypal_account(
+    request: PayPalAccountCreateRequest,
+    current_user: User = Depends(get_current_user)
+):
+    """Update user's PayPal account"""
+    try:
+        # Update PayPal account
+        update_data = {
+            "email": request.email,
+            "account_type": request.account_type,
+            "first_name": request.first_name,
+            "last_name": request.last_name,
+            "business_name": request.business_name,
+            "country": request.country,
+            "currency": request.currency,
+            "auto_payouts": request.auto_payouts,
+            "minimum_payout": request.minimum_payout,
+            "updated_at": datetime.utcnow(),
+            "is_verified": False  # Reset verification status
+        }
+        
+        result = await db.paypal_accounts.update_one(
+            {"user_id": current_user.id},
+            {"$set": update_data}
+        )
+        
+        if result.matched_count == 0:
+            raise HTTPException(status_code=404, detail="PayPal account not found")
+        
+        # Get updated account
+        updated_account_doc = await db.paypal_accounts.find_one({"user_id": current_user.id})
+        updated_account = PayPalAccount(**updated_account_doc)
+        
+        return APIResponse(
+            success=True,
+            data=updated_account.dict(),
+            message="PayPal account updated successfully"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Update PayPal account error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.post("/users/paypal-account/verify", response_model=APIResponse)
+async def verify_paypal_account(current_user: User = Depends(get_current_user)):
+    """Verify user's PayPal account"""
+    try:
+        # Get PayPal account
+        paypal_account_doc = await db.paypal_accounts.find_one({"user_id": current_user.id})
+        
+        if not paypal_account_doc:
+            raise HTTPException(status_code=404, detail="PayPal account not found")
+        
+        paypal_account = PayPalAccount(**paypal_account_doc)
+        
+        # Simple email validation (in production, use PayPal API)
+        if "@" not in paypal_account.email or len(paypal_account.email) < 5:
+            raise HTTPException(status_code=400, detail="Invalid PayPal email format")
+        
+        # Update verification status
+        await db.paypal_accounts.update_one(
+            {"user_id": current_user.id},
+            {"$set": {"is_verified": True, "last_verified": datetime.utcnow()}}
+        )
+        
+        # Log verification
+        await db.paypal_verification_logs.insert_one({
+            "id": str(uuid.uuid4()),
+            "user_id": current_user.id,
+            "paypal_account_id": paypal_account.id,
+            "verification_type": "email_verification",
+            "status": "success",
+            "created_at": datetime.utcnow()
+        })
+        
+        return APIResponse(
+            success=True,
+            data={"verified": True},
+            message="PayPal account verified successfully"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Verify PayPal account error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+# Orchard endpoints
+@api_router.get("/orchards", response_model=APIResponse)
+async def get_orchards(
+    category: Optional[GiftCategory] = Query(None),
+    status: Optional[OrchardStatus] = Query(None),
+    limit: int = Query(50, le=100),
+    offset: int = Query(0, ge=0),
+    current_user: Optional[User] = Depends(get_current_user_optional)
+):
+    """Get all orchards with filtering"""
+    try:
+        # Build filter query
+        filter_query = {}
+        if category:
+            filter_query["category"] = category
+        if status:
+            filter_query["status"] = status
+        
+        # Get orchards from database
+        orchards_cursor = db.orchards.find(filter_query).skip(offset).limit(limit)
+        orchards_docs = await orchards_cursor.to_list(length=limit)
+        
+        orchards = []
+        for doc in orchards_docs:
+            orchard = Orchard(**doc)
+            
+            # Calculate completion rate
+            if orchard.total_pockets > 0:
+                orchard.completion_rate = (orchard.filled_pockets / orchard.total_pockets) * 100
+            
+            orchards.append(orchard.dict())
+        
+        return APIResponse(
+            success=True,
+            data=orchards,
+            message="Orchards retrieved successfully"
+        )
+    except Exception as e:
+        logging.error(f"Get orchards error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.post("/orchards", response_model=APIResponse)
+async def create_orchard(
+    request: OrchardCreateRequest,
+    current_user: User = Depends(get_current_user)
+):
+    """Create a new orchard"""
+    try:
+        # Calculate total pockets
+        total_pockets = int(request.seed_value / request.pocket_price)
+        
+        # Create orchard
+        orchard = Orchard(
+            user_id=current_user.id,
+            title=request.title,
+            description=request.description,
+            category=request.category,
+            seed_value=request.seed_value,
+            pocket_price=request.pocket_price,
+            total_pockets=total_pockets,
+            location=request.location,
+            timeline=request.timeline,
+            why_needed=request.why_needed,
+            community_impact=request.community_impact,
+            features=request.features,
+            images=request.images,
+            video_url=request.video_url
+        )
+        
+        # Insert into database
+        await db.orchards.insert_one(orchard.dict())
+        
+        return APIResponse(
+            success=True,
+            data=orchard.dict(),
+            message="Orchard created successfully"
+        )
+    except Exception as e:
+        logging.error(f"Create orchard error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.get("/orchards/{orchard_id}", response_model=APIResponse)
+async def get_orchard(
+    orchard_id: str = Path(...),
+    current_user: Optional[User] = Depends(get_current_user_optional)
+):
+    """Get orchard by ID"""
+    try:
+        # Get orchard from database
+        orchard_doc = await db.orchards.find_one({"id": orchard_id})
+        
+        if not orchard_doc:
+            raise HTTPException(status_code=404, detail="Orchard not found")
+        
+        orchard = Orchard(**orchard_doc)
+        
+        # Calculate completion rate
+        if orchard.total_pockets > 0:
+            orchard.completion_rate = (orchard.filled_pockets / orchard.total_pockets) * 100
+        
+        # Increment view count
+        await db.orchards.update_one(
+            {"id": orchard_id},
+            {"$inc": {"views": 1}}
+        )
+        
+        # Get pockets for this orchard
+        pockets_cursor = db.pockets.find({"orchard_id": orchard_id})
+        pockets_docs = await pockets_cursor.to_list(length=None)
+        
+        pockets = []
+        for doc in pockets_docs:
+            pocket = Pocket(**doc)
+            pockets.append(pocket.dict())
+        
+        orchard_data = orchard.dict()
+        orchard_data["pockets"] = pockets
+        
+        return APIResponse(
+            success=True,
+            data=orchard_data,
+            message="Orchard retrieved successfully"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Get orchard error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.patch("/orchards/{orchard_id}", response_model=APIResponse)
+async def update_orchard(
+    request: OrchardUpdateRequest,
+    orchard_id: str = Path(...),
+    current_user: User = Depends(get_current_user)
+):
+    """Update orchard"""
+    try:
+        # Check if orchard exists and belongs to user
+        orchard_doc = await db.orchards.find_one({"id": orchard_id, "user_id": current_user.id})
+        
+        if not orchard_doc:
+            raise HTTPException(status_code=404, detail="Orchard not found or access denied")
+        
+        # Build update data
+        update_data = {}
+        if request.title is not None:
+            update_data["title"] = request.title
+        if request.description is not None:
+            update_data["description"] = request.description
+        if request.category is not None:
+            update_data["category"] = request.category
+        if request.location is not None:
+            update_data["location"] = request.location
+        if request.timeline is not None:
+            update_data["timeline"] = request.timeline
+        if request.why_needed is not None:
+            update_data["why_needed"] = request.why_needed
+        if request.community_impact is not None:
+            update_data["community_impact"] = request.community_impact
+        if request.features is not None:
+            update_data["features"] = request.features
+        if request.images is not None:
+            update_data["images"] = request.images
+        if request.video_url is not None:
+            update_data["video_url"] = request.video_url
+        
+        update_data["updated_at"] = datetime.utcnow()
+        
+        # Update in database
+        await db.orchards.update_one(
+            {"id": orchard_id},
+            {"$set": update_data}
+        )
+        
+        # Get updated orchard
+        updated_orchard_doc = await db.orchards.find_one({"id": orchard_id})
+        updated_orchard = Orchard(**updated_orchard_doc)
+        
+        return APIResponse(
+            success=True,
+            data=updated_orchard.dict(),
+            message="Orchard updated successfully"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Update orchard error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.delete("/orchards/{orchard_id}", response_model=APIResponse)
+async def delete_orchard(
+    orchard_id: str = Path(...),
+    current_user: User = Depends(get_current_user)
+):
+    """Delete orchard"""
+    try:
+        # Check if orchard exists and belongs to user
+        orchard_doc = await db.orchards.find_one({"id": orchard_id, "user_id": current_user.id})
+        
+        if not orchard_doc:
+            raise HTTPException(status_code=404, detail="Orchard not found or access denied")
+        
+        # Delete orchard
+        await db.orchards.delete_one({"id": orchard_id})
+        
+        # Delete associated pockets
+        await db.pockets.delete_many({"orchard_id": orchard_id})
+        
+        return APIResponse(
+            success=True,
+            data={"deleted": True},
+            message="Orchard deleted successfully"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Delete orchard error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
 # Include the router in the main app
 app.include_router(api_router)
 
