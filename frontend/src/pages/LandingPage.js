@@ -91,7 +91,7 @@ export default function LandingPage() {
           
           {/* Content overlay */}
           <div className="relative bg-black bg-opacity-40 rounded-2xl p-8 backdrop-blur-sm">
-            <Badge className="mb-8 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 hover:from-green-200 hover:to-emerald-200 px-8 py-3 text-lg font-bold shadow-xl border-2 border-green-300">
+            <Badge className="mb-8 px-8 py-3 text-lg font-bold shadow-xl border-2" style={{ backgroundColor: '#bf7500', borderColor: '#8b5500', color: '#ffffff' }}>
               <Sprout className="h-5 w-5 mr-2" />
               364yhvh Community Farm Stall
             </Badge>
