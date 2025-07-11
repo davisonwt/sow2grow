@@ -14,7 +14,12 @@ import {
   Heart, 
   Users,
   Calculator,
-  Sparkles
+  Sparkles,
+  Camera,
+  Image,
+  Video,
+  Upload,
+  X
 } from "lucide-react"
 
 export default function CreateOrchardPage() {
@@ -32,6 +37,8 @@ export default function CreateOrchardPage() {
     images: [],
     video_url: ""
   })
+  const [selectedImages, setSelectedImages] = useState([])
+  const [selectedVideo, setSelectedVideo] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   
