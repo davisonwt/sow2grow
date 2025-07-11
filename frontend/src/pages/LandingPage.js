@@ -326,7 +326,7 @@ export default function LandingPage() {
             </div>
             
             {/* Big placeholder */}
-            <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
+            <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
               <video 
                 autoPlay 
                 muted 
