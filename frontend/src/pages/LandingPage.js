@@ -178,7 +178,7 @@ export default function LandingPage() {
               How s2g farm mall works
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              The 364yhvh Community Farm is a complete ecosystem where everyone can both give and receive
+              roots receive, branches share; one grove, one people, one prayer.
             </p>
           </div>
         </div>
