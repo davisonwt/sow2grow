@@ -122,7 +122,7 @@ export default function LandingPage() {
               <div className="w-20 h-20 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                 <Gift className="h-10 w-10 text-rose-600" />
               </div>
-              <h3 className="text-xl font-semibold text-rose-800 mb-3">Farm Mall</h3>
+              <h3 className="text-xl font-semibold text-rose-800 mb-3">s2g farm mall</h3>
               <p className="text-gray-600">Each grower has their own farm stall with orchards</p>
             </div>
           </div>
