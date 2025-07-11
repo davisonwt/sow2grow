@@ -229,7 +229,7 @@ export default function LandingPage() {
           {/* Seeds Section */}
           <div className="space-y-6">
             {/* Strip placeholder with header */}
-            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center shadow-lg overflow-hidden relative">
+            <div className="w-full h-40 bg-gray-200 rounded-lg flex items-center shadow-lg overflow-hidden relative">
               <video 
                 autoPlay 
                 muted 
