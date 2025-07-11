@@ -874,6 +874,416 @@ async def delete_orchard(
         logging.error(f"Delete orchard error: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
+# Pocket selection and bestowing endpoints
+@api_router.post("/orchards/{orchard_id}/bestow", response_model=APIResponse)
+async def bestow_into_orchard(
+    request: PocketSelectionRequest,
+    orchard_id: str = Path(...),
+    current_user: User = Depends(get_current_user)
+):
+    """Bestow into orchard by selecting pockets"""
+    try:
+        # Verify orchard exists
+        orchard_doc = await db.orchards.find_one({"id": orchard_id})
+        if not orchard_doc:
+            raise HTTPException(status_code=404, detail="Orchard not found")
+        
+        orchard = Orchard(**orchard_doc)
+        
+        # Check if orchard is active
+        if orchard.status != OrchardStatus.ACTIVE:
+            raise HTTPException(status_code=400, detail="Orchard is not active")
+        
+        # Check if pockets are available
+        existing_pockets = await db.pockets.find({"orchard_id": orchard_id}).to_list(length=None)
+        taken_pocket_numbers = [p["pocket_number"] for p in existing_pockets]
+        
+        unavailable_pockets = [pn for pn in request.pocket_numbers if pn in taken_pocket_numbers]
+        if unavailable_pockets:
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Pockets {unavailable_pockets} are already taken"
+            )
+        
+        # Create pockets
+        pockets = []
+        for pocket_number in request.pocket_numbers:
+            pocket = Pocket(
+                orchard_id=orchard_id,
+                pocket_number=pocket_number,
+                user_id=current_user.id,
+                amount=orchard.pocket_price,
+                bestower_name=f"{current_user.first_name} {current_user.last_name[0]}."
+            )
+            pockets.append(pocket.dict())
+        
+        # Insert pockets
+        await db.pockets.insert_many(pockets)
+        
+        # Update orchard filled_pockets count
+        new_filled_count = orchard.filled_pockets + len(request.pocket_numbers)
+        completion_rate = (new_filled_count / orchard.total_pockets) * 100
+        
+        await db.orchards.update_one(
+            {"id": orchard_id},
+            {
+                "$set": {
+                    "filled_pockets": new_filled_count,
+                    "completion_rate": completion_rate,
+                    "updated_at": datetime.utcnow()
+                },
+                "$inc": {"supporters": 1}
+            }
+        )
+        
+        total_amount = len(request.pocket_numbers) * orchard.pocket_price
+        
+        return APIResponse(
+            success=True,
+            data={
+                "pockets_selected": len(request.pocket_numbers),
+                "total_amount": total_amount,
+                "completion_rate": completion_rate
+            },
+            message="Pockets selected successfully"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Bestow into orchard error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.post("/orchards/{orchard_id}/complete", response_model=APIResponse)
+async def complete_orchard(
+    orchard_id: str = Path(...),
+    current_user: User = Depends(get_current_user)
+):
+    """Complete orchard and trigger payout"""
+    try:
+        # Get orchard
+        orchard_doc = await db.orchards.find_one({"id": orchard_id})
+        if not orchard_doc:
+            raise HTTPException(status_code=404, detail="Orchard not found")
+        
+        orchard = Orchard(**orchard_doc)
+        
+        # Check if payout already processed
+        if orchard.payout_processed:
+            raise HTTPException(status_code=400, detail="Payout already processed")
+        
+        # Check if orchard is fully funded
+        if orchard.filled_pockets < orchard.total_pockets:
+            raise HTTPException(status_code=400, detail="Orchard is not fully funded")
+        
+        # Process payout (simplified)
+        await db.orchards.update_one(
+            {"id": orchard_id},
+            {
+                "$set": {
+                    "status": OrchardStatus.COMPLETED,
+                    "payout_processed": True,
+                    "updated_at": datetime.utcnow()
+                }
+            }
+        )
+        
+        return APIResponse(
+            success=True,
+            data={"payout_processed": True},
+            message="Orchard completed and payout initiated"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Complete orchard error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+# Payment endpoints
+@api_router.post("/payments/card", response_model=APIResponse)
+async def process_card_payment(
+    request: PaymentCreateRequest,
+    current_user: User = Depends(get_current_user)
+):
+    """Process card payment"""
+    try:
+        # Simulate card processing (in production, use Stripe/Square)
+        payment_id = f"card_{int(datetime.utcnow().timestamp())}_{uuid.uuid4().hex[:8]}"
+        
+        # Create payment record
+        payment = Payment(
+            user_id=current_user.id,
+            orchard_id=request.orchard_id,
+            payment_type=request.payment_type,
+            amount=request.amount,
+            currency=request.currency,
+            method=request.method,
+            status=PaymentStatus.COMPLETED,
+            payment_id=payment_id,
+            description=request.description,
+            metadata=request.metadata
+        )
+        
+        # Insert payment
+        await db.payments.insert_one(payment.dict())
+        
+        return APIResponse(
+            success=True,
+            data={
+                "payment_id": payment_id,
+                "status": "completed",
+                "amount": request.amount,
+                "currency": request.currency,
+                "method": "card"
+            },
+            message="Card payment processed successfully"
+        )
+    except Exception as e:
+        logging.error(f"Card payment error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.post("/payments/paypal-create", response_model=APIResponse)
+async def create_paypal_order(
+    request: PaymentCreateRequest,
+    current_user: User = Depends(get_current_user)
+):
+    """Create PayPal order"""
+    try:
+        # Create PayPal order (simplified)
+        order_id = f"paypal_order_{int(datetime.utcnow().timestamp())}_{uuid.uuid4().hex[:8]}"
+        
+        # Create payment record
+        payment = Payment(
+            user_id=current_user.id,
+            orchard_id=request.orchard_id,
+            payment_type=request.payment_type,
+            amount=request.amount,
+            currency=request.currency,
+            method=request.method,
+            status=PaymentStatus.PENDING,
+            order_id=order_id,
+            description=request.description,
+            metadata=request.metadata
+        )
+        
+        # Insert payment
+        await db.payments.insert_one(payment.dict())
+        
+        return APIResponse(
+            success=True,
+            data={
+                "order_id": order_id,
+                "approval_url": f"https://paypal.com/checkoutnow?token={order_id}",
+                "amount": request.amount,
+                "currency": request.currency
+            },
+            message="PayPal order created successfully"
+        )
+    except Exception as e:
+        logging.error(f"PayPal create order error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.post("/payments/paypal-capture", response_model=APIResponse)
+async def capture_paypal_order(
+    order_id: str,
+    current_user: User = Depends(get_current_user)
+):
+    """Capture PayPal order"""
+    try:
+        # Find payment by order_id
+        payment_doc = await db.payments.find_one({"order_id": order_id, "user_id": current_user.id})
+        if not payment_doc:
+            raise HTTPException(status_code=404, detail="Payment not found")
+        
+        # Update payment status
+        payment_id = f"paypal_capture_{int(datetime.utcnow().timestamp())}_{uuid.uuid4().hex[:8]}"
+        
+        await db.payments.update_one(
+            {"order_id": order_id},
+            {
+                "$set": {
+                    "status": PaymentStatus.COMPLETED,
+                    "payment_id": payment_id,
+                    "updated_at": datetime.utcnow()
+                }
+            }
+        )
+        
+        return APIResponse(
+            success=True,
+            data={
+                "payment_id": payment_id,
+                "status": "completed",
+                "order_id": order_id
+            },
+            message="PayPal payment captured successfully"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"PayPal capture error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+# Analytics endpoints
+@api_router.get("/analytics/categories", response_model=APIResponse)
+async def get_category_analytics(
+    category: Optional[GiftCategory] = Query(None),
+    start_date: Optional[str] = Query(None),
+    end_date: Optional[str] = Query(None),
+    analytics_type: str = Query("all", alias="type"),
+    current_user: User = Depends(get_current_user)
+):
+    """Get category analytics"""
+    try:
+        # Check if user has admin role (simplified)
+        if current_user.role != UserRole.ADMIN:
+            raise HTTPException(status_code=403, detail="Admin access required")
+        
+        # Generate mock analytics data based on type
+        if analytics_type == "performance":
+            data = await generate_performance_analytics(category)
+        elif analytics_type == "insights":
+            data = await generate_insights_analytics(category)
+        elif analytics_type == "comparison":
+            data = await generate_comparison_analytics()
+        elif analytics_type == "trending":
+            data = await generate_trending_analytics()
+        elif analytics_type == "specific":
+            if not category:
+                raise HTTPException(status_code=400, detail="Category required for specific analytics")
+            data = await generate_specific_analytics(category, start_date, end_date)
+        else:
+            data = await generate_all_analytics(start_date, end_date)
+        
+        return APIResponse(
+            success=True,
+            data=data,
+            message="Analytics retrieved successfully"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Analytics error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.post("/analytics/categories", response_model=APIResponse)
+async def update_analytics(current_user: User = Depends(get_current_user)):
+    """Update analytics (admin only)"""
+    try:
+        # Check if user has admin role
+        if current_user.role != UserRole.ADMIN:
+            raise HTTPException(status_code=403, detail="Admin access required")
+        
+        # Update analytics (simplified)
+        await update_daily_analytics()
+        
+        return APIResponse(
+            success=True,
+            data={"message": "Analytics updated successfully"},
+            message="Analytics updated successfully"
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Update analytics error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+# Analytics helper functions
+async def generate_performance_analytics(category: Optional[GiftCategory] = None):
+    """Generate performance analytics"""
+    # Mock data for demonstration
+    return [
+        {
+            "category": "The Gift of Technology",
+            "lifetime_orchards": 156,
+            "lifetime_bestowed": 2450000,
+            "current_orchards": 23,
+            "current_bestowed": 345000,
+            "orchards_trend": 15.2,
+            "bestowed_trend": 28.5,
+            "popularity_rank": 1,
+            "success_rank": 2,
+            "growth_rank": 1
+        },
+        {
+            "category": "The Gift of Vehicles",
+            "lifetime_orchards": 89,
+            "lifetime_bestowed": 1890000,
+            "current_orchards": 12,
+            "current_bestowed": 280000,
+            "orchards_trend": -5.1,
+            "bestowed_trend": 12.3,
+            "popularity_rank": 2,
+            "success_rank": 1,
+            "growth_rank": 4
+        }
+    ]
+
+async def generate_insights_analytics(category: Optional[GiftCategory] = None):
+    """Generate insights analytics"""
+    return {
+        "peak_performance": "Technology and Property categories show highest success rates",
+        "growth_opportunity": "Wellness and Energy categories have 40%+ growth potential",
+        "market_demand": "Vehicle and Property orchards receive 3x more views"
+    }
+
+async def generate_comparison_analytics():
+    """Generate comparison analytics"""
+    return {
+        "top_categories": ["Technology", "Vehicles", "Property"],
+        "growth_leaders": ["Property", "Technology", "Energy"],
+        "underperforming": ["DIY", "Custom Made"]
+    }
+
+async def generate_trending_analytics():
+    """Generate trending analytics"""
+    return [
+        {"category": "The Gift of Property", "trend": 45.2, "current_value": 520000},
+        {"category": "The Gift of Technology", "trend": 28.5, "current_value": 345000},
+        {"category": "The Gift of Energy", "trend": 18.7, "current_value": 125000}
+    ]
+
+async def generate_specific_analytics(category: GiftCategory, start_date: Optional[str], end_date: Optional[str]):
+    """Generate specific category analytics"""
+    return {
+        "category": category,
+        "total_orchards": 45,
+        "completed_orchards": 23,
+        "total_bestowed": 750000,
+        "average_completion_time": 32,
+        "success_rate": 85.2
+    }
+
+async def generate_all_analytics(start_date: Optional[str], end_date: Optional[str]):
+    """Generate all analytics"""
+    return {
+        "total_orchards": 567,
+        "active_orchards": 234,
+        "completed_orchards": 333,
+        "total_bestowed": 8500000,
+        "total_users": 1247,
+        "growth_rate": 23.5
+    }
+
+async def update_daily_analytics():
+    """Update daily analytics"""
+    # This would typically aggregate data from orchards, payments, etc.
+    analytics = Analytics(
+        date=datetime.utcnow(),
+        total_orchards=567,
+        new_orchards=12,
+        completed_orchards=333,
+        active_orchards=234,
+        total_seed_value=8500000,
+        total_bestowed=7200000,
+        completion_rate=85.2,
+        total_bestowals=2341,
+        unique_bestowers=891,
+        total_views=15678,
+        success_rate=84.7
+    )
+    
+    await db.analytics.insert_one(analytics.dict())
+
 # Include the router in the main app
 app.include_router(api_router)
 
