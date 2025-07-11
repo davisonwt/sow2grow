@@ -32,13 +32,11 @@ export default function LandingPage() {
         {/* Navigation */}
         <nav className="relative z-10 flex items-center justify-between p-6 lg:px-8">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 flex items-center justify-center">
-              <img 
-                src="/logo.jpeg" 
-                alt="sow2grow logo" 
-                className="w-full h-full object-contain"
-              />
-            </div>
+            <img 
+              src="/logo.jpeg" 
+              alt="sow2grow logo" 
+              className="w-12 h-12 object-contain"
+            />
             <div>
               <h1 className="text-2xl font-bold text-green-800" style={{ fontFamily: "Playfair Display, serif" }}>
                 sow2grow
