@@ -253,19 +253,20 @@ export default function LandingPage() {
           
           {/* Orchards Section */}
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-green-800 text-center mb-8" style={{ fontFamily: "Playfair Display, serif" }}>
-              Orchards
-            </h2>
-            
-            {/* Strip placeholder */}
-            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-              <div className="flex items-center space-x-4">
-                <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M8 5v10l8-5-8-5z"/>
-                  </svg>
+            {/* Strip placeholder with header */}
+            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center shadow-lg">
+              <div className="flex items-center justify-between w-full px-6">
+                <h2 className="text-3xl font-bold text-green-800" style={{ fontFamily: "Playfair Display, serif" }}>
+                  Orchards
+                </h2>
+                <div className="flex items-center space-x-4">
+                  <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8 5v10l8-5-8-5z"/>
+                    </svg>
+                  </div>
+                  <p className="text-gray-500">Orchards Video Strip</p>
                 </div>
-                <p className="text-gray-500">Orchards Video Strip</p>
               </div>
             </div>
             
