@@ -566,7 +566,7 @@ export default function LandingPage() {
       </section>
       
       {/* CTA Section */}
-      <section className="py-20 bg-green-600 text-white">
+      <section className="py-20 text-white" style={{ backgroundColor: '#bf7500' }}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
             Join the 364yhvh Community Farm
