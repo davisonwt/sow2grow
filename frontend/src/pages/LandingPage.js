@@ -381,7 +381,7 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <Link to="/browse-orchards">
-                  <Button className="w-full bg-rose-600 hover:bg-rose-700">
+                  <Button className="w-full bg-rose-600 hover:bg-rose-700" style={{ borderRadius: '21px' }}>
                     Start Bestowing
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Button>
