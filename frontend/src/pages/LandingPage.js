@@ -473,20 +473,6 @@ export default function LandingPage() {
         </div>
       </section>
       
-      {/* Foundation Section */}
-      <section className="py-20 bg-gradient-to-br from-green-100 to-amber-100">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-green-800 mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
-              How s2g farm mall works
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              The 364yhvh Community Farm is a complete ecosystem where everyone can both give and receive
-            </p>
-          </div>
-        </div>
-      </section>
-      
       {/* Scripture Section */}
       <section className="py-20 bg-gradient-to-r from-green-100 to-amber-100">
         <div className="max-w-4xl mx-auto px-6 text-center">
