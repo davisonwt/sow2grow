@@ -92,21 +92,21 @@ export default function LandingPage() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                className="border-2 border-green-600 text-green-600 hover:bg-gradient-to-r hover:from-green-50 hover:to-green-100 px-10 py-8 text-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
               >
-                <Sprout className="h-5 w-5 mr-2" />
+                <Sprout className="h-6 w-6 mr-3" />
                 Cultivate Community Orchards
               </Button>
             </Link>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Church className="h-8 w-8 text-green-600" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="text-center group">
+              <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                <Church className="h-10 w-10 text-green-600" />
               </div>
-              <h3 className="text-lg font-semibold text-green-800 mb-2">Biblical Giving</h3>
-              <p className="text-sm text-gray-600">Tithing and free-will gifting based on biblical principles</p>
+              <h3 className="text-xl font-semibold text-green-800 mb-3">Biblical Giving</h3>
+              <p className="text-gray-600">Tithing and free-will gifting based on biblical principles</p>
             </div>
             
             <div className="text-center">
