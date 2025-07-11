@@ -132,25 +132,25 @@ export function AnimatedOrchardGrid({
     const baseClasses = "relative w-8 h-8 rounded-full border-2 transition-all duration-300 cursor-pointer hover:scale-110 active:scale-95"
     
     if (status.isTaken) {
-      // Green circles with seedling for taken pockets
+      // Green circles with dark green edges for taken pockets
       return cn(
         baseClasses,
-        "bg-gradient-to-br from-green-300 to-green-500 border-green-600",
+        "bg-gradient-to-br from-green-300 to-green-500 border-green-700",
         "hover:shadow-lg",
         status.isSparkling && "animate-pulse ring-2 ring-yellow-400 ring-opacity-50"
       )
     } else if (status.isSelected) {
-      // Blue circles for selected pockets
+      // Light blue middle with dark blue edges for selected pockets
       return cn(
         baseClasses,
-        "bg-gradient-to-br from-blue-300 to-blue-500 border-blue-600 shadow-md",
+        "bg-gradient-to-br from-blue-300 to-blue-500 border-blue-700 shadow-md",
         status.isAnimating && "animate-bounce scale-110"
       )
     } else {
-      // Brown circles for available pockets
+      // Brown circles with light brown middle and dark brown edges for available pockets
       return cn(
         baseClasses,
-        "bg-gradient-to-br from-amber-200 to-amber-400 border-amber-600 hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-200 hover:to-blue-300 hover:shadow-md",
+        "bg-gradient-to-br from-amber-300 to-amber-600 border-amber-800 hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-200 hover:to-blue-300 hover:shadow-md",
         !interactive && "cursor-default"
       )
     }
