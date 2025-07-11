@@ -253,14 +253,19 @@ export default function LandingPage() {
               </div>
             </div>
             
-            {/* Seeds 2 paragraph */}
-            <div className="max-w-4xl mx-auto px-6 py-6">
-              <p className="text-lg text-gray-700 text-center leading-relaxed italic">
-                ...into a home for anyone of our harvesters. it is born from purpose, ready to be sown.
-              </p>
+            {/* Big placeholder - Seeds 1 */}
+            <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                className="w-full h-full object-cover"
+              >
+                <source src="/seeds 1 mp4.mp4" type="video/mp4" />
+              </video>
             </div>
             
-            {/* Big placeholder */}
+            {/* Big placeholder - Seeds 2 with text overlay */}
             <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
               <video 
                 autoPlay 
@@ -269,6 +274,13 @@ export default function LandingPage() {
                 className="w-full h-full object-cover"
               >
                 <source src="/seeds 2 mp4.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-white text-xl font-semibold text-center px-8 py-4 bg-black bg-opacity-50 rounded-lg max-w-2xl">
+                  ...into a home for anyone of our harvesters. it is born from purpose, ready to be sown.
+                </p>
+              </div>
+            </div>
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
                   <div className="text-center">
                     <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
