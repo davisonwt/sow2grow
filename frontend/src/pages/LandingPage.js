@@ -326,6 +326,83 @@ export default function LandingPage() {
             </div>
           </div>
           
+          {/* Tithing and Free-will Gifting Sections */}
+          <div className="max-w-6xl mx-auto px-6 py-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Tithing */}
+              <Card className="border-amber-200 hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Church className="h-8 w-8 text-amber-600" />
+                  </div>
+                  <CardTitle className="text-amber-800">tithing</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <Star className="h-4 w-4 text-amber-600" />
+                      <span className="text-sm text-gray-700">Biblical tithing</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Star className="h-4 w-4 text-amber-600" />
+                      <span className="text-sm text-gray-700">Community support</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Star className="h-4 w-4 text-amber-600" />
+                      <span className="text-sm text-gray-700">Faith-based giving</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Star className="h-4 w-4 text-amber-600" />
+                      <span className="text-sm text-gray-700">Sacred stewardship</span>
+                    </div>
+                  </div>
+                  <Link to="/tithing">
+                    <Button className="w-full bg-amber-600 hover:bg-amber-700">
+                      let it rain over the community
+                      <ArrowRight className="h-4 w-4 ml-2" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+              
+              {/* Free-will Gifting */}
+              <Card className="border-purple-200 hover:shadow-lg transition-shadow">
+                <CardHeader className="text-center">
+                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Gift className="h-8 w-8 text-purple-600" />
+                  </div>
+                  <CardTitle className="text-purple-800">free-will gifting</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <Star className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm text-gray-700">Voluntary giving</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Star className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm text-gray-700">Heart-led donations</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Star className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm text-gray-700">Community blessing</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Star className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm text-gray-700">Generous spirit</span>
+                    </div>
+                  </div>
+                  <Link to="/free-will-gifting">
+                    <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                      let it rain over the community
+                      <ArrowRight className="h-4 w-4 ml-2" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+          
           {/* Harvesters Section */}
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-green-800 text-center mb-8" style={{ fontFamily: "Playfair Display, serif" }}>
