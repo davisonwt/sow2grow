@@ -61,46 +61,64 @@ export default function LandingPage() {
           </div>
         </nav>
         
-        {/* Hero Content */}
+        {/* Hero Content Over Video */}
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 text-center">
-          <Badge className="mb-8 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 hover:from-green-200 hover:to-emerald-200 px-8 py-3 text-lg font-bold shadow-xl border-2 border-green-300">
-            <Sprout className="h-5 w-5 mr-2" />
-            364yhvh Community Farm Stall
-          </Badge>
-          
-          <h1 className="text-6xl md:text-8xl font-bold text-green-800 mb-8 leading-tight" style={{ fontFamily: "Playfair Display, serif" }}>
-            welcome to sow2grow
-          </h1>
-          
-          <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto leading-relaxed">
-            the farm stall of the 364yhvh community; a haven of hands and harvest, where sacred seasons meet the fruits of faithful labor.
-          </p>
-          
-          <p className="text-2xl md:text-3xl font-semibold text-green-700 mb-12 max-w-5xl mx-auto leading-relaxed">
-            a fertile ground where every grower finds their orchard, every seed becomes a fruit-bearing tree, and every harvest meets the hands destined to gather it.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-            <Link to="/register">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 text-white px-10 py-8 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0"
-              >
-                <Heart className="h-5 w-5 mr-2" />
-                Start Your Journey
-              </Button>
-            </Link>
-            <Link to="/browse-orchards">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-2 border-green-600 text-green-600 hover:bg-gradient-to-r hover:from-green-50 hover:to-green-100 px-10 py-8 text-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-              >
-                <Sprout className="h-6 w-6 mr-3" />
-                Cultivate Community Orchards
-              </Button>
-            </Link>
+          {/* Video Background Placeholder */}
+          <div className="absolute inset-0 -z-10 rounded-2xl overflow-hidden">
+            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-12 h-12 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M8 5v10l8-5-8-5z"/>
+                  </svg>
+                </div>
+                <p className="text-gray-500 text-xl">Hero Background Video</p>
+              </div>
+            </div>
           </div>
+          
+          {/* Content overlay */}
+          <div className="relative bg-black bg-opacity-40 rounded-2xl p-8 backdrop-blur-sm">
+            <Badge className="mb-8 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 hover:from-green-200 hover:to-emerald-200 px-8 py-3 text-lg font-bold shadow-xl border-2 border-green-300">
+              <Sprout className="h-5 w-5 mr-2" />
+              364yhvh Community Farm Stall
+            </Badge>
+            
+            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 leading-tight drop-shadow-lg" style={{ fontFamily: "Playfair Display, serif" }}>
+              welcome to sow2grow
+            </h1>
+            
+            <p className="text-lg text-white mb-6 max-w-4xl mx-auto leading-relaxed drop-shadow-lg">
+              the farm stall of the 364yhvh community; a haven of hands and harvest, where sacred seasons meet the fruits of faithful labor.
+            </p>
+            
+            <p className="text-2xl md:text-3xl font-semibold text-green-200 mb-12 max-w-5xl mx-auto leading-relaxed drop-shadow-lg">
+              a fertile ground where every grower finds their orchard, every seed becomes a fruit-bearing tree, and every harvest meets the hands destined to gather it.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+              <Link to="/register">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 text-white px-10 py-8 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0"
+                >
+                  <Heart className="h-6 w-6 mr-3" />
+                  Start Your Journey
+                </Button>
+              </Link>
+              <Link to="/browse-orchards">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-2 border-white text-white hover:bg-white hover:text-green-700 px-10 py-8 text-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+                >
+                  <Sprout className="h-6 w-6 mr-3" />
+                  Cultivate Community Orchards
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="text-center group">
