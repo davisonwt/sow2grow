@@ -32,8 +32,12 @@ export default function LandingPage() {
         {/* Navigation */}
         <nav className="relative z-10 flex items-center justify-between p-6 lg:px-8">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center shadow-lg">
-              <Sprout className="h-7 w-7 text-white animate-pulse" />
+            <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+              <img 
+                src="/logo.jpeg" 
+                alt="sow2grow logo" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-green-800" style={{ fontFamily: "Playfair Display, serif" }}>
