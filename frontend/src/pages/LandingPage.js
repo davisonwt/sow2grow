@@ -43,7 +43,7 @@ export default function LandingPage() {
           <div className="hidden md:flex space-x-4">
             <Link to="/browse-orchards">
               <Button variant="ghost" className="text-green-700 hover:text-green-800">
-                Browse Orchards
+                Cultivate Community Orchards
               </Button>
             </Link>
             <Link to="/login">
