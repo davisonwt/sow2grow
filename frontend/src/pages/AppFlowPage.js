@@ -75,7 +75,7 @@ export default function AppFlowPage() {
       statusColor: "bg-green-600",
       theme: "bg-gradient-to-br from-green-50 to-amber-50",
       icon: Home,
-      actions: ["Sow Into Orchards", "Browse Orchards", "My Orchards", "Tithing", "Free-Will Gifting"],
+      actions: ["Sow Into Orchards", "Cultivate Community Orchards", "My Orchards", "Tithing", "Free-Will Gifting"],
       description: "Your main dashboard - choose your path",
     },
   ]
