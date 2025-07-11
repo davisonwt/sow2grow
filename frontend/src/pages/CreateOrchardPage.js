@@ -100,6 +100,91 @@ export default function CreateOrchardPage() {
     }
     return 0
   }
+
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files)
+    if (files.length > 3) {
+      setError("You can only upload up to 3 images")
+      return
+    }
+    
+    const validImages = files.filter(file => file.type.startsWith('image/'))
+    if (validImages.length !== files.length) {
+      setError("Please upload only image files")
+      return
+    }
+    
+    const imagePromises = validImages.map(file => {
+      return new Promise((resolve) => {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          resolve({
+            file,
+            preview: e.target.result,
+            base64: e.target.result
+          })
+        }
+        reader.readAsDataURL(file)
+      })
+    })
+    
+    Promise.all(imagePromises).then(images => {
+      setSelectedImages(images)
+      setFormData(prev => ({
+        ...prev,
+        images: images.map(img => img.base64)
+      }))
+      setError("")
+    })
+  }
+
+  const handleVideoUpload = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    
+    if (!file.type.startsWith('video/')) {
+      setError("Please upload a video file")
+      return
+    }
+    
+    if (file.size > 50 * 1024 * 1024) { // 50MB limit
+      setError("Video file is too large. Maximum size is 50MB.")
+      return
+    }
+    
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      const videoData = {
+        file,
+        preview: e.target.result,
+        base64: e.target.result
+      }
+      setSelectedVideo(videoData)
+      setFormData(prev => ({
+        ...prev,
+        video_url: e.target.result
+      }))
+      setError("")
+    }
+    reader.readAsDataURL(file)
+  }
+
+  const removeImage = (index) => {
+    const newImages = selectedImages.filter((_, i) => i !== index)
+    setSelectedImages(newImages)
+    setFormData(prev => ({
+      ...prev,
+      images: newImages.map(img => img.base64)
+    }))
+  }
+
+  const removeVideo = () => {
+    setSelectedVideo(null)
+    setFormData(prev => ({
+      ...prev,
+      video_url: ""
+    }))
+  }
   
   return (
     <div className="max-w-4xl mx-auto space-y-8">
