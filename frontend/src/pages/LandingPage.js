@@ -147,7 +147,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      
       {/* How s2g farm mall works Section */}
       <section className="py-20 bg-white/80 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6">
