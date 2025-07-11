@@ -94,7 +94,7 @@ export default function LandingPage() {
                 className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Sprout className="h-5 w-5 mr-2" />
-                Browse Orchards
+                Cultivate Community Orchards
               </Button>
             </Link>
           </div>
