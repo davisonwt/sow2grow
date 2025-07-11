@@ -104,7 +104,7 @@ export default function LandingPage() {
               the farm stall of the 364yhvh community; a haven of hands and harvest, where sacred seasons meet the fruits of faithful labor.
             </p>
             
-            <p className="text-2xl md:text-3xl font-semibold text-green-200 mb-12 max-w-5xl mx-auto leading-relaxed drop-shadow-lg">
+            <p className="text-2xl md:text-3xl font-semibold text-green-200 mb-12 max-w-5xl mx-auto leading-relaxed drop-shadow-lg" style={{ textStroke: '2px #6b7280', WebkitTextStroke: '2px #6b7280', color: 'white' }}>
               a fertile ground where every grower finds their orchard, every seed becomes a fruit-bearing tree, and every harvest meets the hands destined to gather it.
             </p>
             
