@@ -105,7 +105,7 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="text-center group">
               <div className="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                <Church className="h-10 w-10 text-green-600" />
+                <HandHeart className="h-10 w-10 text-green-600" />
               </div>
               <h3 className="text-xl font-semibold text-green-800 mb-3">scriptural giving</h3>
               <p className="text-gray-600">Tithing and free-will gifting based on biblical principles</p>
