@@ -408,7 +408,7 @@ export default function AppFlowPage() {
                 </div>
                 <h4 className="font-semibold text-rose-800 mb-2">Bestowers</h4>
                 <p className="text-sm text-rose-600">
-                  Browse orchards, select pockets with visual interface, and secure checkout process
+                  Cultivate community orchards, select pockets with visual interface, and secure checkout process
                 </p>
               </CardContent>
             </Card>
