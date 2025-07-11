@@ -417,13 +417,6 @@ export default function LandingPage() {
               </div>
             </div>
             
-            {/* Bestowers main paragraph */}
-            <div className="max-w-4xl mx-auto px-6 py-6">
-              <p className="text-lg text-gray-700 text-center leading-relaxed italic">
-                those who water and or add compost to your orchard by choosing to grow what you sow.
-              </p>
-            </div>
-            
             {/* Big placeholder */}
             <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
               <video 
@@ -434,6 +427,11 @@ export default function LandingPage() {
               >
                 <source src="/bestowers main mp4.mp4" type="video/mp4" />
               </video>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-white text-xl font-semibold text-center px-8 py-4 bg-black bg-opacity-50 rounded-lg max-w-2xl">
+                  those who water and or add compost to your orchard by choosing to grow what you sow.
+                </p>
+              </div>
             </div>
           </div>
           
