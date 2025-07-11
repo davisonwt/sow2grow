@@ -214,7 +214,7 @@ export default function LandingPage() {
                 </div>
               </div>
               <Link to="/register">
-                <Button className="w-full bg-green-600 hover:bg-green-700">
+                <Button className="w-full bg-green-600 hover:bg-green-700" style={{ borderRadius: '21px' }}>
                   Become a Grower
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
