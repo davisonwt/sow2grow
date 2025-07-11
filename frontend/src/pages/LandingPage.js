@@ -61,28 +61,28 @@ export default function LandingPage() {
         </nav>
         
         {/* Hero Content */}
-        <div className="relative z-10 mx-auto max-w-4xl px-6 py-16 text-center">
-          <Badge className="mb-6 bg-green-100 text-green-800 hover:bg-green-200">
-            <Sprout className="h-3 w-3 mr-1" />
+        <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 text-center">
+          <Badge className="mb-8 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 hover:from-green-200 hover:to-emerald-200 px-6 py-2 text-sm font-medium shadow-lg">
+            <Sprout className="h-4 w-4 mr-2" />
             364yhvh Community Farm Mall
           </Badge>
           
-          <h1 className="text-5xl md:text-7xl font-bold text-green-800 mb-6" style={{ fontFamily: "Playfair Display, serif" }}>
+          <h1 className="text-6xl md:text-8xl font-bold text-green-800 mb-8 leading-tight" style={{ fontFamily: "Playfair Display, serif" }}>
             Sow Seeds,
             <br />
-            <span className="text-amber-600">Grow Together</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500">Grow Together</span>
           </h1>
           
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Welcome to the <strong>364yhvh Community Farm</strong> where <strong>sow2grow</strong> is your farm mall. 
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Welcome to the <strong className="text-green-700">364yhvh Community Farm</strong> where <strong className="text-green-700">sow2grow</strong> is your farm mall. 
             Each grower becomes a farm stall owner, sowing into their own orchards while bestowers help each other grow and stand up.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
             <Link to="/register">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 text-white px-10 py-8 text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 border-0"
               >
                 <Heart className="h-5 w-5 mr-2" />
                 Start Your Journey
