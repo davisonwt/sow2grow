@@ -53,7 +53,7 @@ export default function LandingPage() {
               </Button>
             </Link>
             <Link to="/login">
-              <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+              <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50" style={{ borderRadius: '21px' }}>
                 Login
               </Button>
             </Link>
