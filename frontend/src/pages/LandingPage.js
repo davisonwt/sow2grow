@@ -129,6 +129,20 @@ export default function LandingPage() {
         </div>
       </section>
       
+      {/* How s2g farm mall works Section */}
+      <section className="py-20 bg-white/80 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-green-800 mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
+              How s2g farm mall works
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              The 364yhvh Community Farm is a complete ecosystem where everyone can both give and receive
+            </p>
+          </div>
+        </div>
+      </section>
+      
       {/* Video Placeholders Section */}
       <section className="py-12 bg-gradient-to-br from-green-50 to-amber-50">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
