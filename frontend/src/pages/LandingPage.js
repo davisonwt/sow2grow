@@ -432,9 +432,9 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <Link to="/free-will-gifting">
-                    <Button className="w-full bg-purple-600 hover:bg-purple-700">
-                      let it rain over the community
-                      <ArrowRight className="h-4 w-4 ml-2" />
+                    <Button className="w-full bg-purple-600 hover:bg-purple-700 h-16 flex flex-col items-center justify-center">
+                      <span className="text-sm leading-tight">let it rain over</span>
+                      <span className="text-sm leading-tight">the community</span>
                     </Button>
                   </Link>
                 </CardContent>
