@@ -31,7 +31,7 @@ export default function AppFlowPage() {
       statusColor: "bg-blue-500",
       theme: "bg-gradient-to-br from-green-50 to-amber-50",
       icon: Home,
-      actions: ["Start Your Journey", "Browse Orchards", "Tithing", "Free-Will Gifting"],
+      actions: ["Start Your Journey", "Cultivate Community Orchards", "Tithing", "Free-Will Gifting"],
       description: "Welcome to sow2grow - biblical community giving platform",
     },
     {
