@@ -69,16 +69,24 @@ export default function LandingPage() {
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 text-center">
           {/* Video Background Placeholder */}
           <div className="absolute inset-0 -z-10 rounded-2xl overflow-hidden">
-            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-12 h-12 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M8 5v10l8-5-8-5z"/>
-                  </svg>
+            <video 
+              autoPlay 
+              muted 
+              loop 
+              className="w-full h-full object-cover"
+            >
+              <source src="/hero background mp4.mp4" type="video/mp4" />
+              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-12 h-12 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M8 5v10l8-5-8-5z"/>
+                    </svg>
+                  </div>
+                  <p className="text-gray-500 text-xl">Hero Background Video</p>
                 </div>
-                <p className="text-gray-500 text-xl">Hero Background Video</p>
               </div>
-            </div>
+            </video>
           </div>
           
           {/* Content overlay */}
