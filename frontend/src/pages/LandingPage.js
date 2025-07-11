@@ -96,7 +96,7 @@ export default function LandingPage() {
               364yhvh Community Farm Stall
             </Badge>
             
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 leading-tight drop-shadow-lg" style={{ fontFamily: "Playfair Display, serif" }}>
+            <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight drop-shadow-2xl" style={{ fontFamily: "Playfair Display, serif", color: '#0c71c3', textShadow: '3px 3px 6px rgba(0,0,0,0.5)' }}>
               welcome to sow2grow
             </h1>
             
