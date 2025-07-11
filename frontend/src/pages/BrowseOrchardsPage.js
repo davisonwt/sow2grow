@@ -241,7 +241,7 @@ export default function BrowseOrchardsPage() {
       {/* Header */}
       <div className="text-center">
         <h1 className="text-4xl font-bold text-green-800 mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
-          Browse Farm Mall
+          Cultivate Community Orchards
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Discover grower farm stalls and bestow into their orchards. Each grower has their own space in the 364yhvh Community Farm.
