@@ -184,7 +184,7 @@ export default function LandingPage() {
                 <div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Heart className="h-8 w-8 text-rose-600" />
                 </div>
-                <CardTitle className="text-rose-800">Bestowers (Supporters)</CardTitle>
+                <CardTitle className="text-rose-800">bestowers (cultivators and harvesters)</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
