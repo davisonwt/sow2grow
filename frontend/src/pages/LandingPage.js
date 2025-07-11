@@ -68,14 +68,15 @@ export default function LandingPage() {
           </Badge>
           
           <h1 className="text-6xl md:text-8xl font-bold text-green-800 mb-8 leading-tight" style={{ fontFamily: "Playfair Display, serif" }}>
-            Sow Seeds,
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-500">Grow Together</span>
+            welcome to sow2grow
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Welcome to the <strong className="text-green-700">364yhvh Community Farm</strong> where <strong className="text-green-700">sow2grow</strong> is your farm mall. 
-            Each grower becomes a farm stall owner, sowing into their own orchards while bestowers help each other grow and stand up.
+          <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto leading-relaxed">
+            the farm stall of the 364yhvh community; a haven of hands and harvest, where sacred seasons meet the fruits of faithful labor.
+          </p>
+          
+          <p className="text-2xl md:text-3xl font-semibold text-green-700 mb-12 max-w-5xl mx-auto leading-relaxed">
+            a fertile ground where every grower finds their orchard, every seed becomes a fruit-bearing tree, and every harvest meets the hands destined to gather it.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
