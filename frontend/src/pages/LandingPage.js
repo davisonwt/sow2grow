@@ -319,27 +319,27 @@ export default function LandingPage() {
             </div>
             
             {/* Big placeholder */}
-            <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M8 5v10l8-5-8-5z"/>
-                  </svg>
-                </div>
-                <p className="text-gray-500 text-lg">Orchards Video Content</p>
-              </div>
+            <div className="w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                className="w-full h-full object-cover"
+              >
+                <source src="/orchards main mp4.mp4" type="video/mp4" />
+              </video>
             </div>
             
             {/* Strip placeholder */}
-            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg">
-              <div className="flex items-center space-x-4">
-                <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M8 5v10l8-5-8-5z"/>
-                  </svg>
-                </div>
-                <p className="text-gray-500">Orchards Video Strip</p>
-              </div>
+            <div className="w-full h-24 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                className="w-full h-full object-cover"
+              >
+                <source src="/orchards strip2 mp4.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
           
