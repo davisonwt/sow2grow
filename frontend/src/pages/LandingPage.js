@@ -572,7 +572,7 @@ export default function LandingPage() {
             Join the 364yhvh Community Farm
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Be part of a biblical community where everyone grows together
+            Be part of a scriptural community where everyone grows together
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/register">
