@@ -716,18 +716,34 @@ async def register_user(request: UserCreateRequest):
         if existing_user:
             raise HTTPException(status_code=400, detail="Email already registered")
         
-        # Create new user
+        # Create new user (not verified initially)
         user = User(
             email=request.email,
             password_hash=hash_password(request.password),
             first_name=request.first_name,
             last_name=request.last_name,
             location=request.location,
-            phone=request.phone
+            phone=request.phone,
+            verified=False  # Start as unverified
         )
         
         # Insert user into database
         await db.users.insert_one(user.dict())
+        
+        # Create email verification
+        verification_code = await create_email_verification(user.id, user.email)
+        
+        # Send verification email
+        await send_email(
+            to_email=user.email,
+            to_name=f"{user.first_name} {user.last_name}",
+            email_type=EmailType.VERIFICATION,
+            template_data={
+                "user_name": user.first_name,
+                "verification_code": verification_code
+            },
+            user_id=user.id
+        )
         
         # Create access token
         access_token = create_access_token({"user_id": user.id})
@@ -740,9 +756,10 @@ async def register_user(request: UserCreateRequest):
             data={
                 "user": user_data,
                 "access_token": access_token,
-                "refresh_token": access_token  # For simplicity, using same token
+                "refresh_token": access_token,  # For simplicity, using same token
+                "verification_sent": True
             },
-            message="User registered successfully"
+            message="User registered successfully. Please check your email for verification code."
         )
     
     except HTTPException:
