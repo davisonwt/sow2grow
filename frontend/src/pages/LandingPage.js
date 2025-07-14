@@ -172,13 +172,13 @@ export default function LandingPage() {
       </section>
       
       {/* How s2g farm mall works Section */}
-      <section className="py-20 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-green-800 mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
+      <section className="py-12 bg-white/80 backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-green-800 mb-3" style={{ fontFamily: "Playfair Display, serif" }}>
               How s2g farm mall works
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base text-gray-600 max-w-xl mx-auto">
               roots receive, branches share; one grove, one people, one prayer.
             </p>
           </div>
