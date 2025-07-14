@@ -1168,6 +1168,9 @@ async def get_bestowment_stats(current_user: User = Depends(get_current_user)):
         
         recent_bestowments = []
         async for doc in recent_cursor:
+            # Remove MongoDB ObjectId fields that can't be serialized
+            if '_id' in doc:
+                del doc['_id']
             recent_bestowments.append(doc)
         
         made_data = made_stats[0] if made_stats else {}
