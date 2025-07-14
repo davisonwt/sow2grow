@@ -141,7 +141,7 @@ export default function DashboardPage() {
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Link to="/browse-orchards">
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-rose-200 bg-gradient-to-br from-rose-50 to-pink-50">
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-rose-200 bg-white bg-opacity-90 backdrop-blur-sm">
             <CardContent className="p-6 text-center">
               <div className="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Search className="h-6 w-6 text-rose-600" />
