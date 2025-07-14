@@ -1417,10 +1417,28 @@ async def create_orchard(
         # Insert into database
         await db.orchards.insert_one(orchard.dict())
         
+        # Send orchard creation email
+        await send_email(
+            to_email=current_user.email,
+            to_name=f"{current_user.first_name} {current_user.last_name}",
+            email_type=EmailType.ORCHARD_CREATED,
+            template_data={
+                "grower_name": current_user.first_name,
+                "orchard_title": orchard.title,
+                "seed_value": f"R{orchard.seed_value:.2f}",
+                "total_pockets": orchard.total_pockets,
+                "pocket_price": f"R{orchard.pocket_price:.2f}",
+                "category": orchard.category.value,
+                "orchard_url": f"https://sow2grow.com/orchard/{orchard.id}"
+            },
+            user_id=current_user.id,
+            orchard_id=orchard.id
+        )
+        
         return APIResponse(
             success=True,
             data=orchard.dict(),
-            message="Orchard created successfully"
+            message="Orchard created successfully! Check your email for confirmation."
         )
     except Exception as e:
         logging.error(f"Create orchard error: {e}")
