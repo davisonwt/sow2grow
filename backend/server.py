@@ -1805,6 +1805,20 @@ async def process_card_payment(
         logging.error(f"Card payment error: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
+# Add this endpoint before the existing payment endpoints
+@api_router.get("/payments/config", response_model=APIResponse)
+async def get_payment_config():
+    """Get payment configuration for frontend"""
+    return APIResponse(
+        success=True,
+        data={
+            "paypal_client_id": PAYPAL_CLIENT_ID,
+            "bank_details": BANK_DETAILS,
+            "supported_methods": ["paypal", "card", "eft"]
+        },
+        message="Payment configuration retrieved successfully"
+    )
+
 @api_router.post("/payments/paypal-create", response_model=APIResponse)
 async def create_paypal_order(
     request: PaymentCreateRequest,
