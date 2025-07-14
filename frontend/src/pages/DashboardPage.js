@@ -177,7 +177,7 @@ export default function DashboardPage() {
         </Link>
         
         <Link to="/free-will-gifting">
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100">
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-purple-200 bg-white bg-opacity-90 backdrop-blur-sm">
             <CardContent className="p-6 text-center">
               <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Gift className="h-6 w-6 text-purple-600" />
