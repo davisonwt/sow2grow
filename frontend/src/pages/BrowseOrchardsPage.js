@@ -365,6 +365,17 @@ export default function BrowseOrchardsPage() {
               </div>
             </CardHeader>
             
+            {/* Orchard Image */}
+            {orchard.images && orchard.images.length > 0 && (
+              <div className="px-6 pb-3">
+                <img
+                  src={orchard.images[0]}
+                  alt={orchard.title}
+                  className="w-full h-32 object-cover rounded-lg border border-gray-200 shadow-sm"
+                />
+              </div>
+            )}
+            
             <CardContent className="space-y-4">
               <p className="text-sm text-gray-700 line-clamp-3">{orchard.description}</p>
               
