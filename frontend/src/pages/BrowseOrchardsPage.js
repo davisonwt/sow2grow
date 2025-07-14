@@ -416,6 +416,22 @@ export default function BrowseOrchardsPage() {
                 </div>
               </div>
               
+              {/* Simple Financial Info */}
+              {orchard.original_seed_value && (
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <div className="text-xs text-gray-600 space-y-1">
+                    <div className="flex justify-between">
+                      <span>To Grower:</span>
+                      <span className="font-medium">{formatAmount(orchard.original_seed_value)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Total (incl. fees):</span>
+                      <span className="font-medium text-green-600">{formatAmount(orchard.seed_value)}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
               <div className="flex gap-2">
                 <Link to={`/animated-orchard/${orchard.id}`} className="flex-1">
                   <Button className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white shadow-md hover:shadow-lg transition-all duration-300">
