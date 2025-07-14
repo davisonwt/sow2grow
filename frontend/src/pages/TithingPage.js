@@ -243,7 +243,7 @@ export default function TithingPage() {
                   <BookOpen className="h-6 w-6 text-amber-600" />
                 </div>
                 <h4 className="font-semibold text-amber-800 mb-1">Biblical Teaching</h4>
-                <p className="text-sm text-amber-700">Spreading God's word through teaching and discipleship</p>
+                <p className="text-sm text-amber-700">Spreading elohiym's word through teaching and discipleship</p>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
