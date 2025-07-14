@@ -1,8 +1,8 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { Button } from "../components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { Badge } from "../components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card"
 import { 
   Sprout, 
   Heart, 
@@ -19,6 +19,43 @@ import {
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-blue-50 relative overflow-hidden">
+      {/* Navigation */}
+      <nav className="relative z-20 flex items-center justify-between p-6">
+        <div className="flex items-center space-x-8">
+          <img 
+            src="/logo.jpeg" 
+            alt="sow2grow logo" 
+            className="w-12 h-12 object-contain"
+          />
+          <div>
+            <h1 className="text-2xl font-bold text-green-800" style={{ fontFamily: "Playfair Display, serif" }}>
+              sow2grow
+            </h1>
+            <p className="text-xs text-green-600">364yhvh community farm</p>
+          </div>
+        </div>
+        
+        <div className="flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-6">
+            <Link to="/login">
+              <Button variant="ghost" className="text-green-700 hover:text-green-800">
+                Join Community
+              </Button>
+            </Link>
+            <Link to="/browse-orchards">
+              <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 hover:text-green-700" style={{ borderRadius: '21px' }}>
+                Cultivate Community Orchards
+              </Button>
+            </Link>
+          </div>
+          <Link to="/login">
+            <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50" style={{ borderRadius: '21px' }}>
+              Login
+            </Button>
+          </Link>
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Enhanced animated background */}
@@ -28,41 +65,7 @@ export default function LandingPage() {
           <div className="absolute bottom-32 left-1/4 w-40 h-40 bg-gradient-to-br from-green-300/20 to-teal-300/20 rounded-full animate-pulse shadow-xl" style={{ animationDuration: "5s", animationDelay: "2s" }}></div>
           <div className="absolute top-1/3 right-1/3 w-16 h-16 bg-gradient-to-br from-blue-200/20 to-indigo-200/20 rounded-full animate-ping shadow-md" style={{ animationDuration: "6s", animationDelay: "3s" }}></div>
         </div>
-        
-        {/* Navigation */}
-        <nav className="relative z-10 flex items-center justify-between p-6 lg:px-8">
-          <div className="flex items-center space-x-3">
-            <img 
-              src="/logo.jpeg" 
-              alt="sow2grow logo" 
-              className="w-12 h-12 object-contain"
-            />
-            <div>
-              <h1 className="text-2xl font-bold text-green-800" style={{ fontFamily: "Playfair Display, serif" }}>
-                sow2grow
-              </h1>
-              <p className="text-xs text-green-600">364yhvh community farm</p>
-            </div>
-          </div>
-          <div className="hidden md:flex space-x-4">
-            <Link to="/browse-orchards">
-              <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50 hover:text-green-700" style={{ borderRadius: '21px' }}>
-                Cultivate Community Orchards
-              </Button>
-            </Link>
-            <Link to="/login">
-              <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50" style={{ borderRadius: '21px' }}>
-                Login
-              </Button>
-            </Link>
-            <Link to="/register">
-              <Button className="bg-green-600 hover:bg-green-700">
-                Join Community
-              </Button>
-            </Link>
-          </div>
-        </nav>
-        
+
         {/* Hero Content Over Video */}
         <div className="relative z-10 mx-auto max-w-6xl px-6 py-20 text-center">
           {/* Video Background Placeholder */}
@@ -228,7 +231,7 @@ export default function LandingPage() {
           
           {/* Seeds Section */}
           <div className="space-y-6">
-            {/* Strip placeholder with header */}
+            {/* Seeds Strip */}
             <div className="w-full bg-gray-200 rounded-lg flex items-center shadow-lg overflow-hidden relative" style={{ width: '1920px', height: '350px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
@@ -253,7 +256,7 @@ export default function LandingPage() {
               </div>
             </div>
             
-            {/* Big placeholder - Seeds 1 */}
+            {/* Seeds 1 Large */}
             <div className="w-full bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative" style={{ width: '1280px', height: '720px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
@@ -265,7 +268,7 @@ export default function LandingPage() {
               </video>
             </div>
             
-            {/* Big placeholder - Seeds 2 with text overlay */}
+            {/* Seeds 2 Large with text overlay */}
             <div className="w-full bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative" style={{ width: '1280px', height: '720px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
@@ -285,8 +288,8 @@ export default function LandingPage() {
           
           {/* Orchards Section */}
           <div className="space-y-6">
-            {/* Strip placeholder with header */}
-            <div className="w-full h-40 bg-gray-200 rounded-lg flex items-center shadow-lg overflow-hidden relative">
+            {/* Orchards Strip 1 */}
+            <div className="w-full bg-gray-200 rounded-lg flex items-center shadow-lg overflow-hidden relative" style={{ width: '1920px', height: '350px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
                 muted 
@@ -310,8 +313,8 @@ export default function LandingPage() {
               </div>
             </div>
             
-            {/* Big placeholder */}
-            <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
+            {/* Orchards Main Large */}
+            <div className="w-full bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative" style={{ width: '1280px', height: '720px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
                 muted 
@@ -322,8 +325,8 @@ export default function LandingPage() {
               </video>
             </div>
             
-            {/* Strip placeholder */}
-            <div className="w-full h-40 bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
+            {/* Orchards Strip 2 with text overlay */}
+            <div className="w-full bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative" style={{ width: '1920px', height: '350px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
                 muted 
@@ -378,10 +381,10 @@ export default function LandingPage() {
             </Card>
           </div>
           
-          {/* Bestowers Section */}
+          {/* Bestowers Videos */}
           <div className="space-y-6">
-            {/* Strip placeholder with header */}
-            <div className="w-full h-40 bg-gray-200 rounded-lg flex items-center shadow-lg overflow-hidden relative">
+            {/* Bestowers Strip */}
+            <div className="w-full bg-gray-200 rounded-lg flex items-center shadow-lg overflow-hidden relative" style={{ width: '1920px', height: '350px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
                 muted 
@@ -405,8 +408,8 @@ export default function LandingPage() {
               </div>
             </div>
             
-            {/* Big placeholder */}
-            <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
+            {/* Bestowers Main Large with text overlay */}
+            <div className="w-full bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative" style={{ width: '1280px', height: '720px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
                 muted 
@@ -500,10 +503,10 @@ export default function LandingPage() {
             </div>
           </div>
           
-          {/* Harvesters Section */}
+          {/* Harvesters Videos */}
           <div className="space-y-6">
-            {/* Strip placeholder with header */}
-            <div className="w-full h-40 bg-gray-200 rounded-lg flex items-center shadow-lg overflow-hidden relative">
+            {/* Harvesters Strip */}
+            <div className="w-full bg-gray-200 rounded-lg flex items-center shadow-lg overflow-hidden relative" style={{ width: '1920px', height: '350px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
                 muted 
@@ -527,8 +530,8 @@ export default function LandingPage() {
               </div>
             </div>
             
-            {/* Big placeholder */}
-            <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
+            {/* Harvesters Main Large with text overlay */}
+            <div className="w-full bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative" style={{ width: '1280px', height: '720px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
                 muted 
@@ -545,28 +548,23 @@ export default function LandingPage() {
             </div>
           </div>
           
-        {/* </div> */}
+        </div>
       </section>
       
       {/* Scripture Section */}
-      <section className="py-20 bg-gradient-to-r from-green-100 to-amber-100">
+      <section className="py-20 bg-gradient-to-br from-green-100 to-amber-100">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-green-800 mb-6" style={{ fontFamily: "Playfair Display, serif" }}>
-              Our Foundation
-            </h2>
-            <blockquote className="text-xl text-gray-700 italic mb-6 leading-relaxed">
-              "Give, and it will be given to you. A good measure, pressed down, shaken together and running over, will be poured into your lap. For with the measure you use, it will be measured to you."
-            </blockquote>
-            <cite className="text-green-600 font-semibold text-lg">- Luke 6:38</cite>
-          </div>
+          <blockquote className="text-3xl font-bold text-green-800 mb-8" style={{ fontFamily: "Playfair Display, serif" }}>
+            "I planted, Apollos watered, but God gave the growth."
+          </blockquote>
+          <cite className="text-lg text-green-600">1 Corinthians 3:6</cite>
         </div>
       </section>
       
       {/* CTA Section */}
       <section className="py-20 text-white" style={{ backgroundColor: '#bf7500' }}>
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
+          <h2 className="text-4xl font-bold mb-6" style={{ fontFamily: "Playfair Display, serif" }}>
             Join the 364yhvh Community Farm
           </h2>
           <p className="text-xl mb-8 opacity-90">
@@ -595,7 +593,7 @@ export default function LandingPage() {
                 className="border-white text-white hover:bg-white hover:text-green-600 px-8 py-6 text-lg"
                 style={{ borderRadius: '21px' }}
               >
-                <Zap className="h-5 w-5 mr-2" />
+                <Shield className="h-5 w-5 mr-2" />
                 View App Flow
               </Button>
             </Link>
