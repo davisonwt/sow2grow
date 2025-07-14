@@ -257,7 +257,7 @@ export default function TithingPage() {
                   <Church className="h-6 w-6 text-amber-600" />
                 </div>
                 <h4 className="font-semibold text-amber-800 mb-1">Ministry Growth</h4>
-                <p className="text-sm text-amber-700">Expanding the reach of God's love and grace</p>
+                <p className="text-sm text-amber-700">Expanding the reach of elohiym's love and grace</p>
               </div>
             </div>
           </CardContent>
