@@ -327,7 +327,7 @@ class Sow2GrowAPITester:
                                                                      verify_data, expected_status=400, use_auth=True)
         
         # Test verify email with valid code (we can't get the real code, so we test the endpoint structure)
-        verify_structure_valid = verify_fail_success and "verification_code" in str(verify_fail_response)
+        verify_structure_valid = verify_fail_success and ("Invalid" in str(verify_fail_response) or "expired" in str(verify_fail_response))
         
         overall_success = resend_success and verify_structure_valid
         self.log_test("Email Verification System", overall_success,
