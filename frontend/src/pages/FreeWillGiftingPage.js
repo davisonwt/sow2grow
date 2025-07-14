@@ -50,7 +50,7 @@ export default function FreeWillGiftingPage() {
           loop 
           className="w-full h-full object-cover"
         >
-          <source src="/free-will giving.mp4" type="video/mp4" />
+          <source src="/bestowers main mp4.mp4" type="video/mp4" />
           <div className="w-full h-full bg-gradient-to-br from-purple-50 via-pink-50 to-purple-100"></div>
         </video>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
