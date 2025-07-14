@@ -593,6 +593,13 @@ class Sow2GrowAPITester:
             ("Bestow Into Orchard", self.test_bestow_into_orchard),
             ("Payment Operations", self.test_payment_operations),
             ("Analytics Access Control", self.test_analytics_endpoints),
+            # NEW BACKEND FEATURES TESTING
+            ("Email Verification System", self.test_email_verification_system),
+            ("Registration Email Verification", self.test_registration_email_verification),
+            ("Orchard Email Confirmation", self.test_orchard_email_confirmation),
+            ("Bestowal Tracking System", self.test_bestowal_tracking_system),
+            ("Financial Calculations", self.test_financial_calculations),
+            ("Integration Flow", self.test_integration_flow),
         ]
         
         for test_name, test_func in tests:
