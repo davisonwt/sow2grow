@@ -864,7 +864,332 @@ async def update_current_user_profile(
         logging.error(f"Update user profile error: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
-# PayPal account endpoints
+# ===== EMAIL VERIFICATION ENDPOINTS =====
+
+@api_router.post("/auth/verify-email", response_model=APIResponse)
+async def verify_email(
+    request: dict,
+    current_user: User = Depends(get_current_user)
+):
+    """Verify email with verification code"""
+    try:
+        verification_code = request.get("verification_code")
+        if not verification_code:
+            raise HTTPException(status_code=400, detail="Verification code is required")
+        
+        success = await verify_email_code(current_user.id, verification_code)
+        
+        if success:
+            return APIResponse(
+                success=True,
+                data={"verified": True},
+                message="Email verified successfully!"
+            )
+        else:
+            raise HTTPException(status_code=400, detail="Invalid or expired verification code")
+            
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Email verification error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.post("/auth/resend-verification", response_model=APIResponse)
+async def resend_verification_email(current_user: User = Depends(get_current_user)):
+    """Resend verification email"""
+    try:
+        if current_user.verified:
+            return APIResponse(
+                success=True,
+                data={"already_verified": True},
+                message="Email is already verified"
+            )
+        
+        # Create new verification code
+        verification_code = await create_email_verification(current_user.id, current_user.email)
+        
+        # Send verification email
+        await send_email(
+            to_email=current_user.email,
+            to_name=f"{current_user.first_name} {current_user.last_name}",
+            email_type=EmailType.VERIFICATION,
+            template_data={
+                "user_name": current_user.first_name,
+                "verification_code": verification_code
+            },
+            user_id=current_user.id
+        )
+        
+        return APIResponse(
+            success=True,
+            data={"sent": True},
+            message="Verification email sent successfully"
+        )
+        
+    except Exception as e:
+        logging.error(f"Resend verification error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+# ===== BESTOWAL TRACKING ENDPOINTS =====
+
+@api_router.post("/bestowments", response_model=APIResponse)
+async def create_bestowment(
+    request: BestowmentRequest,
+    current_user: User = Depends(get_current_user)
+):
+    """Create a new bestowment (Make it rain!)"""
+    try:
+        # Get orchard details
+        orchard_doc = await db.orchards.find_one({"id": request.orchard_id})
+        if not orchard_doc:
+            raise HTTPException(status_code=404, detail="Orchard not found")
+        
+        orchard = Orchard(**orchard_doc)
+        
+        # Get grower details
+        grower_doc = await db.users.find_one({"id": orchard.user_id})
+        if not grower_doc:
+            raise HTTPException(status_code=404, detail="Grower not found")
+        
+        grower = User(**grower_doc)
+        
+        # Calculate amounts
+        pocket_count = len(request.pocket_numbers)
+        total_amount = pocket_count * orchard.pocket_price
+        
+        # Calculate fees (using the financial breakdown we implemented)
+        original_amount = total_amount / 1.16  # Remove tithing and processing fees to get original
+        tithing_amount = original_amount * 0.10
+        processing_fee = total_amount * 0.06
+        net_amount_to_grower = total_amount - tithing_amount - processing_fee
+        
+        # Create bestowment record
+        bestowment = Bestowment(
+            bestower_id=current_user.id,
+            bestower_name=f"{current_user.first_name} {current_user.last_name}",
+            bestower_email=current_user.email,
+            grower_id=grower.id,
+            grower_name=f"{grower.first_name} {grower.last_name}",
+            grower_email=grower.email,
+            orchard_id=orchard.id,
+            orchard_title=orchard.title,
+            pocket_numbers=request.pocket_numbers,
+            total_amount=total_amount,
+            individual_pocket_price=orchard.pocket_price,
+            payment_method=request.payment_method,
+            processing_fee=processing_fee,
+            tithing_amount=tithing_amount,
+            net_amount_to_grower=net_amount_to_grower,
+            notes=request.notes,
+            status=BestowmentStatus.PROCESSING
+        )
+        
+        # Insert into database
+        await db.bestowments.insert_one(bestowment.dict())
+        
+        # Send confirmation emails
+        # To bestower
+        await send_email(
+            to_email=current_user.email,
+            to_name=f"{current_user.first_name} {current_user.last_name}",
+            email_type=EmailType.BESTOWMENT_MADE,
+            template_data={
+                "bestower_name": current_user.first_name,
+                "orchard_title": orchard.title,
+                "grower_name": grower.first_name,
+                "pocket_count": pocket_count,
+                "total_amount": f"R{total_amount:.2f}",
+                "net_amount": f"R{net_amount_to_grower:.2f}",
+                "tithing_amount": f"R{tithing_amount:.2f}",
+                "orchard_url": f"https://sow2grow.com/orchard/{orchard.id}"
+            },
+            user_id=current_user.id,
+            orchard_id=orchard.id,
+            bestowment_id=bestowment.id
+        )
+        
+        # To grower
+        completion_percentage = ((orchard.filled_pockets + pocket_count) / orchard.total_pockets) * 100
+        pockets_remaining = orchard.total_pockets - orchard.filled_pockets - pocket_count
+        
+        await send_email(
+            to_email=grower.email,
+            to_name=f"{grower.first_name} {grower.last_name}",
+            email_type=EmailType.BESTOWMENT_RECEIVED,
+            template_data={
+                "grower_name": grower.first_name,
+                "bestower_name": f"{current_user.first_name} {current_user.last_name}",
+                "orchard_title": orchard.title,
+                "pocket_count": pocket_count,
+                "net_amount": f"R{net_amount_to_grower:.2f}",
+                "completion_percentage": f"{completion_percentage:.1f}",
+                "pockets_remaining": pockets_remaining,
+                "orchard_url": f"https://sow2grow.com/orchard/{orchard.id}"
+            },
+            user_id=grower.id,
+            orchard_id=orchard.id,
+            bestowment_id=bestowment.id
+        )
+        
+        return APIResponse(
+            success=True,
+            data={
+                "bestowment_id": bestowment.id,
+                "total_amount": total_amount,
+                "pocket_count": pocket_count,
+                "processing_fee": processing_fee,
+                "tithing_amount": tithing_amount,
+                "net_amount_to_grower": net_amount_to_grower
+            },
+            message=f"Bestowment created! You made it rain R{total_amount:.2f} on {orchard.title}!"
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Create bestowment error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.get("/bestowments", response_model=APIResponse)
+async def get_user_bestowments(
+    current_user: User = Depends(get_current_user),
+    limit: int = Query(20, ge=1, le=100),
+    skip: int = Query(0, ge=0)
+):
+    """Get user's bestowment history"""
+    try:
+        # Get bestowments made by current user
+        bestowments_cursor = db.bestowments.find(
+            {"bestower_id": current_user.id}
+        ).sort("created_at", -1).skip(skip).limit(limit)
+        
+        bestowments = []
+        async for doc in bestowments_cursor:
+            bestowments.append(doc)
+        
+        # Get total count
+        total_count = await db.bestowments.count_documents({"bestower_id": current_user.id})
+        
+        return APIResponse(
+            success=True,
+            data={
+                "bestowments": bestowments,
+                "total_count": total_count,
+                "has_more": (skip + limit) < total_count
+            },
+            message="Bestowments retrieved successfully"
+        )
+        
+    except Exception as e:
+        logging.error(f"Get bestowments error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.get("/bestowments/received", response_model=APIResponse)
+async def get_received_bestowments(
+    current_user: User = Depends(get_current_user),
+    limit: int = Query(20, ge=1, le=100),
+    skip: int = Query(0, ge=0)
+):
+    """Get bestowments received by current user (as grower)"""
+    try:
+        # Get bestowments received by current user
+        bestowments_cursor = db.bestowments.find(
+            {"grower_id": current_user.id}
+        ).sort("created_at", -1).skip(skip).limit(limit)
+        
+        bestowments = []
+        async for doc in bestowments_cursor:
+            bestowments.append(doc)
+        
+        # Get total count
+        total_count = await db.bestowments.count_documents({"grower_id": current_user.id})
+        
+        return APIResponse(
+            success=True,
+            data={
+                "bestowments": bestowments,
+                "total_count": total_count,
+                "has_more": (skip + limit) < total_count
+            },
+            message="Received bestowments retrieved successfully"
+        )
+        
+    except Exception as e:
+        logging.error(f"Get received bestowments error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+@api_router.get("/bestowments/stats", response_model=APIResponse)
+async def get_bestowment_stats(current_user: User = Depends(get_current_user)):
+    """Get overall bestowment statistics"""
+    try:
+        # Get stats for bestowments made by user
+        made_pipeline = [
+            {"$match": {"bestower_id": current_user.id}},
+            {"$group": {
+                "_id": None,
+                "total_bestowments": {"$sum": 1},
+                "total_amount": {"$sum": "$total_amount"},
+                "total_pockets": {"$sum": {"$size": "$pocket_numbers"}}
+            }}
+        ]
+        
+        made_stats = []
+        async for doc in db.bestowments.aggregate(made_pipeline):
+            made_stats.append(doc)
+        
+        # Get stats for bestowments received by user
+        received_pipeline = [
+            {"$match": {"grower_id": current_user.id}},
+            {"$group": {
+                "_id": None,
+                "total_received": {"$sum": 1},
+                "total_amount_received": {"$sum": "$net_amount_to_grower"},
+                "total_pockets_received": {"$sum": {"$size": "$pocket_numbers"}}
+            }}
+        ]
+        
+        received_stats = []
+        async for doc in db.bestowments.aggregate(received_pipeline):
+            received_stats.append(doc)
+        
+        # Get recent bestowments
+        recent_cursor = db.bestowments.find(
+            {"$or": [
+                {"bestower_id": current_user.id},
+                {"grower_id": current_user.id}
+            ]}
+        ).sort("created_at", -1).limit(5)
+        
+        recent_bestowments = []
+        async for doc in recent_cursor:
+            recent_bestowments.append(doc)
+        
+        made_data = made_stats[0] if made_stats else {}
+        received_data = received_stats[0] if received_stats else {}
+        
+        return APIResponse(
+            success=True,
+            data={
+                "made": {
+                    "total_bestowments": made_data.get("total_bestowments", 0),
+                    "total_amount": made_data.get("total_amount", 0),
+                    "total_pockets": made_data.get("total_pockets", 0)
+                },
+                "received": {
+                    "total_received": received_data.get("total_received", 0),
+                    "total_amount_received": received_data.get("total_amount_received", 0),
+                    "total_pockets_received": received_data.get("total_pockets_received", 0)
+                },
+                "recent_bestowments": recent_bestowments
+            },
+            message="Bestowment stats retrieved successfully"
+        )
+        
+    except Exception as e:
+        logging.error(f"Get bestowment stats error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+# Update existing endpoints...
 @api_router.get("/users/paypal-account", response_model=APIResponse)
 async def get_paypal_account(current_user: User = Depends(get_current_user)):
     """Get user's PayPal account details"""
