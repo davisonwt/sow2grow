@@ -193,44 +193,44 @@ export default function TithingPage() {
           </Card>
           
           {/* Tithing Info */}
-          <Card className="bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200 shadow-lg">
+          <Card className="bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-amber-800 flex items-center gap-2">
+              <CardTitle className="text-white flex items-center gap-2">
                 <Sparkles className="h-5 w-5" />
                 The Blessing of Tithing
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Star className="h-5 w-5 text-amber-600 mt-1" />
+                <div className="flex items-start gap-3 bg-white/5 rounded-lg p-3 border border-white/10">
+                  <Star className="h-5 w-5 text-amber-400 mt-1" />
                   <div>
-                    <h4 className="font-semibold text-amber-800">Honoring elohiym</h4>
-                    <p className="text-sm text-amber-700">Tithing is a way to honor elohiym with our firstfruits and acknowledge His provision</p>
+                    <h4 className="font-semibold text-white">Honoring elohiym</h4>
+                    <p className="text-sm text-white/90">Tithing is a way to honor elohiym with our firstfruits and acknowledge His provision</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3">
-                  <Star className="h-5 w-5 text-amber-600 mt-1" />
+                <div className="flex items-start gap-3 bg-white/5 rounded-lg p-3 border border-white/10">
+                  <Star className="h-5 w-5 text-amber-400 mt-1" />
                   <div>
-                    <h4 className="font-semibold text-amber-800">Supporting Ministry</h4>
-                    <p className="text-sm text-amber-700">Your tithes support yhvh364 gosat's ministry and help spread elohiym's word</p>
+                    <h4 className="font-semibold text-white">Supporting Ministry</h4>
+                    <p className="text-sm text-white/90">Your tithes support yhvh364 gosat's ministry and help spread elohiym's word</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3">
-                  <Star className="h-5 w-5 text-amber-600 mt-1" />
+                <div className="flex items-start gap-3 bg-white/5 rounded-lg p-3 border border-white/10">
+                  <Star className="h-5 w-5 text-amber-400 mt-1" />
                   <div>
-                    <h4 className="font-semibold text-amber-800">Receiving Blessing</h4>
-                    <p className="text-sm text-amber-700">elohiym promises to bless those who faithfully tithe and give generously</p>
+                    <h4 className="font-semibold text-white">Receiving Blessing</h4>
+                    <p className="text-sm text-white/90">elohiym promises to bless those who faithfully tithe and give generously</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3">
-                  <Star className="h-5 w-5 text-amber-600 mt-1" />
+                <div className="flex items-start gap-3 bg-white/5 rounded-lg p-3 border border-white/10">
+                  <Star className="h-5 w-5 text-amber-400 mt-1" />
                   <div>
-                    <h4 className="font-semibold text-amber-800">Building Faith</h4>
-                    <p className="text-sm text-amber-700">Tithing helps build our faith and trust in elohiym's provision</p>
+                    <h4 className="font-semibold text-white">Building Faith</h4>
+                    <p className="text-sm text-white/90">Tithing helps build our faith and trust in elohiym's provision</p>
                   </div>
                 </div>
               </div>
