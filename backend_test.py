@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional
 
 class Sow2GrowAPITester:
-    def __init__(self, base_url: str = "https://56fc527f-024c-4d38-890d-1f6b72c7876c.preview.emergentagent.com/api"):
+    def __init__(self, base_url: str = "https://864da651-da13-4e06-9ea7-4e5dc9dde4c3.preview.emergentagent.com/api"):
         self.base_url = base_url
         self.access_token = None
         self.user_id = None
