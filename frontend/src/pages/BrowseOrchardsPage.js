@@ -474,5 +474,6 @@ export default function BrowseOrchardsPage() {
         </CardContent>
       </Card>
     </div>
+    </div>
   )
 }
