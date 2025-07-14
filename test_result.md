@@ -136,11 +136,11 @@ frontend:
     file: "pages/CreateOrchardPage.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: true
         agent: "main"
-        comment: "Added handleImageUpload, handleVideoUpload, removeImage, and removeVideo functions. Supports base64 conversion for 1-3 images and 1 video with proper validation"
+        comment: "Media upload functionality was already implemented with base64 conversion for 1-3 images and 1 video with proper validation. Updated handleSubmit to use real API call to backend instead of simulated timeout. Changed button text to 'Sow Seed Into New Orchard' as requested."
 
   - task: "UX text changes - Browse Orchards to Cultivate Community Orchards"
     implemented: true
