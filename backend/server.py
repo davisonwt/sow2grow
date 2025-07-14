@@ -190,7 +190,10 @@ class OrchardCreateRequest(BaseModel):
     title: str
     description: str
     category: GiftCategory = GiftCategory.TECHNOLOGY
-    seed_value: float = Field(gt=0)
+    seed_value: float = Field(gt=0)  # This will be the final calculated value
+    original_seed_value: Optional[float] = None  # Original amount before fees
+    tithing_amount: Optional[float] = 0.0  # 10% tithing amount
+    payment_processing_fee: Optional[float] = 0.0  # Payment processing fee
     pocket_price: float = Field(default=150.0, gt=0)
     location: Optional[str] = None
     timeline: Optional[str] = None
