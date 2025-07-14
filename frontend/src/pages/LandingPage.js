@@ -266,7 +266,7 @@ export default function LandingPage() {
             </div>
             
             {/* Big placeholder - Seeds 2 with text overlay */}
-            <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
+            <div className="w-full bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative" style={{ width: '1280px', height: '720px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
                 muted 
@@ -280,18 +280,6 @@ export default function LandingPage() {
                   ...into a home for anyone of our harvesters. it is born from purpose, ready to be sown.
                 </p>
               </div>
-            </div>
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-10 h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 5v10l8-5-8-5z"/>
-                      </svg>
-                    </div>
-                    <p className="text-gray-500 text-lg">Seeds Video Content</p>
-                  </div>
-                </div>
-              {/* </video> */}
             </div>
           </div>
           
