@@ -75,35 +75,43 @@ export default function ProfilePage() {
   }
   
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      {/* Header */}
-      <div className="text-center">
-        <div className="flex justify-center mb-4">
-          <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center shadow-lg">
-            <User className="h-10 w-10 text-white" />
+    <div className="min-h-screen bg-black">
+      <div className="max-w-4xl mx-auto space-y-8 p-6">
+        {/* Header */}
+        <div className="text-center">
+          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 mx-auto max-w-3xl border border-white/20 shadow-2xl">
+            <div className="flex justify-center mb-4">
+              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center shadow-lg">
+                <User className="h-10 w-10 text-white" />
+              </div>
+            </div>
+            <h1 className="text-4xl font-bold text-white mb-2" style={{ 
+              fontFamily: "Playfair Display, serif",
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'
+            }}>
+              My Profile
+            </h1>
+            <p className="text-lg text-white/90" style={{
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
+            }}>
+              Manage your account in the 364yhvh Community Farm
+            </p>
+            <div className="flex justify-center gap-2 mt-4">
+              <Badge className="bg-green-500/80 text-white border border-green-300/50 backdrop-blur-sm">
+                <Sprout className="h-3 w-3 mr-1" />
+                Farm Stall Owner
+              </Badge>
+              <Badge className="bg-blue-500/80 text-white border border-blue-300/50 backdrop-blur-sm">
+                <Shield className="h-3 w-3 mr-1" />
+                {userStats.verificationLevel}
+              </Badge>
+              <Badge className="bg-amber-500/80 text-white border border-amber-300/50 backdrop-blur-sm">
+                <Star className="h-3 w-3 mr-1" />
+                {userStats.communityRank}
+              </Badge>
+            </div>
           </div>
         </div>
-        <h1 className="text-4xl font-bold text-green-800 mb-2" style={{ fontFamily: "Playfair Display, serif" }}>
-          My Profile
-        </h1>
-        <p className="text-lg text-gray-600">
-          Manage your account in the 364yhvh Community Farm
-        </p>
-        <div className="flex justify-center gap-2 mt-4">
-          <Badge className="bg-green-100 text-green-800">
-            <Sprout className="h-3 w-3 mr-1" />
-            Farm Stall Owner
-          </Badge>
-          <Badge className="bg-blue-100 text-blue-800">
-            <Shield className="h-3 w-3 mr-1" />
-            {userStats.verificationLevel}
-          </Badge>
-          <Badge className="bg-amber-100 text-amber-800">
-            <Star className="h-3 w-3 mr-1" />
-            {userStats.communityRank}
-          </Badge>
-        </div>
-      </div>
       
       {/* Profile Information */}
       <Card className="bg-white/90 backdrop-blur-sm border-green-200 shadow-lg">
