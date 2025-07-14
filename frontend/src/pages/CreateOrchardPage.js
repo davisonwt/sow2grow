@@ -665,25 +665,27 @@ export default function CreateOrchardPage() {
         )}
         
         {/* Submit Button */}
-        <div className="text-center">
-          <Button
-            type="submit"
-            disabled={loading}
-            className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-8 py-4 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-          >
-            {loading ? (
-              <div className="flex items-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                Planting Seed...
-              </div>
-            ) : (
-              <>
-                <Sparkles className="h-5 w-5 mr-2" />
-                Sow Seed Into New Orchard
-              </>
-            )}
-          </Button>
-        </div>
+            <div className="text-center">
+              <Button
+                type="submit"
+                size="xl"
+                variant="golden"
+                disabled={loading}
+                className="px-12 py-6 text-xl font-bold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300"
+              >
+                {loading ? (
+                  <div className="flex items-center">
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
+                    Planting Your Seed...
+                  </div>
+                ) : (
+                  <>
+                    <Sprout className="h-6 w-6 mr-3" />
+                    Sow Seed Into New Orchard 🌱
+                  </>
+                )}
+              </Button>
+            </div>
       </form>
     </div>
     </div>
