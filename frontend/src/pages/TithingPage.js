@@ -53,30 +53,28 @@ export default function TithingPage() {
         <div className="max-w-4xl mx-auto px-4 space-y-8">
         {/* Header */}
         <div className="text-center">
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
-              <HandHeart className="h-8 w-8 text-white" />
+          <div className="bg-black/40 backdrop-blur-sm rounded-3xl p-8 mx-auto max-w-3xl border border-white/20 shadow-2xl">
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
+                <HandHeart className="h-8 w-8 text-white" />
+              </div>
             </div>
+            <h1 className="text-4xl font-bold mb-4 text-white" style={{ 
+              fontFamily: "Playfair Display, serif",
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'
+            }}>
+              tithing
+            </h1>
+            <p className="text-lg max-w-2xl mx-auto text-white/90" style={{
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
+            }}>
+              honor elohiym with your first fruits and support yhvh364 gosat's through faithful tithing
+            </p>
+            <Badge className="mt-4 bg-amber-500/80 text-white border border-amber-300/50 backdrop-blur-sm">
+              <HandHeart className="h-3 w-3 mr-1" />
+              yhvh364 gosat's Ministry
+            </Badge>
           </div>
-          <h1 className="text-4xl font-bold mb-4" style={{ 
-            fontFamily: "Playfair Display, serif",
-            color: '#3B82F6', // light blue
-            textShadow: '2px 2px 4px rgba(30, 64, 175, 0.8)', // dark blue shadow
-            filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))'
-          }}>
-            tithing
-          </h1>
-          <p className="text-lg max-w-2xl mx-auto relative" style={{
-            color: '#1E40AF', // dark blue
-            textShadow: '1px 1px 2px rgba(59, 130, 246, 0.3)',
-            filter: 'drop-shadow(0 0 12px rgba(147, 197, 253, 0.8))' // light blue cloud effect
-          }}>
-            honor elohiym with your first fruits and support yhvh364 gosat's through faithful tithing
-          </p>
-          <Badge className="mt-4 bg-amber-100 text-amber-800">
-            <HandHeart className="h-3 w-3 mr-1" />
-            yhvh364 gosat's Ministry
-          </Badge>
         </div>
         
         {/* Scripture Section */}
