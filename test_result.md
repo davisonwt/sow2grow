@@ -218,6 +218,7 @@ test_plan:
     - "Make it rain checkout button implementation"
     - "AnimatedOrchardGrid pocket colors"
     - "Frontend beautification"
+    - "Orchard creation API with media support"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
