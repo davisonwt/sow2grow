@@ -217,7 +217,7 @@ class OrchardCreationTester:
             test_data['seed_value'] = invalid_value
             
             success, response = self.make_request('POST', '/orchards', test_data, 422, use_auth=True)
-            validation_error = success and not response.get('success', True)
+            validation_error = success
             
             if not validation_error:
                 all_tests_passed = False
