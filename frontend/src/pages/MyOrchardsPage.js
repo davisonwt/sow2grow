@@ -104,7 +104,23 @@ export default function MyOrchardsPage() {
   }
   
   return (
-    <div className="space-y-8">
+    <div className="relative min-h-screen">
+      {/* Full Background Video */}
+      <div className="fixed inset-0 w-full h-full z-0">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          className="w-full h-full object-cover"
+        >
+          <source src="/my orchards 1280x720.mp4" type="video/mp4" />
+          <div className="w-full h-full bg-gradient-to-br from-green-100 to-amber-100"></div>
+        </video>
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+      </div>
+      
+      {/* Content over video */}
+      <div className="relative z-10 space-y-8 p-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
