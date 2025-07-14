@@ -57,11 +57,20 @@ export default function TithingPage() {
               <Church className="h-8 w-8 text-white" />
             </div>
           </div>
-          <h1 className="text-4xl font-bold text-amber-800 mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
-            Biblical Tithing
+          <h1 className="text-4xl font-bold mb-4" style={{ 
+            fontFamily: "Playfair Display, serif",
+            color: '#3B82F6', // light blue
+            textShadow: '2px 2px 4px rgba(30, 64, 175, 0.8)', // dark blue shadow
+            filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.6))'
+          }}>
+            tithing
           </h1>
-          <p className="text-lg text-amber-700 max-w-2xl mx-auto">
-            Honor God with your firstfruits and support yhvh364 gosat's ministry through faithful tithing
+          <p className="text-lg max-w-2xl mx-auto relative" style={{
+            color: '#1E40AF', // dark blue
+            textShadow: '1px 1px 2px rgba(59, 130, 246, 0.3)',
+            filter: 'drop-shadow(0 0 12px rgba(147, 197, 253, 0.8))' // light blue cloud effect
+          }}>
+            honor elohiym with your first fruits and support yhvh364 gosat's through faithful tithing
           </p>
           <Badge className="mt-4 bg-amber-100 text-amber-800">
             <Church className="h-3 w-3 mr-1" />
