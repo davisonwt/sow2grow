@@ -104,12 +104,44 @@ export default function CreateOrchardPage() {
   }
   
   const calculatePockets = () => {
-    const seedValue = parseFloat(formData.seed_value)
+    const finalSeedValue = calculateFinalSeedValue()
     const pocketPrice = parseFloat(formData.pocket_price)
-    if (seedValue && pocketPrice) {
-      return Math.ceil(seedValue / pocketPrice)
+    if (finalSeedValue && pocketPrice) {
+      return Math.ceil(finalSeedValue / pocketPrice)
     }
     return 0
+  }
+
+  const calculateFinalSeedValue = () => {
+    const originalSeedValue = parseFloat(formData.seed_value) || 0
+    if (originalSeedValue === 0) return 0
+    
+    const tithingAmount = originalSeedValue * 0.10 // 10% tithing
+    const baseAmountWithTithing = originalSeedValue + tithingAmount
+    
+    // 6% payment processing fee (standard rate)
+    const paymentProcessingFee = baseAmountWithTithing * 0.06
+    
+    const finalSeedValue = baseAmountWithTithing + paymentProcessingFee
+    return finalSeedValue
+  }
+
+  const getSeedValueBreakdown = () => {
+    const originalSeedValue = parseFloat(formData.seed_value) || 0
+    if (originalSeedValue === 0) return null
+    
+    const tithingAmount = originalSeedValue * 0.10
+    const baseAmountWithTithing = originalSeedValue + tithingAmount
+    const paymentProcessingFee = baseAmountWithTithing * 0.06
+    const finalSeedValue = baseAmountWithTithing + paymentProcessingFee
+    
+    return {
+      original: originalSeedValue,
+      tithing: tithingAmount,
+      baseWithTithing: baseAmountWithTithing,
+      paymentProcessing: paymentProcessingFee,
+      final: finalSeedValue
+    }
   }
 
   const handleImageUpload = (e) => {
