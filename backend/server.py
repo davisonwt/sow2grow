@@ -16,6 +16,11 @@ from enum import Enum
 import asyncio
 from decimal import Decimal
 import json
+import sendgrid
+from sendgrid.helpers.mail import Mail, Email, To, Content
+from jinja2 import Template
+import random
+import string
 
 # Load environment variables
 ROOT_DIR = Path(__file__).parent
