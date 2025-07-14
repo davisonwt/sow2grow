@@ -84,7 +84,7 @@ export default function FreeWillGiftingPage() {
             <Sparkles className="h-8 w-8 text-purple-600 mx-auto mb-4" />
             <blockquote className="text-xl text-purple-800 italic mb-4 leading-relaxed">
               "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, 
-              for God loves a cheerful giver."
+              for elohiym loves a cheerful giver."
             </blockquote>
             <cite className="text-purple-600 font-semibold">- 2 Corinthians 9:7</cite>
           </CardContent>
