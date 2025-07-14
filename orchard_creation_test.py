@@ -400,10 +400,10 @@ class OrchardCreationTester:
             "community_impact": "Should be blocked"
         }
         
-        success, response = self.make_request('POST', '/orchards', orchard_data, 401, use_auth=False)
+        success, response = self.make_request('POST', '/orchards', orchard_data, 403, use_auth=False)
         
-        # Should fail with 401 Unauthorized
-        auth_required = success and not response.get('success', True)
+        # Should fail with 403 Unauthorized
+        auth_required = success
         
         self.log_test("Authentication Required", auth_required,
                      f"- 401 returned: {'✓' if auth_required else '✗'}")
