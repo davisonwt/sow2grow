@@ -280,60 +280,96 @@ export default function BrowseOrchardsPage() {
         </div>
       </div>
       
-      {/* Filters */}
+      {/* Mobile-Friendly Filters */}
       <Card className="bg-white/90 backdrop-blur-sm border-green-200">
-        <CardContent className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search orchards..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
-            </div>
-            
-            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger>
-                <SelectValue placeholder="Category" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
-                {categories.map(category => (
-                  <SelectItem key={category} value={category}>{category}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            
-            <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-              <SelectTrigger>
-                <SelectValue placeholder="Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="active">Active</SelectItem>
-                <SelectItem value="completed">Completed</SelectItem>
-                <SelectItem value="paused">Paused</SelectItem>
-              </SelectContent>
-            </Select>
-            
-            <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger>
-                <SelectValue placeholder="Sort by" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="newest">Newest First</SelectItem>
-                <SelectItem value="oldest">Oldest First</SelectItem>
-                <SelectItem value="progress">Most Progress</SelectItem>
-                <SelectItem value="popular">Most Popular</SelectItem>
-                <SelectItem value="amount">Highest Amount</SelectItem>
-              </SelectContent>
-            </Select>
+        <CardContent className="p-4 md:p-6">
+          {/* Search Bar */}
+          <div className="relative mb-6">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search orchards..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent text-base"
+            />
           </div>
-        </CardContent>
-      </Card>
+          
+          {/* Category Filter - Horizontal Scroll Pills */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-3">Category</label>
+            <div className="flex gap-2 overflow-x-auto pb-2">
+              <button
+                onClick={() => setSelectedCategory("all")}
+                className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                  selectedCategory === "all"
+                    ? "bg-green-500 text-white shadow-lg"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                All Categories
+              </button>
+              {categories.map(category => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                    selectedCategory === category
+                      ? "bg-green-500 text-white shadow-lg"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                >
+                  {category.replace("The Gift of ", "")}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Status Filter - Horizontal Pills */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-gray-700 mb-3">Status</label>
+            <div className="flex gap-2 overflow-x-auto pb-2">
+              {["all", "active", "completed", "paused"].map(status => (
+                <button
+                  key={status}
+                  onClick={() => setSelectedStatus(status)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                    selectedStatus === status
+                      ? "bg-blue-500 text-white shadow-lg"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                >
+                  {status === "all" ? "All Status" : status.charAt(0).toUpperCase() + status.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Sort By - Horizontal Pills */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-3">Sort By</label>
+            <div className="flex gap-2 overflow-x-auto pb-2">
+              {[
+                { value: "newest", label: "Newest" },
+                { value: "oldest", label: "Oldest" },
+                { value: "amount_high", label: "Amount: High" },
+                { value: "amount_low", label: "Amount: Low" },
+                { value: "progress", label: "Progress" }
+              ].map(sort => (
+                <button
+                  key={sort.value}
+                  onClick={() => setSortBy(sort.value)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                    sortBy === sort.value
+                      ? "bg-purple-500 text-white shadow-lg"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                >
+                  {sort.label}
+                </button>
+              ))}
+            </div>
+          </div>
       
       {/* Results Count */}
       <div className="flex items-center justify-between">
