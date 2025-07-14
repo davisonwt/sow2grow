@@ -130,6 +130,18 @@ backend:
         comment: "Comprehensive testing completed for POST /api/orchards endpoint. All 21 test cases passed (100% success rate). Tested: complete payload with base64 media, validation for missing required fields (title, description, why_needed, community_impact), invalid values (negative seed_value/pocket_price), invalid categories, empty images array, optional video_url, large base64 strings, invalid base64 format, authentication requirements (403 for unauthenticated), and APIResponse structure. Database persistence verified with proper ID generation. Media upload functionality working correctly with base64 encoding."
 
 frontend:
+  - task: "Comprehensive seed value calculation with tithing and payment processing fees"
+    implemented: true
+    working: true
+    file: "multiple files"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Implemented comprehensive financial breakdown system: 1) Added 10% tithing calculation (to yhvh364 gosat's ministry), 2) Added 6% payment processing fee calculation (standard rate for PayPal/bank fees), 3) Final seed value = Original + Tithing + Processing Fee, 4) Updated CreateOrchardPage with detailed breakdown display, 5) Updated backend models to store original amount, tithing amount, and processing fees separately, 6) Added financial breakdown display to AnimatedOrchardPage and BrowseOrchardsPage, 7) Clear transparency showing where bestower funds go (grower, ministry, processing), 8) Note about higher fees for amounts under $100 with gosat's email adjustment process."
+
   - task: "Orchard image display implementation"
     implemented: true
     working: true
