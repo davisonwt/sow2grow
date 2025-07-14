@@ -291,7 +291,7 @@ export default function LandingPage() {
                     <p className="text-gray-500 text-lg">Seeds Video Content</p>
                   </div>
                 </div>
-              </video>
+              {/* </video> */}
             </div>
           </div>
           
@@ -557,7 +557,7 @@ export default function LandingPage() {
             </div>
           </div>
           
-        </div>
+        {/* </div> */}
       </section>
       
       {/* Scripture Section */}
