@@ -446,47 +446,144 @@ export default function AnimatedOrchardPage() {
                 </p>
               </div>
               
-              {/* Payment Options */}
+              {/* Payment Method Selection */}
               <div className="space-y-4">
-                <div className="text-sm font-medium text-gray-700 mb-3">Payment Options:</div>
+                <div className="text-sm font-medium text-gray-700 mb-3">Select Payment Method:</div>
                 
-                {/* Immediate Payment */}
-                <div className="border-2 border-blue-200 rounded-xl p-4 bg-gradient-to-r from-blue-50 to-indigo-50">
-                  <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <h3 className="font-semibold text-blue-800">Immediate Payment</h3>
-                      <p className="text-sm text-blue-600">Pay now and support immediately</p>
-                    </div>
-                    <Sparkles className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <Button
-                    onClick={handleBestow}
-                    disabled={processingPayment}
-                    className="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white py-3 shadow-lg"
-                  >
-                    {processingPayment ? (
-                      <div className="flex items-center">
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Making it rain...
+                {/* PayPal Option */}
+                <div 
+                  className={`border-2 rounded-xl p-4 cursor-pointer transition-all duration-200 ${
+                    selectedPaymentMethod === 'paypal' 
+                      ? 'border-blue-400 bg-gradient-to-r from-blue-50 to-blue-100' 
+                      : 'border-gray-200 hover:border-blue-300 bg-gray-50'
+                  }`}
+                  onClick={() => setSelectedPaymentMethod('paypal')}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <Smartphone className="h-6 w-6 text-white" />
                       </div>
-                    ) : (
-                      <>
-                        <Sparkles className="h-4 w-4 mr-2" />
-                        Make It Rain Now
-                      </>
-                    )}
-                  </Button>
+                      <div>
+                        <h3 className="font-semibold text-gray-800">PayPal</h3>
+                        <p className="text-sm text-gray-600">Pay with your PayPal account</p>
+                      </div>
+                    </div>
+                    <div className={`w-5 h-5 rounded-full border-2 ${
+                      selectedPaymentMethod === 'paypal' 
+                        ? 'border-blue-500 bg-blue-500' 
+                        : 'border-gray-300'
+                    }`}>
+                      {selectedPaymentMethod === 'paypal' && (
+                        <CheckCircle className="h-3 w-3 text-white m-0.5" />
+                      )}
+                    </div>
+                  </div>
                 </div>
                 
-                {/* Add to Cart Option */}
-                <div className="border-2 border-green-200 rounded-xl p-4 bg-gradient-to-r from-green-50 to-emerald-50">
-                  <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <h3 className="font-semibold text-green-800">Add to Basket</h3>
-                      <p className="text-sm text-green-600">Save for later checkout</p>
+                {/* Credit/Debit Card Option */}
+                <div 
+                  className={`border-2 rounded-xl p-4 cursor-pointer transition-all duration-200 ${
+                    selectedPaymentMethod === 'card' 
+                      ? 'border-green-400 bg-gradient-to-r from-green-50 to-emerald-100' 
+                      : 'border-gray-200 hover:border-green-300 bg-gray-50'
+                  }`}
+                  onClick={() => setSelectedPaymentMethod('card')}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
+                        <CreditCard className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-800">Credit/Debit Card</h3>
+                        <p className="text-sm text-gray-600">Pay with Visa, MasterCard, etc.</p>
+                      </div>
                     </div>
-                    <Gift className="h-6 w-6 text-green-600" />
+                    <div className={`w-5 h-5 rounded-full border-2 ${
+                      selectedPaymentMethod === 'card' 
+                        ? 'border-green-500 bg-green-500' 
+                        : 'border-gray-300'
+                    }`}>
+                      {selectedPaymentMethod === 'card' && (
+                        <CheckCircle className="h-3 w-3 text-white m-0.5" />
+                      )}
+                    </div>
                   </div>
+                </div>
+                
+                {/* EFT Option */}
+                <div 
+                  className={`border-2 rounded-xl p-4 cursor-pointer transition-all duration-200 ${
+                    selectedPaymentMethod === 'eft' 
+                      ? 'border-purple-400 bg-gradient-to-r from-purple-50 to-violet-100' 
+                      : 'border-gray-200 hover:border-purple-300 bg-gray-50'
+                  }`}
+                  onClick={() => setSelectedPaymentMethod('eft')}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                        <Banknote className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-800">EFT (Bank Transfer)</h3>
+                        <p className="text-sm text-gray-600">Electronic Funds Transfer</p>
+                      </div>
+                    </div>
+                    <div className={`w-5 h-5 rounded-full border-2 ${
+                      selectedPaymentMethod === 'eft' 
+                        ? 'border-purple-500 bg-purple-500' 
+                        : 'border-gray-300'
+                    }`}>
+                      {selectedPaymentMethod === 'eft' && (
+                        <CheckCircle className="h-3 w-3 text-white m-0.5" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Action Buttons */}
+              <div className="space-y-3 pt-4 border-t">
+                {/* Primary Action Button */}
+                <Button
+                  onClick={() => {
+                    if (selectedPaymentMethod) {
+                      handleBestow()
+                    } else {
+                      alert('Please select a payment method')
+                    }
+                  }}
+                  disabled={processingPayment || !selectedPaymentMethod}
+                  className={`w-full py-3 shadow-lg transition-all duration-200 ${
+                    selectedPaymentMethod === 'paypal' 
+                      ? 'bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800' 
+                      : selectedPaymentMethod === 'card'
+                      ? 'bg-gradient-to-r from-green-500 to-emerald-700 hover:from-green-600 hover:to-emerald-800'
+                      : selectedPaymentMethod === 'eft'
+                      ? 'bg-gradient-to-r from-purple-500 to-violet-700 hover:from-purple-600 hover:to-violet-800'
+                      : 'bg-gray-400'
+                  } text-white`}
+                >
+                  {processingPayment ? (
+                    <div className="flex items-center">
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      Processing Payment...
+                    </div>
+                  ) : (
+                    <>
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      {selectedPaymentMethod === 'paypal' && 'Pay with PayPal'}
+                      {selectedPaymentMethod === 'card' && 'Pay with Card'}
+                      {selectedPaymentMethod === 'eft' && 'Pay with EFT'}
+                      {!selectedPaymentMethod && 'Select Payment Method'}
+                    </>
+                  )}
+                </Button>
+                
+                {/* Secondary Options */}
+                <div className="grid grid-cols-2 gap-3">
                   <Button
                     onClick={() => {
                       // Add to cart logic here
@@ -494,22 +591,12 @@ export default function AnimatedOrchardPage() {
                       setShowPaymentForm(false)
                     }}
                     variant="outline"
-                    className="w-full border-green-600 text-green-600 hover:bg-green-50 py-3"
+                    className="border-green-600 text-green-600 hover:bg-green-50 py-2"
                   >
                     <Gift className="h-4 w-4 mr-2" />
-                    Add to Checkout Basket
+                    Add to Basket
                   </Button>
-                </div>
-                
-                {/* Monthly Giving Option */}
-                <div className="border-2 border-purple-200 rounded-xl p-4 bg-gradient-to-r from-purple-50 to-violet-50">
-                  <div className="flex items-center justify-between mb-3">
-                    <div>
-                      <h3 className="font-semibold text-purple-800">Monthly Giving</h3>
-                      <p className="text-sm text-purple-600">Set up recurring support</p>
-                    </div>
-                    <Heart className="h-6 w-6 text-purple-600" />
-                  </div>
+                  
                   <Button
                     onClick={() => {
                       // Monthly giving logic here
@@ -517,18 +604,19 @@ export default function AnimatedOrchardPage() {
                       setShowPaymentForm(false)
                     }}
                     variant="outline"
-                    className="w-full border-purple-600 text-purple-600 hover:bg-purple-50 py-3"
+                    className="border-purple-600 text-purple-600 hover:bg-purple-50 py-2"
                   >
                     <Heart className="h-4 w-4 mr-2" />
-                    Set Up Monthly Gift
+                    Monthly Gift
                   </Button>
                 </div>
-              </div>
-              
-              <div className="pt-4 border-t">
+                
                 <Button
                   variant="outline"
-                  onClick={() => setShowPaymentForm(false)}
+                  onClick={() => {
+                    setShowPaymentForm(false)
+                    setSelectedPaymentMethod("")
+                  }}
                   className="w-full"
                   disabled={processingPayment}
                 >
