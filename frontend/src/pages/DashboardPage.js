@@ -153,7 +153,7 @@ export default function DashboardPage() {
         </Link>
         
         <Link to="/create-orchard">
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-green-200 bg-gradient-to-br from-green-50 to-green-100">
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-green-200 bg-white bg-opacity-90 backdrop-blur-sm">
             <CardContent className="p-6 text-center">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Plus className="h-6 w-6 text-green-600" />
