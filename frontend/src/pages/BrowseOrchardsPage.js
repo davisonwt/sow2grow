@@ -265,12 +265,19 @@ export default function BrowseOrchardsPage() {
       <div className="relative z-10 space-y-8 p-6">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-green-800 mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
-          Cultivate Community Orchards
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Discover grower farm stalls and bestow into their orchards. Each grower has their own space in the 364yhvh Community Farm.
-        </p>
+        <div className="bg-black/40 backdrop-blur-sm rounded-3xl p-8 mx-auto max-w-4xl border border-white/20 shadow-2xl">
+          <h1 className="text-4xl font-bold text-white mb-4" style={{ 
+            fontFamily: "Playfair Display, serif",
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'
+          }}>
+            Cultivate Community Orchards
+          </h1>
+          <p className="text-lg text-white/90 max-w-2xl mx-auto" style={{
+            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
+          }}>
+            Discover grower farm stalls and bestow into their orchards. Each grower has their own space in the 364yhvh Community Farm.
+          </p>
+        </div>
       </div>
       
       {/* Filters */}
