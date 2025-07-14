@@ -419,41 +419,108 @@ export default function AnimatedOrchardPage() {
       {/* Payment Modal */}
       {showPaymentForm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <Card className="bg-white max-w-md w-full animate-in zoom-in-95 duration-300">
+          <Card className="bg-white max-w-lg w-full animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto">
             <CardHeader>
-              <CardTitle className="text-center text-green-800">
+              <CardTitle className="text-center text-green-800 text-xl">
                 Complete Your Bestowal
               </CardTitle>
+              <p className="text-center text-gray-600 text-sm">
+                Choose your payment method and complete your generous gift
+              </p>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-green-800 mb-2">
+              <div className="text-center bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-xl">
+                <div className="text-3xl font-bold text-green-800 mb-2">
                   {formatAmount(selectedPockets.length * orchard.pocket_price)}
                 </div>
                 <p className="text-gray-600">
                   {selectedPockets.length} pockets × {formatAmount(orchard.pocket_price)} each
                 </p>
+                <p className="text-sm text-green-700 mt-2">
+                  Supporting: <strong>{orchard.title}</strong>
+                </p>
               </div>
               
+              {/* Payment Options */}
               <div className="space-y-4">
-                <Button
-                  onClick={handleBestow}
-                  disabled={processingPayment}
-                  className="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white py-3 shadow-lg"
-                >
-                  {processingPayment ? (
-                    <div className="flex items-center">
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Making it rain...
-                    </div>
-                  ) : (
-                    <>
-                      <Sparkles className="h-4 w-4 mr-2" />
-                      Make It Rain
-                    </>
-                  )}
-                </Button>
+                <div className="text-sm font-medium text-gray-700 mb-3">Payment Options:</div>
                 
+                {/* Immediate Payment */}
+                <div className="border-2 border-blue-200 rounded-xl p-4 bg-gradient-to-r from-blue-50 to-indigo-50">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <h3 className="font-semibold text-blue-800">Immediate Payment</h3>
+                      <p className="text-sm text-blue-600">Pay now and support immediately</p>
+                    </div>
+                    <Sparkles className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <Button
+                    onClick={handleBestow}
+                    disabled={processingPayment}
+                    className="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white py-3 shadow-lg"
+                  >
+                    {processingPayment ? (
+                      <div className="flex items-center">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Making it rain...
+                      </div>
+                    ) : (
+                      <>
+                        <Sparkles className="h-4 w-4 mr-2" />
+                        Make It Rain Now
+                      </>
+                    )}
+                  </Button>
+                </div>
+                
+                {/* Add to Cart Option */}
+                <div className="border-2 border-green-200 rounded-xl p-4 bg-gradient-to-r from-green-50 to-emerald-50">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <h3 className="font-semibold text-green-800">Add to Basket</h3>
+                      <p className="text-sm text-green-600">Save for later checkout</p>
+                    </div>
+                    <Gift className="h-6 w-6 text-green-600" />
+                  </div>
+                  <Button
+                    onClick={() => {
+                      // Add to cart logic here
+                      alert('This feature will be implemented soon - Add to checkout basket')
+                      setShowPaymentForm(false)
+                    }}
+                    variant="outline"
+                    className="w-full border-green-600 text-green-600 hover:bg-green-50 py-3"
+                  >
+                    <Gift className="h-4 w-4 mr-2" />
+                    Add to Checkout Basket
+                  </Button>
+                </div>
+                
+                {/* Monthly Giving Option */}
+                <div className="border-2 border-purple-200 rounded-xl p-4 bg-gradient-to-r from-purple-50 to-violet-50">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <h3 className="font-semibold text-purple-800">Monthly Giving</h3>
+                      <p className="text-sm text-purple-600">Set up recurring support</p>
+                    </div>
+                    <Heart className="h-6 w-6 text-purple-600" />
+                  </div>
+                  <Button
+                    onClick={() => {
+                      // Monthly giving logic here
+                      alert('Monthly giving feature will be available soon')
+                      setShowPaymentForm(false)
+                    }}
+                    variant="outline"
+                    className="w-full border-purple-600 text-purple-600 hover:bg-purple-50 py-3"
+                  >
+                    <Heart className="h-4 w-4 mr-2" />
+                    Set Up Monthly Gift
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="pt-4 border-t">
                 <Button
                   variant="outline"
                   onClick={() => setShowPaymentForm(false)}
