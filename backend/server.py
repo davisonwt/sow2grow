@@ -755,7 +755,7 @@ async def register_user(request: UserCreateRequest):
             "first_name": user.first_name,
             "last_name": user.last_name,
             "role": user.role,
-            "is_email_verified": user.is_email_verified,
+            "verified": user.verified,
             "is_identity_verified": user.is_identity_verified,
             "location": user.location,
             "phone": user.phone,
