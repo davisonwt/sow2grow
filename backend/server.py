@@ -748,13 +748,25 @@ async def register_user(request: UserCreateRequest):
         # Create access token
         access_token = create_access_token({"user_id": user.id})
         
-        user_data = user.dict()
-        user_data.pop("password_hash")  # Remove password hash from response
+        # Create clean user data for response (avoid MongoDB ObjectID issues)
+        user_response = {
+            "id": user.id,
+            "email": user.email,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "role": user.role,
+            "is_email_verified": user.is_email_verified,
+            "is_identity_verified": user.is_identity_verified,
+            "location": user.location,
+            "phone": user.phone,
+            "created_at": user.created_at.isoformat() if user.created_at else None,
+            "updated_at": user.updated_at.isoformat() if user.updated_at else None
+        }
         
         return APIResponse(
             success=True,
             data={
-                "user": user_data,
+                "user": user_response,
                 "access_token": access_token,
                 "refresh_token": access_token,  # For simplicity, using same token
                 "verification_sent": True
