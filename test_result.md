@@ -118,6 +118,18 @@ backend:
         comment: "Backend media upload API not yet implemented, focusing on frontend improvements first"
 
 frontend:
+  - task: "Landing page text changes (Chat Message 703)"
+    implemented: true
+    working: true
+    file: "pages/LandingPage.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Completed all remaining text changes from Chat Message 703: Changed 'Growers (Farm Stall Owners)' to 'sower (farm stall owners)', changed 'Become a Grower' to 'become a sower', and changed biblical quote from 'I planted, Apollos watered, but God gave the growth.' to 'I planted, apollos watered, but elohiym gave the growth.'"
+
   - task: "Media upload functionality in CreateOrchardPage"
     implemented: true
     working: true
