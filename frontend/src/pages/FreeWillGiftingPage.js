@@ -61,21 +61,28 @@ export default function FreeWillGiftingPage() {
         <div className="max-w-4xl mx-auto px-4 space-y-8">
         {/* Header */}
         <div className="text-center">
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center shadow-lg">
-              <Gift className="h-8 w-8 text-white" />
+          <div className="bg-black/40 backdrop-blur-sm rounded-3xl p-8 mx-auto max-w-3xl border border-white/20 shadow-2xl">
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center shadow-lg">
+                <Gift className="h-8 w-8 text-white" />
+              </div>
             </div>
+            <h1 className="text-4xl font-bold text-white mb-4" style={{ 
+              fontFamily: "Playfair Display, serif",
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'
+            }}>
+              Free-Will Gifting
+            </h1>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto" style={{
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
+            }}>
+              Make a voluntary gift to support the community and spread love through generous giving
+            </p>
+            <Badge className="mt-4 bg-purple-500/80 text-white border border-purple-300/50 backdrop-blur-sm">
+              <Heart className="h-3 w-3 mr-1" />
+              Community Support
+            </Badge>
           </div>
-          <h1 className="text-4xl font-bold text-purple-800 mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
-            Free-Will Gifting
-          </h1>
-          <p className="text-lg text-purple-700 max-w-2xl mx-auto">
-            Make a voluntary gift to support the community and spread love through generous giving
-          </p>
-          <Badge className="mt-4 bg-purple-100 text-purple-800">
-            <Heart className="h-3 w-3 mr-1" />
-            Community Support
-          </Badge>
         </div>
         
         {/* Scripture Section */}
