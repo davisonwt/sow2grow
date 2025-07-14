@@ -148,11 +148,14 @@ frontend:
     file: "pages/CreateOrchardPage.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Media upload functionality was already implemented with base64 conversion for 1-3 images and 1 video with proper validation. Updated handleSubmit to use real API call to backend instead of simulated timeout. Changed button text to 'Sow Seed Into New Orchard' as requested."
+      - working: true
+        agent: "testing"
+        comment: "Backend API integration confirmed working. The POST /api/orchards endpoint successfully handles media upload with base64 encoding from frontend. All validation and edge cases tested successfully."
 
   - task: "UX text changes - Browse Orchards to Cultivate Community Orchards"
     implemented: true
