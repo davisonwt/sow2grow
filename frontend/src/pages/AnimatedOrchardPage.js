@@ -39,6 +39,7 @@ export default function AnimatedOrchardPage() {
   const [takenPockets, setTakenPockets] = useState([])
   const [showPaymentForm, setShowPaymentForm] = useState(false)
   const [processingPayment, setProcessingPayment] = useState(false)
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("")
   
   // Mock orchard data
   const mockOrchard = {
