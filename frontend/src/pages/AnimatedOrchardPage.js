@@ -453,12 +453,13 @@ export default function AnimatedOrchardPage() {
                   <div className="flex gap-6 justify-center flex-wrap">
                     <Button
                       onClick={() => setShowPaymentForm(true)}
-                      className={`bg-gradient-to-r from-blue-400 via-blue-600 to-blue-400 hover:from-blue-300 hover:via-blue-500 hover:to-blue-300 text-white border-0 transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl px-8 py-4 text-lg ${selectedPockets.length > 0 ? "animate-pulse" : ""}`}
-                      style={{ borderRadius: "21px" }}
                       disabled={selectedPockets.length === 0}
+                      variant="rain"
+                      size="lg"
+                      className="w-full font-bold text-lg py-4 animate-pulse hover:animate-none"
                     >
-                      <Sparkles className="h-5 w-5 mr-2 animate-pulse" />
-                      Make It Rain {formatAmount(selectedPockets.length * orchard.pocket_price)} ({selectedPockets.length} pockets)
+                      <Sparkles className="h-6 w-6 mr-3" />
+                      Make It Rain! ☔ ({selectedPockets.length} pockets)
                     </Button>
                     
                     <Button
