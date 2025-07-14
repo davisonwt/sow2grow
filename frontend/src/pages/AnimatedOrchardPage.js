@@ -614,7 +614,7 @@ export default function AnimatedOrchardPage() {
                   }`}
                   onClick={() => setSelectedPaymentMethod('eft')}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
                         <Banknote className="h-6 w-6 text-white" />
@@ -634,6 +634,34 @@ export default function AnimatedOrchardPage() {
                       )}
                     </div>
                   </div>
+                  
+                  {/* Banking Details when EFT selected */}
+                  {selectedPaymentMethod === 'eft' && (
+                    <div className="bg-white/80 rounded-lg p-4 border border-purple-200">
+                      <h4 className="font-semibold text-purple-800 mb-2">Banking Details:</h4>
+                      <div className="space-y-1 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Bank:</span>
+                          <span className="font-medium">FNB</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Account Name:</span>
+                          <span className="font-medium">Next Up</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">Account Number:</span>
+                          <span className="font-medium">63026823880</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">SWIFT Code:</span>
+                          <span className="font-medium">FIRNZAJJ</span>
+                        </div>
+                      </div>
+                      <p className="text-xs text-purple-600 mt-2">
+                        Use your bestowal ID as payment reference
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
               
