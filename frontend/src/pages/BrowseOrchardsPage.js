@@ -74,7 +74,9 @@ export default function BrowseOrchardsPage() {
       views: 234,
       supporters: 67,
       status: "active",
-      images: [],
+      images: [
+        "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj4yMDE5IFRveW90YSBDb3JvbGxhPC90ZXh0Pjwvc3ZnPg=="
+      ],
       why_needed: "I need reliable transportation to get to work and support my family",
       community_impact: "Having reliable transportation will help me maintain steady employment"
     },
