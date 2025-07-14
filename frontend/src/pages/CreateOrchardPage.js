@@ -187,9 +187,25 @@ export default function CreateOrchardPage() {
   }
   
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      {/* Header */}
-      <div className="text-center">
+    <div className="relative min-h-screen">
+      {/* Full Background Video */}
+      <div className="fixed inset-0 w-full h-full z-0">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          className="w-full h-full object-cover"
+        >
+          <source src="/sow seed into new orchard.mp4" type="video/mp4" />
+          <div className="w-full h-full bg-gradient-to-br from-green-100 to-amber-100"></div>
+        </video>
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+      </div>
+      
+      {/* Content over video */}
+      <div className="relative z-10 max-w-4xl mx-auto p-6 space-y-8">
+        {/* Header */}
+        <div className="text-center">
         <div className="flex justify-center mb-4">
           <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center shadow-lg">
             <Sprout className="h-8 w-8 text-white animate-pulse" />
