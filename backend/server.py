@@ -755,7 +755,7 @@ async def register_user(request: UserCreateRequest):
             "first_name": user.first_name,
             "last_name": user.last_name,
             "role": user.role,
-            "verified": user.verified,
+            "is_email_verified": user.verified,  # Frontend expects this field name
             "is_identity_verified": user.is_identity_verified,
             "location": user.location,
             "phone": user.phone,
