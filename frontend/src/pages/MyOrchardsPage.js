@@ -228,6 +228,22 @@ export default function MyOrchardsPage() {
               </div>
             </CardHeader>
             
+            {/* Orchard Image */}
+            {orchard.images && orchard.images.length > 0 && (
+              <div className="px-6 pb-3">
+                <div className="flex items-center space-x-4">
+                  <img
+                    src={orchard.images[0]}
+                    alt={orchard.title}
+                    className="w-24 h-16 object-cover rounded-lg border border-gray-200 shadow-sm"
+                  />
+                  <div className="text-xs text-gray-500">
+                    Product Image
+                  </div>
+                </div>
+              </div>
+            )}
+            
             <CardContent className="space-y-4">
               <p className="text-sm text-gray-700">{orchard.description}</p>
               
