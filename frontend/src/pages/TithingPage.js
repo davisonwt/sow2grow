@@ -55,7 +55,7 @@ export default function TithingPage() {
         <div className="text-center">
           <div className="flex justify-center mb-4">
             <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
-              <Church className="h-8 w-8 text-white" />
+              <HandHeart className="h-8 w-8 text-white" />
             </div>
           </div>
           <h1 className="text-4xl font-bold mb-4" style={{ 
