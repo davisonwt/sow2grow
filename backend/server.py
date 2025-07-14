@@ -112,7 +112,7 @@ class User(BaseModel):
     first_name: str
     last_name: str
     role: UserRole = UserRole.USER
-    is_email_verified: bool = False
+    verified: bool = False  # Email verification status
     is_identity_verified: bool = False
     location: Optional[str] = None
     phone: Optional[str] = None
