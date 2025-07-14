@@ -130,6 +130,18 @@ backend:
         comment: "Comprehensive testing completed for POST /api/orchards endpoint. All 21 test cases passed (100% success rate). Tested: complete payload with base64 media, validation for missing required fields (title, description, why_needed, community_impact), invalid values (negative seed_value/pocket_price), invalid categories, empty images array, optional video_url, large base64 strings, invalid base64 format, authentication requirements (403 for unauthenticated), and APIResponse structure. Database persistence verified with proper ID generation. Media upload functionality working correctly with base64 encoding."
 
 frontend:
+  - task: "Tithing icon replacement and payment method enhancement"
+    implemented: true
+    working: true
+    file: "multiple files"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Replaced Church icons with HandHeart (giving hands) icons in TithingPage, Layout navigation, and DashboardPage. Enhanced payment modal in AnimatedOrchardPage with three payment method options: PayPal, Credit/Debit Card, and EFT (Bank Transfer). Added payment method selection with visual indicators and dynamic button text based on selection."
+
   - task: "Navigation buttons styling enhancement"
     implemented: true
     working: true
