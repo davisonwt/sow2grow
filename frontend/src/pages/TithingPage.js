@@ -92,9 +92,9 @@ export default function TithingPage() {
         
         {/* Tithing Form */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card className="bg-white/90 backdrop-blur-sm border-amber-200 shadow-lg">
+          <Card className="bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-amber-800 flex items-center gap-2">
+              <CardTitle className="text-white flex items-center gap-2">
                 <Gift className="h-5 w-5" />
                 Your Tithing Gift
               </CardTitle>
@@ -102,7 +102,7 @@ export default function TithingPage() {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-amber-800 mb-2">
+                  <label className="block text-sm font-medium text-white mb-2">
                     <DollarSign className="inline h-4 w-4 mr-1" />
                     Amount (R)
                   </label>
@@ -110,7 +110,7 @@ export default function TithingPage() {
                     type="number"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="w-full px-4 py-3 border border-amber-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-lg"
+                    className="w-full px-4 py-3 border border-white/30 bg-white/10 backdrop-blur-sm rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-lg text-white placeholder-white/70"
                     placeholder="Enter amount"
                     required
                   />
@@ -123,7 +123,7 @@ export default function TithingPage() {
                         variant="outline"
                         size="sm"
                         onClick={() => setAmount(suggestedAmount.toString())}
-                        className="border-amber-300 text-amber-700 hover:bg-amber-50"
+                        className="border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
                       >
                         R{suggestedAmount}
                       </Button>
@@ -132,26 +132,48 @@ export default function TithingPage() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-amber-800 mb-2">
+                  <label className="block text-sm font-medium text-white mb-2">
                     <Calendar className="inline h-4 w-4 mr-1" />
                     Frequency
                   </label>
                   <select
                     value={frequency}
                     onChange={(e) => setFrequency(e.target.value)}
-                    className="w-full px-4 py-3 border border-amber-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-white/30 bg-white/10 backdrop-blur-sm rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-white"
                   >
-                    <option value="once">One-time</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                    <option value="quarterly">Quarterly</option>
+                    <option value="once" className="text-gray-800">One-time gift</option>
+                    <option value="weekly" className="text-gray-800">Weekly</option>
+                    <option value="monthly" className="text-gray-800">Monthly</option>
+                    <option value="quarterly" className="text-gray-800">Quarterly</option>
                   </select>
                 </div>
                 
+                <div>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Additional Message (Optional)
+                  </label>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    rows="3"
+                    className="w-full px-4 py-3 border border-white/30 bg-white/10 backdrop-blur-sm rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent text-white placeholder-white/70"
+                    placeholder="Share your heart with the ministry..."
+                  />
+                </div>
+                
+                {amount && (
+                  <div className="bg-amber-500/20 border border-amber-300/50 rounded-lg p-4 backdrop-blur-sm">
+                    <p className="text-sm text-white">
+                      The biblical tithe is 10% of your income. This is a guideline, but elohiym loves a cheerful giver
+                    </p>
+                  </div>
+                )}
+                
                 <Button
                   type="submit"
-                  disabled={!amount || loading}
-                  className="w-full bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-white py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  disabled={loading}
+                  variant="golden"
+                  className="w-full py-3 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   {loading ? (
                     <div className="flex items-center">
@@ -160,8 +182,8 @@ export default function TithingPage() {
                     </div>
                   ) : (
                     <>
-                      <Heart className="h-5 w-5 mr-2" />
-                      Give R{amount || "0"} {frequency === "once" ? "Once" : frequency.charAt(0).toUpperCase() + frequency.slice(1)}
+                      <Sparkles className="h-5 w-5 mr-2" />
+                      Give Tithe ({frequency})
                     </>
                   )}
                 </Button>
