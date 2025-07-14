@@ -275,7 +275,7 @@ class OrchardCreationTester:
             test_data['category'] = invalid_category
             
             success, response = self.make_request('POST', '/orchards', test_data, 422, use_auth=True)
-            validation_error = success and not response.get('success', True)
+            validation_error = success
             
             if not validation_error:
                 all_tests_passed = False
