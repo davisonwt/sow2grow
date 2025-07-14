@@ -316,6 +316,265 @@ class Sow2GrowAPITester:
                      f"- Non-admin blocked: {'✓' if admin_check_success else '✗'}")
         return admin_check_success
 
+    def test_email_verification_system(self):
+        """Test email verification endpoints"""
+        # Test resend verification email
+        resend_success, resend_response = self.make_request('POST', '/auth/resend-verification', use_auth=True)
+        
+        # Test verify email with invalid code
+        verify_data = {"verification_code": "123456"}
+        verify_fail_success, verify_fail_response = self.make_request('POST', '/auth/verify-email', 
+                                                                     verify_data, expected_status=400, use_auth=True)
+        
+        # Test verify email with valid code (we can't get the real code, so we test the endpoint structure)
+        verify_structure_valid = verify_fail_success and "verification_code" in str(verify_fail_response)
+        
+        overall_success = resend_success and verify_structure_valid
+        self.log_test("Email Verification System", overall_success,
+                     f"- Resend: {'✓' if resend_success else '✗'}, Verify endpoint: {'✓' if verify_structure_valid else '✗'}")
+        return overall_success
+
+    def test_bestowal_tracking_system(self):
+        """Test bestowal tracking endpoints"""
+        if not self.created_orchard_id:
+            self.log_test("Bestowal Tracking System", False, "- No orchard ID available")
+            return False
+        
+        # Test create bestowment
+        bestowment_data = {
+            "orchard_id": self.created_orchard_id,
+            "pocket_numbers": [4, 5, 6],
+            "payment_method": "paypal",
+            "notes": "Test bestowment for tracking system"
+        }
+        
+        create_success, create_response = self.make_request('POST', '/bestowments', 
+                                                          bestowment_data, use_auth=True)
+        
+        # Test get user bestowments (history)
+        history_success, history_response = self.make_request('GET', '/bestowments', use_auth=True)
+        
+        # Test get received bestowments
+        received_success, received_response = self.make_request('GET', '/bestowments/received', use_auth=True)
+        
+        # Test bestowment stats
+        stats_success, stats_response = self.make_request('GET', '/bestowments/stats', use_auth=True)
+        
+        # Validate financial calculations if bestowment was created
+        financial_valid = False
+        if create_success and create_response.get('success'):
+            data = create_response.get('data', {})
+            total_amount = data.get('total_amount', 0)
+            tithing_amount = data.get('tithing_amount', 0)
+            processing_fee = data.get('processing_fee', 0)
+            net_amount = data.get('net_amount_to_grower', 0)
+            
+            # Validate 10% tithing and 6% processing fee calculations
+            expected_original = total_amount / 1.16  # Remove fees to get original
+            expected_tithing = expected_original * 0.10
+            expected_processing = total_amount * 0.06
+            expected_net = total_amount - expected_tithing - expected_processing
+            
+            tithing_valid = abs(tithing_amount - expected_tithing) < 0.01
+            processing_valid = abs(processing_fee - expected_processing) < 0.01
+            net_valid = abs(net_amount - expected_net) < 0.01
+            
+            financial_valid = tithing_valid and processing_valid and net_valid
+        
+        overall_success = create_success and history_success and received_success and stats_success and financial_valid
+        self.log_test("Bestowal Tracking System", overall_success,
+                     f"- Create: {'✓' if create_success else '✗'}, History: {'✓' if history_success else '✗'}, Received: {'✓' if received_success else '✗'}, Stats: {'✓' if stats_success else '✗'}, Financial: {'✓' if financial_valid else '✗'}")
+        return overall_success
+
+    def test_financial_calculations(self):
+        """Test financial calculations for tithing and processing fees"""
+        if not self.created_orchard_id:
+            self.log_test("Financial Calculations", False, "- No orchard ID available")
+            return False
+        
+        # Test different pocket amounts to verify calculations
+        test_cases = [
+            {"pockets": [7], "expected_count": 1},
+            {"pockets": [8, 9], "expected_count": 2},
+            {"pockets": [10, 11, 12], "expected_count": 3}
+        ]
+        
+        all_calculations_valid = True
+        
+        for i, test_case in enumerate(test_cases):
+            bestowment_data = {
+                "orchard_id": self.created_orchard_id,
+                "pocket_numbers": test_case["pockets"],
+                "payment_method": "card",
+                "notes": f"Financial calculation test {i+1}"
+            }
+            
+            success, response = self.make_request('POST', '/bestowments', 
+                                                bestowment_data, use_auth=True)
+            
+            if success and response.get('success'):
+                data = response.get('data', {})
+                pocket_count = test_case["expected_count"]
+                
+                # Assuming pocket_price is 150.0 from orchard creation
+                expected_total = pocket_count * 150.0
+                actual_total = data.get('total_amount', 0)
+                
+                if abs(actual_total - expected_total) > 0.01:
+                    all_calculations_valid = False
+                    break
+                    
+                # Validate percentage calculations
+                tithing_amount = data.get('tithing_amount', 0)
+                processing_fee = data.get('processing_fee', 0)
+                
+                # Calculate expected values
+                original_amount = expected_total / 1.16
+                expected_tithing = original_amount * 0.10
+                expected_processing = expected_total * 0.06
+                
+                if (abs(tithing_amount - expected_tithing) > 0.01 or 
+                    abs(processing_fee - expected_processing) > 0.01):
+                    all_calculations_valid = False
+                    break
+            else:
+                all_calculations_valid = False
+                break
+        
+        self.log_test("Financial Calculations", all_calculations_valid,
+                     f"- Tested {len(test_cases)} scenarios: {'✓' if all_calculations_valid else '✗'}")
+        return all_calculations_valid
+
+    def test_orchard_email_confirmation(self):
+        """Test that orchard creation sends email confirmation"""
+        # Create another orchard to test email sending
+        orchard_data = {
+            "title": "Email Test Orchard",
+            "description": "Testing email confirmation on orchard creation",
+            "category": "The Gift of Innovation",
+            "seed_value": 12000.0,
+            "pocket_price": 150.0,
+            "location": "Email Test Location",
+            "timeline": "3 months",
+            "why_needed": "To test email confirmation system",
+            "community_impact": "Will validate email functionality",
+            "features": ["Email testing", "Confirmation system"],
+            "images": [],
+            "video_url": None
+        }
+        
+        success, response = self.make_request('POST', '/orchards', orchard_data, use_auth=True)
+        
+        # Check if response indicates email was sent
+        email_sent = False
+        if success and response.get('success'):
+            message = response.get('message', '')
+            email_sent = 'email' in message.lower() or 'confirmation' in message.lower()
+        
+        self.log_test("Orchard Email Confirmation", success and email_sent,
+                     f"- Orchard created: {'✓' if success else '✗'}, Email indicated: {'✓' if email_sent else '✗'}")
+        return success
+
+    def test_registration_email_verification(self):
+        """Test that registration sends verification email"""
+        # Create a new user to test email verification
+        new_user_email = f"email_test_{datetime.now().strftime('%Y%m%d_%H%M%S')}@example.com"
+        user_data = {
+            "email": new_user_email,
+            "password": "EmailTest123!",
+            "first_name": "Email",
+            "last_name": "Tester",
+            "location": "Email Test City",
+            "phone": "+1987654321"
+        }
+        
+        success, response = self.make_request('POST', '/auth/register', user_data, 200)
+        
+        # Check if response indicates verification email was sent
+        verification_sent = False
+        if success and response.get('success'):
+            data = response.get('data', {})
+            message = response.get('message', '')
+            verification_sent = (data.get('verification_sent') == True or 
+                               'verification' in message.lower() or 
+                               'email' in message.lower())
+        
+        self.log_test("Registration Email Verification", success and verification_sent,
+                     f"- Registration: {'✓' if success else '✗'}, Verification email: {'✓' if verification_sent else '✗'}")
+        return success
+
+    def test_integration_flow(self):
+        """Test complete integration flow: Register → Create Orchard → Make Bestowment"""
+        # Create a new user for integration test
+        integration_email = f"integration_{datetime.now().strftime('%Y%m%d_%H%M%S')}@example.com"
+        
+        # Step 1: Register
+        register_data = {
+            "email": integration_email,
+            "password": "Integration123!",
+            "first_name": "Integration",
+            "last_name": "Tester",
+            "location": "Integration City"
+        }
+        
+        register_success, register_response = self.make_request('POST', '/auth/register', register_data)
+        
+        if not register_success:
+            self.log_test("Integration Flow", False, "- Registration failed")
+            return False
+        
+        # Get token for new user
+        integration_token = register_response.get('data', {}).get('access_token')
+        if not integration_token:
+            self.log_test("Integration Flow", False, "- No access token received")
+            return False
+        
+        # Temporarily store original token
+        original_token = self.access_token
+        self.access_token = integration_token
+        
+        # Step 2: Create Orchard
+        orchard_data = {
+            "title": "Integration Test Orchard",
+            "description": "Full integration test orchard",
+            "category": "The Gift of Technology",
+            "seed_value": 9000.0,
+            "pocket_price": 150.0,
+            "location": "Integration Location",
+            "timeline": "4 months",
+            "why_needed": "Integration testing",
+            "community_impact": "Validates full flow",
+            "features": ["Integration", "Testing"],
+            "images": []
+        }
+        
+        orchard_success, orchard_response = self.make_request('POST', '/orchards', orchard_data, use_auth=True)
+        
+        if not orchard_success:
+            self.access_token = original_token  # Restore original token
+            self.log_test("Integration Flow", False, "- Orchard creation failed")
+            return False
+        
+        integration_orchard_id = orchard_response.get('data', {}).get('id')
+        
+        # Step 3: Make Bestowment (switch back to original user)
+        self.access_token = original_token
+        
+        bestowment_data = {
+            "orchard_id": integration_orchard_id,
+            "pocket_numbers": [1, 2],
+            "payment_method": "paypal",
+            "notes": "Integration test bestowment"
+        }
+        
+        bestowment_success, bestowment_response = self.make_request('POST', '/bestowments', 
+                                                                  bestowment_data, use_auth=True)
+        
+        overall_success = register_success and orchard_success and bestowment_success
+        self.log_test("Integration Flow", overall_success,
+                     f"- Register: {'✓' if register_success else '✗'}, Orchard: {'✓' if orchard_success else '✗'}, Bestowment: {'✓' if bestowment_success else '✗'}")
+        return overall_success
+
     def run_all_tests(self):
         """Run all API tests"""
         print("\n🚀 Starting comprehensive API testing...\n")
