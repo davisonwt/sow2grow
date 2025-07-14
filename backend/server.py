@@ -898,7 +898,7 @@ async def verify_email(
 async def resend_verification_email(current_user: User = Depends(get_current_user)):
     """Resend verification email"""
     try:
-        if current_user.verified:
+        if current_user.is_email_verified:
             return APIResponse(
                 success=True,
                 data={"already_verified": True},
