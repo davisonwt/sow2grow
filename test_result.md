@@ -309,6 +309,7 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Orchard image display implementation"
     - "Tithing icon replacement and payment method enhancement"
     - "Navigation buttons styling enhancement"
     - "Tithing page heading and text updates"
