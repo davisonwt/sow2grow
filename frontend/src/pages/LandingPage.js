@@ -555,7 +555,7 @@ export default function LandingPage() {
       <section className="py-20 bg-gradient-to-br from-green-100 to-amber-100">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <blockquote className="text-3xl font-bold text-green-800 mb-8" style={{ fontFamily: "Playfair Display, serif" }}>
-            "I planted, Apollos watered, but God gave the growth."
+            "I planted, apollos watered, but elohiym gave the growth."
           </blockquote>
           <cite className="text-lg text-green-600">1 Corinthians 3:6</cite>
         </div>
