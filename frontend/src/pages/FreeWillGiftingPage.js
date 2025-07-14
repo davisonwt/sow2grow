@@ -99,9 +99,9 @@ export default function FreeWillGiftingPage() {
         
         {/* Gifting Form */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card className="bg-white/90 backdrop-blur-sm border-purple-200 shadow-lg">
+          <Card className="bg-white/10 backdrop-blur-sm border-white/20 shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-purple-800 flex items-center gap-2">
+              <CardTitle className="text-white flex items-center gap-2">
                 <Gift className="h-5 w-5" />
                 Your Free-Will Gift
               </CardTitle>
@@ -109,7 +109,7 @@ export default function FreeWillGiftingPage() {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-purple-800 mb-2">
+                  <label className="block text-sm font-medium text-white mb-2">
                     <DollarSign className="inline h-4 w-4 mr-1" />
                     Amount (R)
                   </label>
@@ -117,7 +117,7 @@ export default function FreeWillGiftingPage() {
                     type="number"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="w-full px-4 py-3 border border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-lg"
+                    className="w-full px-4 py-3 border border-white/30 bg-white/10 backdrop-blur-sm rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-lg text-white placeholder-white/70"
                     placeholder="Enter amount"
                     required
                   />
@@ -130,7 +130,7 @@ export default function FreeWillGiftingPage() {
                         variant="outline"
                         size="sm"
                         onClick={() => setAmount(suggestedAmount.toString())}
-                        className="border-purple-300 text-purple-700 hover:bg-purple-50"
+                        className="border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
                       >
                         R{suggestedAmount}
                       </Button>
