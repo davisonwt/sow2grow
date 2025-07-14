@@ -255,5 +255,6 @@ export default function TithingPage() {
         </Card>
       </div>
     </div>
+    </div>
   )
 }
