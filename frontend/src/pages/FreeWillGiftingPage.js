@@ -301,5 +301,6 @@ export default function FreeWillGiftingPage() {
         </Card>
       </div>
     </div>
+    </div>
   )
 }
