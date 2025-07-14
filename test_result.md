@@ -285,6 +285,12 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Navigation buttons styling enhancement"
+    - "Tithing page heading and text updates"
+    - "Replace 'God' with 'elohiym' throughout app"
+    - "Dashboard page beautification"
+    - "Video display issues fix"
+    - "Payment checkout enhancement"
     - "Landing page text changes (Chat Message 703)"
     - "Media upload functionality in CreateOrchardPage"
     - "Make it rain checkout button implementation"
