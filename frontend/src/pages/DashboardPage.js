@@ -209,16 +209,6 @@ export default function DashboardPage() {
           </Card>
         </Link>
       </div>
-            <CardContent className="p-6 text-center">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Gift className="h-6 w-6 text-purple-600" />
-              </div>
-              <h3 className="font-semibold text-purple-800 mb-2">Free-Will Gifting</h3>
-              <p className="text-sm text-purple-600">Make voluntary community gifts</p>
-            </CardContent>
-          </Card>
-        </Link>
-      </div>
       
       {/* Dashboard Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
