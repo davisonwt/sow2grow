@@ -32,8 +32,24 @@ export default function TithingPage() {
   const suggestedAmounts = [50, 100, 200, 500, 1000]
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100 py-8">
-      <div className="max-w-4xl mx-auto px-4 space-y-8">
+    <div className="relative min-h-screen">
+      {/* Full Background Video */}
+      <div className="fixed inset-0 w-full h-full z-0">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          className="w-full h-full object-cover"
+        >
+          <source src="/tithing 1280x720.mp4" type="video/mp4" />
+          <div className="w-full h-full bg-gradient-to-br from-amber-50 via-yellow-50 to-amber-100"></div>
+        </video>
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      </div>
+      
+      {/* Content over video */}
+      <div className="relative z-10 py-8">
+        <div className="max-w-4xl mx-auto px-4 space-y-8">
         {/* Header */}
         <div className="text-center">
           <div className="flex justify-center mb-4">
