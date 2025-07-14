@@ -233,7 +233,7 @@ export default function TithingPage() {
           </CardHeader>
           <CardContent className="text-center">
             <p className="text-amber-700 mb-6">
-              yhvh364 gosat's ministry is dedicated to spreading God's word and supporting the community through 
+              yhvh364 gosat's ministry is dedicated to spreading elohiym's word and supporting the community through 
               biblical teachings and practical help. Your tithes help fund ministry activities, community outreach, 
               and the growth of the 364yhvh Community Farm.
             </p>
