@@ -297,6 +297,7 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Tithing icon replacement and payment method enhancement"
     - "Navigation buttons styling enhancement"
     - "Tithing page heading and text updates"
     - "Replace 'God' with 'elohiym' throughout app"
