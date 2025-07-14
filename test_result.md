@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Complete pending UI/UX improvements and media upload functionality for the Sow2Grow faith-based crowdfunding platform. Tasks include: completing image/video upload, UX text changes, checkout flow implementation, pocket styling fixes, and frontend beautification."
+user_problem_statement: "User requested multiple improvements: 1) Fix navigation buttons with pastel colors and embossed styling, 2) Change 'Biblical Tithing' to 'tithing' with light blue color and dark blue shadows, 3) Replace 'God' with 'elohiym' throughout the app, 4) Beautify all pages except landing page, 5) Fix video display issues on various pages, 6) Enhance payment checkout section with more options beyond immediate payment."
 
 backend:
   - task: "Media upload API endpoint"
