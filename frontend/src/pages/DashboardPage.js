@@ -63,7 +63,10 @@ export default function DashboardPage() {
         pockets: 160,
         filledPockets: 72,
         grower: "John M.",
-        location: "Johannesburg"
+        location: "Johannesburg",
+        images: [
+          "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZkNzAwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5CdXNpbmVzcyBFcXVpcG1lbnQ8L3RleHQ+PC9zdmc+"
+        ]
       },
       { 
         id: 3, 
