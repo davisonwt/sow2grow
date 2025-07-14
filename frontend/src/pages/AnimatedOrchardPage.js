@@ -649,30 +649,32 @@ export default function AnimatedOrchardPage() {
                   </div>
                   
                   {/* Banking Details when EFT selected */}
-                  {selectedPaymentMethod === 'eft' && (
+                  {selectedPaymentMethod === 'eft' && paymentConfig?.bank_details && (
                     <div className="bg-white/80 rounded-lg p-4 border border-purple-200">
                       <h4 className="font-semibold text-purple-800 mb-2">Banking Details:</h4>
                       <div className="space-y-1 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Bank:</span>
-                          <span className="font-medium">FNB</span>
+                          <span className="font-medium">{paymentConfig.bank_details.bank_name}</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Account Name:</span>
-                          <span className="font-medium">Next Up</span>
+                          <span className="font-medium">{paymentConfig.bank_details.account_name}</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Account Number:</span>
-                          <span className="font-medium">63026823880</span>
+                          <span className="font-medium">{paymentConfig.bank_details.account_number}</span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">SWIFT Code:</span>
-                          <span className="font-medium">FIRNZAJJ</span>
+                          <span className="font-medium">{paymentConfig.bank_details.swift_code}</span>
                         </div>
                       </div>
-                      <p className="text-xs text-purple-600 mt-2">
-                        Use your bestowal ID as payment reference
-                      </p>
+                      <div className="mt-3 p-2 bg-purple-50 rounded border border-purple-200">
+                        <p className="text-xs text-purple-700">
+                          <strong>Important:</strong> Use your bestowal reference as payment description for tracking.
+                        </p>
+                      </div>
                     </div>
                   )}
                 </div>
