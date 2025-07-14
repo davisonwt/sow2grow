@@ -166,9 +166,12 @@ class Orchard(BaseModel):
     title: str
     description: str
     category: GiftCategory = GiftCategory.TECHNOLOGY
-    seed_value: float  # Total amount needed
+    seed_value: float  # Final amount including tithing and fees
+    original_seed_value: Optional[float] = None  # Original amount before fees
+    tithing_amount: Optional[float] = 0.0  # 10% tithing amount for yhvh364 gosat's
+    payment_processing_fee: Optional[float] = 0.0  # Payment processing fee (6% standard)
     pocket_price: float = 150.0  # Price per pocket
-    total_pockets: int  # Calculated from seed_value / pocket_price
+    total_pockets: int  # Calculated from final seed_value / pocket_price
     filled_pockets: int = 0
     location: Optional[str] = None
     timeline: Optional[str] = None
