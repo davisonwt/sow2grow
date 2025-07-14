@@ -165,7 +165,7 @@ export default function DashboardPage() {
         </Link>
         
         <Link to="/tithing">
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-amber-200 bg-gradient-to-br from-amber-50 to-yellow-50">
+          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-amber-200 bg-white bg-opacity-90 backdrop-blur-sm">
             <CardContent className="p-6 text-center">
               <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Church className="h-6 w-6 text-amber-600" />
