@@ -217,7 +217,7 @@ export default function FreeWillGiftingPage() {
                   <Star className="h-5 w-5 text-purple-600 mt-1" />
                   <div>
                     <h4 className="font-semibold text-purple-800">Spreading Love</h4>
-                    <p className="text-sm text-purple-700">Show God's love through generous and caring actions</p>
+                    <p className="text-sm text-purple-700">Show elohiym's love through generous and caring actions</p>
                   </div>
                 </div>
                 
