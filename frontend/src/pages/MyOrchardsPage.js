@@ -317,7 +317,7 @@ export default function MyOrchardsPage() {
             <Link to="/create-orchard">
               <Button className="bg-green-600 hover:bg-green-700 text-white">
                 <Plus className="h-4 w-4 mr-2" />
-                Create New Orchard
+                Sow Seed Into New Orchard
               </Button>
             </Link>
             <Link to="/browse-orchards">
