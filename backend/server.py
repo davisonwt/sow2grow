@@ -708,6 +708,27 @@ async def verify_email_code(user_id: str, code: str) -> bool:
         return True
     return False
 
+# ===== PAYPAL CONFIGURATION =====
+
+# PayPal configuration
+PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID', '')
+PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET', '')
+
+if PAYPAL_CLIENT_ID:
+    paypalrestsdk.configure({
+        "mode": "sandbox",  # Change to "live" for production
+        "client_id": PAYPAL_CLIENT_ID,
+        "client_secret": PAYPAL_CLIENT_SECRET
+    })
+
+# Banking details for EFT
+BANK_DETAILS = {
+    "bank_name": os.environ.get('BANK_NAME', 'FNB'),
+    "account_name": os.environ.get('BANK_ACCOUNT_NAME', 'Next Up'),
+    "account_number": os.environ.get('BANK_ACCOUNT_NUMBER', '63026823880'),
+    "swift_code": os.environ.get('BANK_SWIFT_CODE', 'FIRNZAJJ')
+}
+
 # ===== API ENDPOINTS =====
 
 # Root endpoint
