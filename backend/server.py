@@ -290,6 +290,95 @@ class PocketSelectionRequest(BaseModel):
     orchard_id: str
     pocket_numbers: List[int]
 
+# ===== NEW MODELS FOR BESTOWAL TRACKING AND EMAIL SYSTEM =====
+
+class BestowmentStatus(str, Enum):
+    PENDING = "pending"
+    PROCESSING = "processing"
+    COMPLETED = "completed"
+    FAILED = "failed"
+    REFUNDED = "refunded"
+
+class EmailType(str, Enum):
+    VERIFICATION = "verification"
+    WELCOME = "welcome"
+    ORCHARD_CREATED = "orchard_created"
+    BESTOWMENT_RECEIVED = "bestowment_received"
+    BESTOWMENT_MADE = "bestowment_made"
+    ORCHARD_COMPLETED = "orchard_completed"
+    PAYMENT_CONFIRMATION = "payment_confirmation"
+    TITHING_CONFIRMATION = "tithing_confirmation"
+
+class Bestowment(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    bestower_id: str  # User who made the bestowment
+    bestower_name: str
+    bestower_email: str
+    grower_id: str  # Orchard owner
+    grower_name: str
+    grower_email: str
+    orchard_id: str
+    orchard_title: str
+    pocket_numbers: List[int]
+    total_amount: float
+    individual_pocket_price: float
+    payment_method: PaymentMethod
+    payment_id: Optional[str] = None  # External payment ID
+    transaction_id: Optional[str] = None  # Internal transaction ID
+    status: BestowmentStatus = BestowmentStatus.PENDING
+    processing_fee: float = 0.0
+    tithing_amount: float = 0.0
+    net_amount_to_grower: float = 0.0
+    notes: Optional[str] = None
+    metadata: Dict[str, Any] = {}
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+    completed_at: Optional[datetime] = None
+
+class BestowmentRequest(BaseModel):
+    orchard_id: str
+    pocket_numbers: List[int]
+    payment_method: PaymentMethod
+    notes: Optional[str] = None
+
+class EmailLog(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    to_email: str
+    to_name: str
+    from_email: str = "noreply@sow2grow.com"
+    from_name: str = "Sow2Grow Farm Mall"
+    subject: str
+    email_type: EmailType
+    template_name: str
+    template_data: Dict[str, Any] = {}
+    status: str = "sent"  # sent, failed, pending
+    external_id: Optional[str] = None  # SendGrid message ID
+    error_message: Optional[str] = None
+    user_id: Optional[str] = None
+    orchard_id: Optional[str] = None
+    bestowment_id: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+class EmailVerification(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_id: str
+    email: str
+    verification_code: str
+    expires_at: datetime
+    verified: bool = False
+    verified_at: Optional[datetime] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+class BestowmentStats(BaseModel):
+    total_bestowments: int = 0
+    total_amount: float = 0.0
+    total_bestowers: int = 0
+    total_growers: int = 0
+    total_pockets: int = 0
+    average_pocket_price: float = 0.0
+    most_popular_orchard: Optional[str] = None
+    recent_bestowments: List[Dict[str, Any]] = []
+
 # ===== UTILITY FUNCTIONS =====
 def hash_password(password: str) -> str:
     """Hash a password using bcrypt"""
