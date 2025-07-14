@@ -193,7 +193,7 @@ export default function LandingPage() {
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Sprout className="h-8 w-8 text-green-600" />
               </div>
-              <CardTitle className="text-green-800">Growers (Farm Stall Owners)</CardTitle>
+              <CardTitle className="text-green-800">sower (farm stall owners)</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
