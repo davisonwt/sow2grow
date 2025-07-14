@@ -216,7 +216,7 @@ export default function TithingPage() {
               <div className="bg-amber-100 p-4 rounded-lg">
                 <h4 className="font-semibold text-amber-800 mb-2">Traditional Tithe Amount</h4>
                 <p className="text-sm text-amber-700">
-                  The biblical tithe is 10% of your income. This is a guideline, but God loves a cheerful giver 
+                  The biblical tithe is 10% of your income. This is a guideline, but elohiym loves a cheerful giver 
                   regardless of the amount.
                 </p>
               </div>
