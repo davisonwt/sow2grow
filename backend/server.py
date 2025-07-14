@@ -688,7 +688,7 @@ async def verify_email_code(user_id: str, code: str) -> bool:
         # Mark user as verified
         await db.users.update_one(
             {"id": user_id},
-            {"$set": {"verified": True, "updated_at": datetime.utcnow()}}
+            {"$set": {"is_email_verified": True, "updated_at": datetime.utcnow()}}
         )
         
         return True
