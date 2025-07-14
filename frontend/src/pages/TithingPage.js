@@ -18,6 +18,7 @@ export default function TithingPage() {
   const [amount, setAmount] = useState("")
   const [frequency, setFrequency] = useState("monthly")
   const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState("")
   
   const handleSubmit = async (e) => {
     e.preventDefault()
