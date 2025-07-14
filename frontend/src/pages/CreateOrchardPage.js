@@ -398,25 +398,74 @@ export default function CreateOrchardPage() {
             </div>
             
             {formData.seed_value && (
-              <div className="bg-green-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-green-800 mb-2">
-                  <Calculator className="inline h-4 w-4 mr-1" />
-                  Pocket Calculation
+              <div className="bg-green-50 p-6 rounded-lg border border-green-200">
+                <h4 className="font-semibold text-green-800 mb-4 text-lg">
+                  <Calculator className="inline h-5 w-5 mr-2" />
+                  Financial Breakdown & Pocket Calculation
                 </h4>
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div>
-                    <div className="text-2xl font-bold text-green-800">{calculatePockets()}</div>
-                    <div className="text-sm text-green-600">Total Pockets</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-green-800">R{formData.pocket_price}</div>
-                    <div className="text-sm text-green-600">Per Pocket</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-green-800">R{formData.seed_value}</div>
-                    <div className="text-sm text-green-600">Total Value</div>
-                  </div>
-                </div>
+                
+                {(() => {
+                  const breakdown = getSeedValueBreakdown()
+                  if (!breakdown) return null
+                  
+                  return (
+                    <div className="space-y-4">
+                      {/* Financial Breakdown */}
+                      <div className="bg-white p-4 rounded-lg border border-green-100">
+                        <h5 className="font-medium text-gray-800 mb-3">Seed Value Calculation:</h5>
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Original Seed Value:</span>
+                            <span className="font-medium">R{breakdown.original.toFixed(2)}</span>
+                          </div>
+                          <div className="flex justify-between text-amber-700">
+                            <span>+ 10% Tithing (yhvh364 gosat's):</span>
+                            <span className="font-medium">R{breakdown.tithing.toFixed(2)}</span>
+                          </div>
+                          <div className="flex justify-between text-blue-700">
+                            <span>+ 6% Payment Processing Fee:</span>
+                            <span className="font-medium">R{breakdown.paymentProcessing.toFixed(2)}</span>
+                          </div>
+                          <div className="border-t border-gray-200 pt-2 mt-2">
+                            <div className="flex justify-between font-bold text-green-800">
+                              <span>Final Seed Value:</span>
+                              <span>R{breakdown.final.toFixed(2)}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Pocket Calculation */}
+                      <div className="grid grid-cols-3 gap-4 text-center">
+                        <div className="bg-white p-3 rounded-lg border border-green-100">
+                          <div className="text-2xl font-bold text-green-800">{calculatePockets()}</div>
+                          <div className="text-sm text-green-600">Total Pockets</div>
+                        </div>
+                        <div className="bg-white p-3 rounded-lg border border-green-100">
+                          <div className="text-2xl font-bold text-green-800">R{formData.pocket_price}</div>
+                          <div className="text-sm text-green-600">Per Pocket</div>
+                        </div>
+                        <div className="bg-white p-3 rounded-lg border border-green-100">
+                          <div className="text-2xl font-bold text-green-800">R{breakdown.final.toFixed(2)}</div>
+                          <div className="text-sm text-green-600">Final Value</div>
+                        </div>
+                      </div>
+                      
+                      {/* Important Notes */}
+                      <div className="bg-amber-50 border border-amber-200 p-3 rounded-lg">
+                        <div className="text-sm text-amber-800">
+                          <p className="font-medium mb-1">📋 Important Notes:</p>
+                          <ul className="text-xs space-y-1 list-disc list-inside">
+                            <li>10% tithing automatically supports yhvh364 gosat's ministry</li>
+                            <li>6% payment processing covers standard PayPal/bank fees</li>
+                            <li>For amounts under $100, fees may be higher - gosat's will email if adjustment needed</li>
+                            <li>Final seed value determines total pockets available for bestowers</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })()}
               </div>
             )}
           </CardContent>
