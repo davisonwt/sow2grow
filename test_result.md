@@ -117,6 +117,18 @@ backend:
         agent: "main"
         comment: "Backend media upload API not yet implemented, focusing on frontend improvements first"
 
+  - task: "Orchard creation API with media support"
+    implemented: true
+    working: true
+    file: "server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Comprehensive testing completed for POST /api/orchards endpoint. All 21 test cases passed (100% success rate). Tested: complete payload with base64 media, validation for missing required fields (title, description, why_needed, community_impact), invalid values (negative seed_value/pocket_price), invalid categories, empty images array, optional video_url, large base64 strings, invalid base64 format, authentication requirements (403 for unauthenticated), and APIResponse structure. Database persistence verified with proper ID generation. Media upload functionality working correctly with base64 encoding."
+
 frontend:
   - task: "Landing page text changes (Chat Message 703)"
     implemented: true
