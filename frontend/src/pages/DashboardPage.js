@@ -97,10 +97,28 @@ export default function DashboardPage() {
   }
   
   return (
-    <div className="space-y-8">
-      {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-green-100 to-amber-100 rounded-2xl p-8 shadow-lg">
-        <div className="flex items-center justify-between">
+    <div className="relative min-h-screen">
+      {/* Full Background Video */}
+      <div className="fixed inset-0 w-full h-full z-0">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          className="w-full h-full object-cover"
+        >
+          <source src="/s2g/become a sower and grower (1).mp4" type="video/mp4" />
+          {/* Fallback background */}
+          <div className="w-full h-full bg-gradient-to-br from-green-100 to-amber-100"></div>
+        </video>
+        {/* Video overlay for better text readability */}
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+      </div>
+      
+      {/* Dashboard Content - positioned above video */}
+      <div className="relative z-10 space-y-8 p-6">
+        {/* Welcome Section */}
+        <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white border-opacity-20">
+          <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-green-800 mb-2" style={{ fontFamily: "Playfair Display, serif" }}>
               Welcome back, {user?.first_name}! 🌱
