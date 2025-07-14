@@ -192,7 +192,7 @@ export default function TithingPage() {
                   <Star className="h-5 w-5 text-amber-600 mt-1" />
                   <div>
                     <h4 className="font-semibold text-amber-800">Supporting Ministry</h4>
-                    <p className="text-sm text-amber-700">Your tithes support yhvh364 gosat's ministry and help spread God's word</p>
+                    <p className="text-sm text-amber-700">Your tithes support yhvh364 gosat's ministry and help spread elohiym's word</p>
                   </div>
                 </div>
                 
