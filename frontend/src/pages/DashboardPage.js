@@ -158,43 +158,57 @@ export default function DashboardPage() {
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Link to="/browse-orchards">
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-rose-200 bg-white bg-opacity-90 backdrop-blur-sm">
-            <CardContent className="p-6 text-center">
-              <div className="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="h-6 w-6 text-rose-600" />
+          <Card className="hover:shadow-2xl transition-all duration-300 cursor-pointer border-rose-200 bg-gradient-to-br from-rose-50/95 to-pink-50/95 backdrop-blur-sm hover:scale-105 group">
+            <CardContent className="p-6 text-center relative overflow-hidden">
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-rose-200/20 to-pink-200/20 rounded-full blur-xl group-hover:scale-110 transition-transform duration-300"></div>
+              <div className="w-16 h-16 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                <Search className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-rose-800 mb-2">Browse Farm Mall</h3>
+              <h3 className="font-bold text-rose-800 mb-2 text-lg">Browse Farm Mall</h3>
               <p className="text-sm text-rose-600">Visit other farm stalls and bestow into orchards</p>
             </CardContent>
           </Card>
         </Link>
         
         <Link to="/create-orchard">
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-green-200 bg-white bg-opacity-90 backdrop-blur-sm">
-            <CardContent className="p-6 text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Plus className="h-6 w-6 text-green-600" />
+          <Card className="hover:shadow-2xl transition-all duration-300 cursor-pointer border-green-200 bg-gradient-to-br from-green-50/95 to-emerald-50/95 backdrop-blur-sm hover:scale-105 group">
+            <CardContent className="p-6 text-center relative overflow-hidden">
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-green-200/20 to-emerald-200/20 rounded-full blur-xl group-hover:scale-110 transition-transform duration-300"></div>
+              <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                <Plus className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-green-800 mb-2">Plant New Seed</h3>
+              <h3 className="font-bold text-green-800 mb-2 text-lg">Plant New Seed</h3>
               <p className="text-sm text-green-600">Create a new orchard in your farm stall</p>
             </CardContent>
           </Card>
         </Link>
         
         <Link to="/tithing">
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-amber-200 bg-white bg-opacity-90 backdrop-blur-sm">
-            <CardContent className="p-6 text-center">
-              <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Church className="h-6 w-6 text-amber-600" />
+          <Card className="hover:shadow-2xl transition-all duration-300 cursor-pointer border-amber-200 bg-gradient-to-br from-amber-50/95 to-yellow-50/95 backdrop-blur-sm hover:scale-105 group">
+            <CardContent className="p-6 text-center relative overflow-hidden">
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-amber-200/20 to-yellow-200/20 rounded-full blur-xl group-hover:scale-110 transition-transform duration-300"></div>
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                <Church className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-amber-800 mb-2">Tithing</h3>
+              <h3 className="font-bold text-amber-800 mb-2 text-lg">Tithing</h3>
               <p className="text-sm text-amber-600">Give to yhvh364 gosat's ministry</p>
             </CardContent>
           </Card>
         </Link>
         
         <Link to="/free-will-gifting">
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer border-purple-200 bg-white bg-opacity-90 backdrop-blur-sm">
+          <Card className="hover:shadow-2xl transition-all duration-300 cursor-pointer border-purple-200 bg-gradient-to-br from-purple-50/95 to-violet-50/95 backdrop-blur-sm hover:scale-105 group">
+            <CardContent className="p-6 text-center relative overflow-hidden">
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-purple-200/20 to-violet-200/20 rounded-full blur-xl group-hover:scale-110 transition-transform duration-300"></div>
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-violet-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                <Gift className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="font-bold text-purple-800 mb-2 text-lg">Free-Will Gifting</h3>
+              <p className="text-sm text-purple-600">Give generously from your heart</p>
+            </CardContent>
+          </Card>
+        </Link>
+      </div>
             <CardContent className="p-6 text-center">
               <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Gift className="h-6 w-6 text-purple-600" />
