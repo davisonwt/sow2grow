@@ -429,6 +429,7 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Video Overlay Text Visibility Enhancement"
     - "Comprehensive Email System Implementation"
     - "Backend Bestowal Tracking System"
     - "Frontend UI/UX Beautification"
