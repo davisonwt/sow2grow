@@ -60,18 +60,34 @@ export default function Layout({ children }) {
             </Link>
             
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              {navigation.map((item) => {
+            <nav className="hidden md:flex space-x-2">
+              {navigation.map((item, index) => {
                 const Icon = item.icon
+                // Define pastel colors for each button
+                const colors = [
+                  'from-pink-200 to-pink-300 border-pink-300 text-pink-800 shadow-pink-200/50',
+                  'from-blue-200 to-blue-300 border-blue-300 text-blue-800 shadow-blue-200/50',
+                  'from-green-200 to-green-300 border-green-300 text-green-800 shadow-green-200/50',
+                  'from-yellow-200 to-yellow-300 border-yellow-300 text-yellow-800 shadow-yellow-200/50',
+                  'from-purple-200 to-purple-300 border-purple-300 text-purple-800 shadow-purple-200/50',
+                  'from-indigo-200 to-indigo-300 border-indigo-300 text-indigo-800 shadow-indigo-200/50'
+                ]
+                const colorClass = colors[index % colors.length]
+                
                 return (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
-                      isActive(item.href)
-                        ? "bg-green-100 text-green-700 shadow-sm"
-                        : "text-gray-600 hover:text-green-700 hover:bg-green-50"
-                    }`}
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border-2 
+                      bg-gradient-to-b ${colorClass} 
+                      shadow-inner hover:shadow-lg hover:scale-105 active:shadow-sm active:scale-95
+                      ${isActive(item.href) ? 'ring-2 ring-offset-1 ring-blue-300' : ''}
+                    `}
+                    style={{
+                      boxShadow: isActive(item.href) 
+                        ? 'inset 0 2px 4px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.15)' 
+                        : 'inset 0 2px 4px rgba(0,0,0,0.1)'
+                    }}
                   >
                     <Icon className="h-4 w-4" />
                     <span>{item.name}</span>
