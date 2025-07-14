@@ -61,7 +61,10 @@ export default function MyOrchardsPage() {
       views: 156,
       supporters: 39,
       recent_activity: "1 new bestowal yesterday",
-      timeline: "Need by February 2024"
+      timeline: "Need by February 2024",
+      images: [
+        "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNjY2NmZmIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5MYXB0b3AgZm9yIFN0dWRpZXM8L3RleHQ+PC9zdmc+"
+      ]
     },
     {
       id: "3",
