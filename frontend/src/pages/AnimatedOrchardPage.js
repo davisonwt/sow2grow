@@ -284,6 +284,55 @@ export default function AnimatedOrchardPage() {
                   </div>
                 </div>
                 
+                {/* Financial Breakdown */}
+                {orchard.original_seed_value && (
+                  <div className="mb-6 bg-gradient-to-r from-amber-50 to-yellow-50 p-6 rounded-xl border border-amber-200">
+                    <h4 className="font-semibold text-amber-800 mb-4 flex items-center gap-2">
+                      <Calculator className="h-5 w-5" />
+                      Financial Breakdown
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">Original Seed Value:</span>
+                          <span className="font-medium">{formatAmount(orchard.original_seed_value)}</span>
+                        </div>
+                        <div className="flex justify-between text-sm text-amber-700">
+                          <span>+ 10% Tithing (yhvh364 gosat's):</span>
+                          <span className="font-medium">{formatAmount(orchard.tithing_amount)}</span>
+                        </div>
+                        <div className="flex justify-between text-sm text-blue-700">
+                          <span>+ 6% Payment Processing:</span>
+                          <span className="font-medium">{formatAmount(orchard.payment_processing_fee)}</span>
+                        </div>
+                        <div className="border-t border-amber-200 pt-2 mt-2">
+                          <div className="flex justify-between font-bold text-amber-800">
+                            <span>Final Seed Value:</span>
+                            <span>{formatAmount(orchard.seed_value)}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="bg-white p-4 rounded-lg border border-amber-100">
+                        <h5 className="font-medium text-gray-800 mb-2">Where Your Bestowals Go:</h5>
+                        <div className="space-y-1 text-xs">
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">To Grower:</span>
+                            <span className="font-medium">{formatAmount(orchard.original_seed_value)}</span>
+                          </div>
+                          <div className="flex justify-between text-amber-600">
+                            <span>To Ministry:</span>
+                            <span className="font-medium">{formatAmount(orchard.tithing_amount)}</span>
+                          </div>
+                          <div className="flex justify-between text-blue-600">
+                            <span>Processing Fees:</span>
+                            <span className="font-medium">{formatAmount(orchard.payment_processing_fee)}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">Why This is Needed</h4>
