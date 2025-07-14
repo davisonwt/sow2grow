@@ -189,7 +189,7 @@ export default function DashboardPage() {
             <CardContent className="p-6 text-center relative overflow-hidden">
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-amber-200/20 to-yellow-200/20 rounded-full blur-xl group-hover:scale-110 transition-transform duration-300"></div>
               <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                <Church className="h-8 w-8 text-white" />
+                <HandHeart className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-bold text-amber-800 mb-2 text-lg">Tithing</h3>
               <p className="text-sm text-amber-600">Give to yhvh364 gosat's ministry</p>
