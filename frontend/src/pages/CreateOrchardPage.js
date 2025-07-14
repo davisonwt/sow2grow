@@ -73,20 +73,31 @@ export default function CreateOrchardPage() {
     
     try {
       const orchardData = {
-        ...formData,
+        title: formData.title,
+        description: formData.description,
+        category: formData.category,
         seed_value: parseFloat(formData.seed_value),
         pocket_price: parseFloat(formData.pocket_price),
-        features: formData.features.split(",").map(f => f.trim()).filter(f => f)
+        location: formData.location,
+        timeline: formData.timeline,
+        why_needed: formData.why_needed,
+        community_impact: formData.community_impact,
+        features: formData.features.split(",").map(f => f.trim()).filter(f => f),
+        images: formData.images, // Already in base64 format
+        video_url: formData.video_url // Already in base64 format
       }
       
-      // For now, simulate API call
-      setTimeout(() => {
-        console.log("Creating orchard:", orchardData)
-        navigate("/my-orchards")
-      }, 2000)
+      const response = await api.createOrchard(orchardData)
+      
+      if (response.success) {
+        navigate("/orchard-created", { state: { orchard: response.data } })
+      } else {
+        setError(response.error || "Failed to create orchard. Please try again.")
+      }
       
     } catch (err) {
-      setError("Failed to create orchard. Please try again.")
+      console.error("Create orchard error:", err)
+      setError(err.response?.data?.detail || "Failed to create orchard. Please try again.")
     } finally {
       setLoading(false)
     }
