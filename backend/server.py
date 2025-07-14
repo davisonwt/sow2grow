@@ -444,6 +444,251 @@ async def get_current_user_optional(authorization: str = Header(None)):
     except:
         return None
 
+# ===== EMAIL SERVICE FUNCTIONS =====
+
+import sendgrid
+from sendgrid.helpers.mail import Mail, Email, To, Content
+from jinja2 import Template
+import random
+import string
+
+# Email configuration
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', '')
+sg = sendgrid.SendGridAPIClient(api_key=SENDGRID_API_KEY) if SENDGRID_API_KEY else None
+
+# Email templates
+EMAIL_TEMPLATES = {
+    "verification": {
+        "subject": "🌱 Verify Your Sow2Grow Farm Mall Account",
+        "template": """
+        <div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; background: linear-gradient(135deg, #4CAF50, #66BB6A); padding: 20px; border-radius: 15px;">
+            <div style="background: white; padding: 30px; border-radius: 10px; text-align: center;">
+                <h1 style="color: #4CAF50; margin-bottom: 20px;">🌱 Welcome to Sow2Grow!</h1>
+                <p style="font-size: 16px; color: #333; margin-bottom: 25px;">Hi {{ user_name }},</p>
+                <p style="color: #666;">Thank you for joining our 364yhvh Community Farm! Please verify your email to start sowing seeds and growing together.</p>
+                
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 25px 0;">
+                    <h3 style="color: #4CAF50; margin-bottom: 10px;">Your Verification Code:</h3>
+                    <div style="font-size: 32px; font-weight: bold; color: #2E7D32; letter-spacing: 5px;">{{ verification_code }}</div>
+                </div>
+                
+                <p style="color: #666; font-size: 14px;">This code expires in 24 hours. If you didn't create this account, please ignore this email.</p>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <p style="color: #999; font-size: 12px;">Blessings from the Sow2Grow Team 🌿</p>
+                </div>
+            </div>
+        </div>
+        """
+    },
+    "orchard_created": {
+        "subject": "🌳 Your Orchard is Now Live on Sow2Grow!",
+        "template": """
+        <div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; background: linear-gradient(135deg, #4CAF50, #66BB6A); padding: 20px; border-radius: 15px;">
+            <div style="background: white; padding: 30px; border-radius: 10px;">
+                <h1 style="color: #4CAF50; text-align: center; margin-bottom: 20px;">🌳 Your Orchard is Growing!</h1>
+                <p style="font-size: 16px; color: #333;">Hi {{ grower_name }},</p>
+                
+                <p style="color: #666; margin-bottom: 20px;">Congratulations! Your orchard "<strong>{{ orchard_title }}</strong>" has been successfully planted in our community farm.</p>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h3 style="color: #4CAF50; margin-top: 0;">🌱 Orchard Details:</h3>
+                    <ul style="color: #555;">
+                        <li><strong>Seed Value:</strong> {{ seed_value }}</li>
+                        <li><strong>Total Pockets:</strong> {{ total_pockets }}</li>
+                        <li><strong>Pocket Price:</strong> {{ pocket_price }}</li>
+                        <li><strong>Category:</strong> {{ category }}</li>
+                    </ul>
+                </div>
+                
+                <p style="color: #666;">Your orchard is now live for bestowers to support. We'll notify you when someone makes it rain on your farm stall!</p>
+                
+                <div style="text-align: center; margin: 25px 0;">
+                    <a href="{{ orchard_url }}" style="background: #4CAF50; color: white; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold;">View Your Orchard 🌳</a>
+                </div>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
+                    <p style="color: #999; font-size: 12px;">May your seeds grow and bear much fruit! 🍎</p>
+                </div>
+            </div>
+        </div>
+        """
+    },
+    "bestowment_made": {
+        "subject": "🌧️ You Made It Rain on {{ orchard_title }}!",
+        "template": """
+        <div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; background: linear-gradient(135deg, #2196F3, #42A5F5); padding: 20px; border-radius: 15px;">
+            <div style="background: white; padding: 30px; border-radius: 10px;">
+                <h1 style="color: #2196F3; text-align: center; margin-bottom: 20px;">🌧️ You Made It Rain!</h1>
+                <p style="font-size: 16px; color: #333;">Hi {{ bestower_name }},</p>
+                
+                <p style="color: #666; margin-bottom: 20px;">Thank you for your generous bestowal! You've just watered "{{ orchard_title }}" with your rain of blessings.</p>
+                
+                <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h3 style="color: #1976D2; margin-top: 0;">💧 Your Bestowal Details:</h3>
+                    <ul style="color: #555;">
+                        <li><strong>Orchard:</strong> {{ orchard_title }}</li>
+                        <li><strong>Pockets Bestowed:</strong> {{ pocket_count }}</li>
+                        <li><strong>Total Amount:</strong> {{ total_amount }}</li>
+                        <li><strong>To Grower:</strong> {{ net_amount }}</li>
+                        <li><strong>To Ministry (10%):</strong> {{ tithing_amount }}</li>
+                    </ul>
+                </div>
+                
+                <p style="color: #666;">Your bestowment helps {{ grower_name }} achieve their goal while supporting the yhvh364 gosat's ministry.</p>
+                
+                <div style="text-align: center; margin: 25px 0;">
+                    <a href="{{ orchard_url }}" style="background: #2196F3; color: white; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold;">Watch It Grow 🌱</a>
+                </div>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
+                    <p style="color: #999; font-size: 12px;">Blessings for your generous heart! 💚</p>
+                </div>
+            </div>
+        </div>
+        """
+    },
+    "bestowment_received": {
+        "subject": "🎉 {{ bestower_name }} Made It Rain on Your Orchard!",
+        "template": """
+        <div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; background: linear-gradient(135deg, #FF9800, #FFB74D); padding: 20px; border-radius: 15px;">
+            <div style="background: white; padding: 30px; border-radius: 10px;">
+                <h1 style="color: #F57C00; text-align: center; margin-bottom: 20px;">🎉 Rain of Blessings!</h1>
+                <p style="font-size: 16px; color: #333;">Hi {{ grower_name }},</p>
+                
+                <p style="color: #666; margin-bottom: 20px;">Great news! {{ bestower_name }} just made it rain on your orchard "{{ orchard_title }}"!</p>
+                
+                <div style="background: #fff3e0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h3 style="color: #E65100; margin-top: 0;">🌧️ Bestowal Details:</h3>
+                    <ul style="color: #555;">
+                        <li><strong>Bestower:</strong> {{ bestower_name }}</li>
+                        <li><strong>Pockets Filled:</strong> {{ pocket_count }}</li>
+                        <li><strong>Amount Received:</strong> {{ net_amount }}</li>
+                        <li><strong>Total Progress:</strong> {{ completion_percentage }}%</li>
+                        <li><strong>Pockets Remaining:</strong> {{ pockets_remaining }}</li>
+                    </ul>
+                </div>
+                
+                <p style="color: #666;">You're {{ completion_percentage }}% closer to your goal! Keep nurturing your orchard as the community supports your growth.</p>
+                
+                <div style="text-align: center; margin: 25px 0;">
+                    <a href="{{ orchard_url }}" style="background: #FF9800; color: white; padding: 12px 25px; text-decoration: none; border-radius: 25px; font-weight: bold;">View Your Orchard 🌳</a>
+                </div>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;">
+                    <p style="color: #999; font-size: 12px;">Your seeds are growing! 🌱✨</p>
+                </div>
+            </div>
+        </div>
+        """
+    }
+}
+
+def generate_verification_code() -> str:
+    """Generate a 6-digit verification code"""
+    return ''.join(random.choices(string.digits, k=6))
+
+async def send_email(to_email: str, to_name: str, email_type: EmailType, template_data: Dict[str, Any], user_id: Optional[str] = None, orchard_id: Optional[str] = None, bestowment_id: Optional[str] = None) -> bool:
+    """Send an email using SendGrid"""
+    try:
+        if not sg:
+            # For development without SendGrid API key
+            print(f"📧 EMAIL (DEV MODE): To {to_email} - {email_type.value}")
+            print(f"Data: {template_data}")
+            # Log to database anyway
+            await log_email(to_email, to_name, email_type, template_data, "sent", None, user_id, orchard_id, bestowment_id)
+            return True
+            
+        template_config = EMAIL_TEMPLATES.get(email_type.value)
+        if not template_config:
+            raise ValueError(f"Email template not found for type: {email_type.value}")
+            
+        # Render template
+        template = Template(template_config["template"])
+        html_content = template.render(**template_data)
+        
+        # Create email
+        from_email = Email("noreply@sow2grow.com", "Sow2Grow Farm Mall")
+        to_email_obj = To(to_email, to_name)
+        subject = Template(template_config["subject"]).render(**template_data)
+        
+        mail = Mail(from_email, to_email_obj, subject, html_content)
+        
+        # Send email
+        response = sg.client.mail.send.post(request_body=mail.get())
+        
+        # Log email
+        external_id = response.headers.get('X-Message-Id') if hasattr(response, 'headers') else None
+        status = "sent" if response.status_code == 202 else "failed"
+        await log_email(to_email, to_name, email_type, template_data, status, external_id, user_id, orchard_id, bestowment_id)
+        
+        return response.status_code == 202
+        
+    except Exception as e:
+        print(f"Email send error: {str(e)}")
+        await log_email(to_email, to_name, email_type, template_data, "failed", None, user_id, orchard_id, bestowment_id, str(e))
+        return False
+
+async def log_email(to_email: str, to_name: str, email_type: EmailType, template_data: Dict[str, Any], status: str, external_id: Optional[str] = None, user_id: Optional[str] = None, orchard_id: Optional[str] = None, bestowment_id: Optional[str] = None, error_message: Optional[str] = None):
+    """Log email to database"""
+    template_config = EMAIL_TEMPLATES.get(email_type.value, {})
+    
+    email_log = EmailLog(
+        to_email=to_email,
+        to_name=to_name,
+        subject=Template(template_config.get("subject", "")).render(**template_data),
+        email_type=email_type,
+        template_name=email_type.value,
+        template_data=template_data,
+        status=status,
+        external_id=external_id,
+        error_message=error_message,
+        user_id=user_id,
+        orchard_id=orchard_id,
+        bestowment_id=bestowment_id
+    )
+    
+    await db.email_logs.insert_one(email_log.dict())
+
+async def create_email_verification(user_id: str, email: str) -> str:
+    """Create email verification record"""
+    verification_code = generate_verification_code()
+    expires_at = datetime.utcnow() + timedelta(hours=24)
+    
+    verification = EmailVerification(
+        user_id=user_id,
+        email=email,
+        verification_code=verification_code,
+        expires_at=expires_at
+    )
+    
+    await db.email_verifications.insert_one(verification.dict())
+    return verification_code
+
+async def verify_email_code(user_id: str, code: str) -> bool:
+    """Verify email verification code"""
+    verification = await db.email_verifications.find_one({
+        "user_id": user_id,
+        "verification_code": code,
+        "verified": False,
+        "expires_at": {"$gt": datetime.utcnow()}
+    })
+    
+    if verification:
+        await db.email_verifications.update_one(
+            {"id": verification["id"]},
+            {"$set": {"verified": True, "verified_at": datetime.utcnow()}}
+        )
+        
+        # Mark user as verified
+        await db.users.update_one(
+            {"id": user_id},
+            {"$set": {"verified": True, "updated_at": datetime.utcnow()}}
+        )
+        
+        return True
+    return False
+
 # ===== API ENDPOINTS =====
 
 # Root endpoint
