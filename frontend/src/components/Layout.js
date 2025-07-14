@@ -35,7 +35,7 @@ export default function Layout({ children }) {
     { name: "Cultivate Community Orchards", href: "/browse-orchards", icon: Search },
     { name: "Create Orchard", href: "/create-orchard", icon: Plus },
     { name: "My Orchards", href: "/my-orchards", icon: BarChart3 },
-    { name: "Tithing", href: "/tithing", icon: Church },
+    { name: "Tithing", href: "/tithing", icon: HandHeart },
     { name: "Free-Will Gifting", href: "/free-will-gifting", icon: Gift },
   ]
   
