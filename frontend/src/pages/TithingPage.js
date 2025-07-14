@@ -208,7 +208,7 @@ export default function TithingPage() {
                   <Star className="h-5 w-5 text-amber-600 mt-1" />
                   <div>
                     <h4 className="font-semibold text-amber-800">Building Faith</h4>
-                    <p className="text-sm text-amber-700">Tithing helps build our faith and trust in God's provision</p>
+                    <p className="text-sm text-amber-700">Tithing helps build our faith and trust in elohiym's provision</p>
                   </div>
                 </div>
               </div>
