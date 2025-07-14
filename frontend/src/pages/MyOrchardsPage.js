@@ -113,7 +113,7 @@ export default function MyOrchardsPage() {
           loop 
           className="w-full h-full object-cover"
         >
-          <source src="/my orchards 1280x720.mp4" type="video/mp4" />
+          <source src="/orchards main mp4.mp4" type="video/mp4" />
           <div className="w-full h-full bg-gradient-to-br from-green-100 to-amber-100"></div>
         </video>
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
