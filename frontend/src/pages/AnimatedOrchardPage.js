@@ -24,7 +24,8 @@ import {
   Gift,
   CreditCard,
   Smartphone,
-  Banknote
+  Banknote,
+  Calculator
 } from "lucide-react"
 
 export default function AnimatedOrchardPage() {
