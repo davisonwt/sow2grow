@@ -1065,6 +1065,9 @@ async def get_user_bestowments(
         
         bestowments = []
         async for doc in bestowments_cursor:
+            # Remove MongoDB ObjectId fields that can't be serialized
+            if '_id' in doc:
+                del doc['_id']
             bestowments.append(doc)
         
         # Get total count
