@@ -117,25 +117,42 @@ export default function DashboardPage() {
       {/* Dashboard Content - positioned above video */}
       <div className="relative z-10 space-y-8 p-6">
         {/* Welcome Section */}
-        <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white border-opacity-20">
+        <div className="bg-gradient-to-r from-green-50/95 to-emerald-50/95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-green-200/50 hover:shadow-3xl transition-all duration-300">
           <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-green-800 mb-2" style={{ fontFamily: "Playfair Display, serif" }}>
+            <h1 className="text-4xl font-bold mb-3" style={{ 
+              fontFamily: "Playfair Display, serif",
+              background: 'linear-gradient(45deg, #059669, #10b981, #34d399)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textShadow: '0 2px 4px rgba(5, 150, 105, 0.3)'
+            }}>
               Welcome back, {user?.first_name}! 🌱
             </h1>
-            <p className="text-green-600 text-lg">
+            <p className="text-green-700 text-lg font-medium mb-3">
               Your farm stall in the 364yhvh Community Farm
             </p>
-            <Badge className="mt-2 bg-green-600 text-white">
-              <Sprout className="h-3 w-3 mr-1" />
+            <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg px-4 py-2">
+              <Sprout className="h-4 w-4 mr-2" />
               Farm Stall Owner
             </Badge>
           </div>
           <div className="text-right">
-            <div className="text-4xl font-bold text-green-800">{dashboardData.totalOrchards}</div>
-            <div className="text-sm text-green-600">Active Orchards</div>
+            <div className="text-6xl font-bold mb-2" style={{
+              background: 'linear-gradient(45deg, #059669, #10b981)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              filter: 'drop-shadow(2px 2px 4px rgba(5, 150, 105, 0.3))'
+            }}>
+              {dashboardData.totalOrchards}
+            </div>
+            <div className="text-sm text-green-700 font-semibold">Active Orchards</div>
           </div>
         </div>
+        <div className="absolute -top-2 -right-2 w-24 h-24 bg-gradient-to-br from-green-200/30 to-emerald-200/30 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute -bottom-2 -left-2 w-32 h-32 bg-gradient-to-br from-emerald-200/20 to-green-200/20 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
       
       {/* Quick Actions */}
