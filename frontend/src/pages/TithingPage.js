@@ -200,7 +200,7 @@ export default function TithingPage() {
                   <Star className="h-5 w-5 text-amber-600 mt-1" />
                   <div>
                     <h4 className="font-semibold text-amber-800">Receiving Blessing</h4>
-                    <p className="text-sm text-amber-700">God promises to bless those who faithfully tithe and give generously</p>
+                    <p className="text-sm text-amber-700">elohiym promises to bless those who faithfully tithe and give generously</p>
                   </div>
                 </div>
                 
