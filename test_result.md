@@ -321,6 +321,7 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Comprehensive seed value calculation with tithing and payment processing fees"
     - "Orchard image display implementation"
     - "Tithing icon replacement and payment method enhancement"
     - "Navigation buttons styling enhancement"
