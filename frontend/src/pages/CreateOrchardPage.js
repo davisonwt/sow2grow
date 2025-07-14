@@ -592,7 +592,7 @@ export default function CreateOrchardPage() {
             ) : (
               <>
                 <Sparkles className="h-5 w-5 mr-2" />
-                Plant Your Orchard
+                Sow Seed Into New Orchard
               </>
             )}
           </Button>
