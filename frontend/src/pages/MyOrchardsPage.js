@@ -131,21 +131,28 @@ export default function MyOrchardsPage() {
       {/* Content over video */}
       <div className="relative z-10 space-y-8 p-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-4xl font-bold text-green-800 mb-2" style={{ fontFamily: "Playfair Display, serif" }}>
-            My Farm Stall
-          </h1>
-          <p className="text-lg text-gray-600">
-            Manage your orchards in the 364yhvh Community Farm
-          </p>
+      <div className="bg-black/40 backdrop-blur-sm rounded-3xl p-8 border border-white/20 shadow-2xl">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-4xl font-bold text-white mb-2" style={{ 
+              fontFamily: "Playfair Display, serif",
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'
+            }}>
+              My Farm Stall
+            </h1>
+            <p className="text-lg text-white/90" style={{
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
+            }}>
+              Manage your orchards in the 364yhvh Community Farm
+            </p>
+          </div>
+          <Link to="/create-orchard">
+            <Button variant="golden" className="shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <Plus className="h-4 w-4 mr-2" />
+              Plant New Seed
+            </Button>
+          </Link>
         </div>
-        <Link to="/create-orchard">
-          <Button className="bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-            <Plus className="h-4 w-4 mr-2" />
-            Plant New Seed
-          </Button>
-        </Link>
       </div>
       
       {/* Stats Overview */}
