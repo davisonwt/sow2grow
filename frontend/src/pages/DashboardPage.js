@@ -17,7 +17,8 @@ import {
   Users,
   TrendingUp,
   ArrowRight,
-  Sparkles
+  Sparkles,
+  HandHeart
 } from "lucide-react"
 
 export default function DashboardPage() {
