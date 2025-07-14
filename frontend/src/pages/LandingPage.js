@@ -254,7 +254,7 @@ export default function LandingPage() {
             </div>
             
             {/* Big placeholder - Seeds 1 */}
-            <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative">
+            <div className="w-full bg-gray-200 rounded-lg flex items-center justify-center shadow-lg overflow-hidden relative" style={{ width: '1280px', height: '720px', maxWidth: '100%', margin: '0 auto' }}>
               <video 
                 autoPlay 
                 muted 
