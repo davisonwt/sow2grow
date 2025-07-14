@@ -97,6 +97,17 @@ export function useApi() {
     },
     
     // Payment endpoints
+    getPaymentConfig: async () => {
+      const response = await axios.get(`${API}/payments/config`)
+      return response.data
+    },
+    
+    createPaypalPayment: async (paymentData) => {
+      const response = await axios.post(`${API}/payments/paypal-create`, paymentData, {
+        headers: createAuthHeaders()
+      })
+      return response.data
+    },
     processCardPayment: async (paymentData) => {
       const response = await axios.post(`${API}/payments/card`, paymentData, {
         headers: createAuthHeaders()
