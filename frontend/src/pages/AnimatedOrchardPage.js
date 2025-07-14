@@ -315,6 +315,41 @@ export default function AnimatedOrchardPage() {
             </Card>
           </section>
           
+          {/* Product Images Section */}
+          {orchard.images && orchard.images.length > 0 && (
+            <section className="mb-8">
+              <Card className="bg-white/95 backdrop-blur-sm border-green-200 shadow-xl animate-in slide-in-from-bottom-5 duration-700" style={{ animationDelay: "250ms" }}>
+                <CardHeader>
+                  <CardTitle className="text-xl text-green-800 text-center flex items-center justify-center gap-2" style={{ fontFamily: "Playfair Display, serif" }}>
+                    📸 What You're Supporting
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {orchard.images.slice(0, 3).map((image, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={image}
+                          alt={`${orchard.title} - Image ${index + 1}`}
+                          className="w-full h-48 object-cover rounded-lg border border-gray-200 shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 rounded-lg"></div>
+                        <div className="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded">
+                          Image {index + 1}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {orchard.images.length > 3 && (
+                    <p className="text-center text-sm text-gray-600 mt-4">
+                      +{orchard.images.length - 3} more images
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            </section>
+          )}
+          
           {/* Orchard Grid */}
           <section className="mb-8">
             <Card className="bg-white/95 backdrop-blur-sm border-green-200 shadow-2xl animate-in slide-in-from-bottom-5 duration-700" style={{ animationDelay: "300ms" }}>
