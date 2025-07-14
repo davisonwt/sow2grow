@@ -198,6 +198,7 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Landing page text changes (Chat Message 703)"
     - "Media upload functionality in CreateOrchardPage"
     - "Make it rain checkout button implementation"
     - "AnimatedOrchardGrid pocket colors"
