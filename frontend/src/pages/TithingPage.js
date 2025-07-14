@@ -74,7 +74,7 @@ export default function TithingPage() {
             honor elohiym with your first fruits and support yhvh364 gosat's through faithful tithing
           </p>
           <Badge className="mt-4 bg-amber-100 text-amber-800">
-            <Church className="h-3 w-3 mr-1" />
+            <HandHeart className="h-3 w-3 mr-1" />
             yhvh364 gosat's Ministry
           </Badge>
         </div>
