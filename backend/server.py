@@ -43,6 +43,19 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://864da651-da13-4e06-9ea7-4e5dc9dde4c3.preview.emergentagent.com",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000"
+    ],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allow_headers=["*"],
+)
+
 # Create API router with /api prefix
 api_router = APIRouter(prefix="/api")
 
