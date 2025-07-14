@@ -718,7 +718,10 @@ async def create_orchard(
             title=request.title,
             description=request.description,
             category=request.category,
-            seed_value=request.seed_value,
+            seed_value=request.seed_value,  # Final calculated value
+            original_seed_value=request.original_seed_value,
+            tithing_amount=request.tithing_amount,
+            payment_processing_fee=request.payment_processing_fee,
             pocket_price=request.pocket_price,
             total_pockets=total_pockets,
             location=request.location,
