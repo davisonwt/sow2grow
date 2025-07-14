@@ -106,7 +106,7 @@ export default function DashboardPage() {
           loop 
           className="w-full h-full object-cover"
         >
-          <source src="/s2g/become a sower and grower (1).mp4" type="video/mp4" />
+          <source src="/hero background mp4.mp4" type="video/mp4" />
           {/* Fallback background */}
           <div className="w-full h-full bg-gradient-to-br from-green-100 to-amber-100"></div>
         </video>
