@@ -72,11 +72,17 @@ export default function CreateOrchardPage() {
     setError("")
     
     try {
+      const breakdown = getSeedValueBreakdown()
+      const finalSeedValue = breakdown ? breakdown.final : parseFloat(formData.seed_value)
+      
       const orchardData = {
         title: formData.title,
         description: formData.description,
         category: formData.category,
-        seed_value: parseFloat(formData.seed_value),
+        seed_value: finalSeedValue, // Use calculated final seed value
+        original_seed_value: parseFloat(formData.seed_value), // Store original for reference
+        tithing_amount: breakdown ? breakdown.tithing : 0,
+        payment_processing_fee: breakdown ? breakdown.paymentProcessing : 0,
         pocket_price: parseFloat(formData.pocket_price),
         location: formData.location,
         timeline: formData.timeline,
