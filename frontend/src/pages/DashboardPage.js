@@ -272,6 +272,17 @@ export default function DashboardPage() {
             {dashboardData.featuredOrchards.map((orchard) => (
               <Card key={orchard.id} className="hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
+                  {/* Orchard Image */}
+                  {orchard.images && orchard.images.length > 0 && (
+                    <div className="mb-4">
+                      <img
+                        src={orchard.images[0]}
+                        alt={orchard.title}
+                        className="w-full h-24 object-cover rounded-lg border border-gray-200 shadow-sm"
+                      />
+                    </div>
+                  )}
+                  
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-800 mb-1">{orchard.title}</h3>
