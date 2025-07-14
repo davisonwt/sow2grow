@@ -10,7 +10,8 @@ import {
   BookOpen, 
   Star,
   Gift,
-  Sparkles
+  Sparkles,
+  HandHeart
 } from "lucide-react"
 
 export default function TithingPage() {
