@@ -178,6 +178,18 @@ backend:
         comment: "Email logging system working perfectly. All emails logged to database even in dev mode without SendGrid API key. Database contains 87+ email logs with proper structure including: to_email, email_type, status, subject, template_data, timestamps. Email types working: verification, orchard_created, bestowment_made, bestowment_received. All logs show 'sent' status in dev mode."
 
 frontend:
+  - task: "Video Overlay Text Visibility Enhancement"
+    implemented: true
+    working: true
+    file: "multiple frontend pages"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Added transparent overlay boxes behind all text and headers placed directly on video backgrounds for improved readability: 1) TithingPage - Added bg-black/40 backdrop-blur-sm rounded-3xl overlay with white text and shadows, 2) FreeWillGiftingPage - Added matching transparent overlay for header section, 3) BrowseOrchardsPage - Enhanced header with transparent background box, 4) MyOrchardsPage - Added overlay for farm stall header section, 5) CreateOrchardPage - Added transparent overlay for 'Plant a New Seed' header. All overlays include border-white/20, shadow-2xl, and proper backdrop-blur effects for professional appearance while maintaining video visibility."
+
   - task: "Comprehensive Email System Implementation"
     implemented: true
     working: true
