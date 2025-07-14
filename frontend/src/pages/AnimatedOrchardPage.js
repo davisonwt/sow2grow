@@ -20,7 +20,11 @@ import {
   Users,
   Eye,
   ShoppingCart,
-  CheckCircle
+  CheckCircle,
+  Gift,
+  CreditCard,
+  Smartphone,
+  Banknote
 } from "lucide-react"
 
 export default function AnimatedOrchardPage() {
