@@ -1824,40 +1824,81 @@ async def create_paypal_order(
     request: PaymentCreateRequest,
     current_user: User = Depends(get_current_user)
 ):
-    """Create PayPal order"""
+    """Create PayPal order using your PayPal account"""
     try:
-        # Create PayPal order (simplified)
-        order_id = f"paypal_order_{int(datetime.utcnow().timestamp())}_{uuid.uuid4().hex[:8]}"
+        if not PAYPAL_CLIENT_ID:
+            raise HTTPException(status_code=400, detail="PayPal not configured")
         
-        # Create payment record
-        payment = Payment(
-            user_id=current_user.id,
-            orchard_id=request.orchard_id,
-            payment_type=request.payment_type,
-            amount=request.amount,
-            currency=request.currency,
-            method=request.method,
-            status=PaymentStatus.PENDING,
-            order_id=order_id,
-            description=request.description,
-            metadata=request.metadata
-        )
-        
-        # Insert payment
-        await db.payments.insert_one(payment.dict())
-        
-        return APIResponse(
-            success=True,
-            data={
-                "order_id": order_id,
-                "approval_url": f"https://paypal.com/checkoutnow?token={order_id}",
-                "amount": request.amount,
-                "currency": request.currency
+        # Create PayPal payment
+        payment = paypalrestsdk.Payment({
+            "intent": "sale",
+            "payer": {
+                "payment_method": "paypal"
             },
-            message="PayPal order created successfully"
-        )
+            "redirect_urls": {
+                "return_url": "https://864da651-da13-4e06-9ea7-4e5dc9dde4c3.preview.emergentagent.com/payment/success",
+                "cancel_url": "https://864da651-da13-4e06-9ea7-4e5dc9dde4c3.preview.emergentagent.com/payment/cancel"
+            },
+            "transactions": [{
+                "item_list": {
+                    "items": [{
+                        "name": f"Bestowal for {request.description}",
+                        "sku": f"orchard_{request.orchard_id}",
+                        "price": str(request.amount),
+                        "currency": request.currency,
+                        "quantity": 1
+                    }]
+                },
+                "amount": {
+                    "total": str(request.amount),
+                    "currency": request.currency
+                },
+                "description": f"Sow2Grow Bestowal: {request.description}"
+            }]
+        })
+        
+        if payment.create():
+            # Find approval URL
+            approval_url = None
+            for link in payment.links:
+                if link.rel == "approval_url":
+                    approval_url = link.href
+                    break
+            
+            # Create payment record
+            payment_record = Payment(
+                user_id=current_user.id,
+                orchard_id=request.orchard_id,
+                payment_type=request.payment_type,
+                amount=request.amount,
+                currency=request.currency,
+                method=request.method,
+                status=PaymentStatus.PENDING,
+                order_id=payment.id,
+                description=request.description,
+                metadata={"paypal_payment_id": payment.id}
+            )
+            
+            # Insert payment
+            await db.payments.insert_one(payment_record.dict())
+            
+            return APIResponse(
+                success=True,
+                data={
+                    "payment_id": payment.id,
+                    "approval_url": approval_url,
+                    "amount": request.amount,
+                    "currency": request.currency
+                },
+                message="PayPal payment created successfully"
+            )
+        else:
+            raise HTTPException(status_code=400, detail=f"PayPal error: {payment.error}")
+            
+    except HTTPException:
+        raise
     except Exception as e:
-        logging.error(f"PayPal create order error: {e}")
+        logging.error(f"PayPal create payment error: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
 @api_router.post("/payments/paypal-capture", response_model=APIResponse)
