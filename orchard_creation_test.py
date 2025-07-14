@@ -406,7 +406,7 @@ class OrchardCreationTester:
         auth_required = success
         
         self.log_test("Authentication Required", auth_required,
-                     f"- 401 returned: {'✓' if auth_required else '✗'}")
+                     f"- 403 returned: {'✓' if auth_required else '✗'}")
         return auth_required
 
     def test_response_structure(self):
