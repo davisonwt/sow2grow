@@ -47,7 +47,10 @@ export default function AnimatedOrchardPage() {
     title: "2019 Toyota Corolla",
     description: "Reliable family car for daily transportation to work and supporting my family. This vehicle will help me maintain steady employment and provide for my children's education.",
     category: "The Gift of Vehicles",
-    seed_value: 18000,
+    seed_value: 21708, // Final calculated value (18000 + 1800 + 1908)
+    original_seed_value: 18000, // Original amount
+    tithing_amount: 1800, // 10% of 18000
+    payment_processing_fee: 1908, // 6% of (18000 + 1800)
     pocket_price: 150,
     total_pockets: 120,
     filled_pockets: 85,
