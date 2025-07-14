@@ -121,7 +121,19 @@ export default function AnimatedOrchardPage() {
     }
     
     loadOrchard()
+    loadPaymentConfig()
   }, [id])
+
+  const loadPaymentConfig = async () => {
+    try {
+      const response = await api.getPaymentConfig()
+      if (response.success) {
+        setPaymentConfig(response.data)
+      }
+    } catch (error) {
+      console.error("Failed to load payment config:", error)
+    }
+  }
   
   const handlePocketClick = (pocketNumber) => {
     if (selectedPockets.includes(pocketNumber)) {
