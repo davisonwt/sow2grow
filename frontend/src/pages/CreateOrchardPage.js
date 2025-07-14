@@ -255,23 +255,30 @@ export default function CreateOrchardPage() {
       <div className="relative z-10 max-w-4xl mx-auto p-6 space-y-8">
         {/* Header */}
         <div className="text-center">
-        <div className="flex justify-center mb-4">
-          <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center shadow-lg">
-            <Sprout className="h-8 w-8 text-white animate-pulse" />
+          <div className="bg-black/40 backdrop-blur-sm rounded-3xl p-8 mx-auto max-w-3xl border border-white/20 shadow-2xl">
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center shadow-lg">
+                <Sprout className="h-8 w-8 text-white animate-pulse" />
+              </div>
+            </div>
+            <h1 className="text-4xl font-bold text-white mb-4" style={{ 
+              fontFamily: "Playfair Display, serif",
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)'
+            }}>
+              Plant a New Seed
+            </h1>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto" style={{
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
+            }}>
+              Create a new orchard in your farm stall within the 364yhvh Community Farm. 
+              Share your need with the community and watch it grow with their support.
+            </p>
+            <Badge className="mt-4 bg-green-500/80 text-white border border-green-300/50 backdrop-blur-sm">
+              <Plus className="h-3 w-3 mr-1" />
+              6-Step Creation Process
+            </Badge>
           </div>
         </div>
-        <h1 className="text-4xl font-bold text-green-800 mb-4" style={{ fontFamily: "Playfair Display, serif" }}>
-          Plant a New Seed
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Create a new orchard in your farm stall within the 364yhvh Community Farm. 
-          Share your need with the community and watch it grow with their support.
-        </p>
-        <Badge className="mt-4 bg-green-100 text-green-800">
-          <Plus className="h-3 w-3 mr-1" />
-          6-Step Creation Process
-        </Badge>
-      </div>
       
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Basic Information */}
