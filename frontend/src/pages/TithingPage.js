@@ -183,8 +183,8 @@ export default function TithingPage() {
                 <div className="flex items-start gap-3">
                   <Star className="h-5 w-5 text-amber-600 mt-1" />
                   <div>
-                    <h4 className="font-semibold text-amber-800">Honoring God</h4>
-                    <p className="text-sm text-amber-700">Tithing is a way to honor God with our firstfruits and acknowledge His provision</p>
+                    <h4 className="font-semibold text-amber-800">Honoring elohiym</h4>
+                    <p className="text-sm text-amber-700">Tithing is a way to honor elohiym with our firstfruits and acknowledge His provision</p>
                   </div>
                 </div>
                 
